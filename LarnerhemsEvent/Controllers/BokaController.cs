@@ -11,8 +11,6 @@ namespace LarnerhemsEvent.Controllers
         // GET: Boka
         public ActionResult Boka()
         {
-
-
             return View();
         }
     }
