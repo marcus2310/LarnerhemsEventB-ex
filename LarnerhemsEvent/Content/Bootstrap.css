@@ -4100,6 +4100,8 @@ input[type="button"].btn-block {
 
 .nav-tabs .nav-item {
   margin-bottom: -1px;
+  float:right;
+  font-size:20px;
 }
 
 .nav-tabs .nav-link {
@@ -4221,11 +4223,17 @@ input[type="button"].btn-block {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  
 }
 
 .navbar-nav .nav-link {
   padding-right: 0;
   padding-left: 0;
+  font-size:20px;
+  margin-left: 80px;
+  font-weight:bold;
+  
+  
 }
 
 .navbar-nav .dropdown-menu {
@@ -4528,7 +4536,7 @@ input[type="button"].btn-block {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: rgba(0, 0, 0, 0.5);
+  color: red;
 }
 
 .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
@@ -4536,7 +4544,7 @@ input[type="button"].btn-block {
 }
 
 .navbar-light .navbar-nav .nav-link.disabled {
-  color: rgba(0, 0, 0, 0.3);
+  color: red;
 }
 
 .navbar-light .navbar-nav .show > .nav-link,

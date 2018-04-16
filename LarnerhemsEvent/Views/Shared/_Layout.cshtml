@@ -3,20 +3,39 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Allt för festen</title>
+    <title>L-EVENT GROUP AB - Din kompletta eventleverantör i södra skåne</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
+    
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="/">
-                <img src="https://larnerhemsevent.com/_files/200006935-0d7640e73b/299 (1).GIF" width="200" height="30" alt=" LÄRNERHEMSEVENT">
-                </a>
-           </div>
-          
-        </div>
+    
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/" style="">
+                <img src="~/Content/bilder/logo2.png" width="300" height="120" alt=" LÄRNERHEMSEVENT">
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation" style="">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+             
+                        <a class="nav-link" href="/" ><img src="~/Content/bilder/homeicon.png" style="height:25px; width:25px;"/> Hem <span class="sr-only"></span></a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Boka"><img src="~/Content/bilder/calendaricon.png" style="height:25px; width:25px;"/> Boka</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><img src="~/Content/bilder/infoicon.png" style="height:25px; width:25px;" /> Om oss</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
     <div class="container body-content">
         @RenderBody()
