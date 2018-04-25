@@ -151,7 +151,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bilder\10406396_404341456424364_1829847338104935371_n.jpg" />
+    <Content Include="Content\bilder\14.jpg" />
+    <Content Include="Content\bilder\Alexander.jpg" />
+    <Content Include="Content\bilder\Alexander1.PNG" />
+    <Content Include="Content\bilder\Alexander2.PNG" />
     <Content Include="Content\bilder\calendaricon.png" />
+    <Content Include="Content\bilder\download_20150531_204607.jpg" />
     <Content Include="Content\bilder\homeicon.png" />
     <Content Include="Content\bilder\infoicon.png" />
     <Content Include="Content\bilder\logo1.jpg" />
@@ -159,6 +165,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\half-slider.css" />
+    <Content Include="Content\L-eventStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -26,7 +26,9 @@ namespace LarnerhemsEvent
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/half-slider.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/L-eventStyle.css"
+                      ));
         }
     }
 }

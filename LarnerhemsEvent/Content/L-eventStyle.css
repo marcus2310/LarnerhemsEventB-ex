@@ -1,0 +1,13 @@
+﻿body {
+}
+
+*{font-family:Calibri !important;}
+p{font-family:Calibri;}
+a{font-family:Calibri;}
+button{font-family:Calibri;}
+
+.indexText {
+    text-align: center;
+    color: red;
+    font-family:Calibri;
+}
