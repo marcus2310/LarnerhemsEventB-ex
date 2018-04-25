@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace LarnerhemsEvent.Controllers
 {
-    public class BokaController : Controller
+    public class OmossController : Controller
     {
-        // GET: Boka
+        // GET: Omoss
         public ActionResult Index()
         {
             return View();
