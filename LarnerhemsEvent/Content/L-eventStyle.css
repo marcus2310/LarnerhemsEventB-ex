@@ -11,3 +11,33 @@ button{font-family:Calibri;}
     color: red;
     font-family:Calibri;
 }
+.img-section-index{
+    height: 160px;
+    width: 160px;
+
+}
+.bander-index{
+    display:inline-block;
+    float:left;
+    width: 180px;
+    text-align:center;
+    margin: 8%;
+}
+footer {
+
+   
+}
+.container-bander{
+    display:inline-block;
+    background-color:lightgrey;
+    height: 500px;
+    width:100%;
+    margin:10px;
+
+
+}
+.info-bander {
+    padding:10%; 
+    width: 100%;
+    margin:auto;
+}

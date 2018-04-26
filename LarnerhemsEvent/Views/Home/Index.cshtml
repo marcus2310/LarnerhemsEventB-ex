@@ -4,22 +4,20 @@
 
 
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height:50%; width:100%; border:1px solid lightgrey">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height:20%; width:100%; border:1px solid lightgrey">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-            <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item active" style="background-size:104%; background-image: url('../../Content/bilder/10406396_404341456424364_1829847338104935371_n.jpg');
+            <div class="carousel-item active" style="background-image: url('../../Content/bilder/10406396_404341456424364_1829847338104935371_n.jpg');
 ">
                 <div class="carousel-caption d-none d-md-block">
                     <h3></h3>
                     <p></p>
                 </div>
             </div>
-            <!-- Slide Two - Set the background image for this slide in the line below -->
             <div class="carousel-item" style=" background-image: url('../../Content/bilder/download_20150531_204607.jpg');
 ">
                 <div class="carousel-caption d-none d-md-block">
@@ -27,7 +25,6 @@
                     <p></p>
                 </div>
             </div>
-            <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item" style=" background-image: url('../../Content/bilder/14.jpg');
 ">
                 <div class="carousel-caption d-none d-md-block">
@@ -48,14 +45,41 @@
     <br />
     <div>
         <div class="col-md-12" style="text-align:center;">
-            <h2>Boka direkt</h2>
+            <p><a href="@Url.Action("Index", "Boka")" class="btn btn-success btn-group-lg" style="font-size:30px;">Boka Direkt &raquo;</a></p>
             <p>
                 Nu kan du skicka bokningsförfrågan direkt från hemsidan. Följ stegen och klicka i de produkter du önskar att boka, sedan skickas din bokningsförfrågan till oss så att vi kan bekräfta den.
             </p>
-            <p><a href="@Url.Action("Index", "Boka")" class="btn btn-success btn-group-lg" style="font-size:30px;">Till bokning &raquo;</a></p>
+
         </div>
 
     </div>
+    <div style="display:flex; border:1px solid lightgrey; text-align:center;">
 
-<script src="~/Scripts/jquery.min.js"></script>
-<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+        <div style="margin:10px;">
+                <img class="img-section-index" src="~/Content/bilder/hammer.png" />
+                <h2>Fri montering</h2>
+                <p>
+                    Vi monterar och demonterar alltid våra paketlösningar.
+                </p>
+        </div>
+
+        <div style="margin:10px;">
+                <img class="img-section-index" src="~/Content/bilder/leverans.png" />
+                <h2>Fri leverans</h2>
+                <p>
+                    All transport i Malmö inom Yttreringvägen ingår alltid.
+                </p>
+        </div>
+        <div style="margin:10px;">
+                <img class="img-section-index" src="~/Content/bilder/decoration.png" />
+                <h2>Dekoration</h2>
+                <p>
+                    Vi kan bistå med full dekoration till er tillställning, bröllop som studentfest.
+                </p>
+        </div>
+    </div>
+
+  
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>

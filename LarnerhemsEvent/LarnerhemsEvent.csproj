@@ -158,11 +158,16 @@
     <Content Include="Content\bilder\Alexander2.PNG" />
     <Content Include="Content\bilder\b.png" />
     <Content Include="Content\bilder\calendaricon.png" />
+    <Content Include="Content\bilder\decoration.png" />
     <Content Include="Content\bilder\download_20150531_204607.jpg" />
+    <Content Include="Content\bilder\hammer.png" />
     <Content Include="Content\bilder\homeicon.png" />
     <Content Include="Content\bilder\infoicon.png" />
+    <Content Include="Content\bilder\leverans.png" />
     <Content Include="Content\bilder\logo1.jpg" />
     <Content Include="Content\bilder\logo2.png" />
+    <Content Include="Content\bilder\montering.png" />
+    <Content Include="Content\bilder\sloganLevent.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\half-slider.css" />
