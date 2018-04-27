@@ -36,34 +36,38 @@ button{font-family:Calibri;}
 footer 
 {
     width:100%;
-    height:150px;
-    /*background-color:lightgrey;*/ 
+    height:100%;
+    
     
    
 }
-
-
 .footer-bander 
 {
-    padding-left: 15px;
-    padding-right: 15px;
-    width: 100%;
-    height: 100%;
-    border: 2px solid lightgrey;
-    display: inline-block;
-    background-color:blue;  
+   
+     
+}
+.footer-container {
+    width: 60%;
+   
 }
 
 .footer-item 
 {
-    width: 100px;
-    margin-top: 15px;
-    float: left;
-    margin-left: 5%;
-    display:inline-block;
+   
+   width:50%;
+   display:inline-block;
+   margin-right: 1%;
+   float:left;
 }
-
-
+.footer-item img {
+    margin-right: 20px;
+}
+.social-container {
+    margin-right: 30%;
+    margin-top:2%;
+    text-align:center;
+}   
+    
 
 footer h6 {
     font-family: Calibri;

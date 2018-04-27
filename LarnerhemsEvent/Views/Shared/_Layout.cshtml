@@ -45,51 +45,36 @@
         <hr />
         
 
-        <footer>
+<footer class="footer-container">
 
-            <div class="footer-bander" style="border:2px solid black;">
+                <h4>Kontakt</h4>
                 <div class="footer-item">
-
-                    <div><h6>Kontakt</h6></div>
-                    <div>
-                        <img src="~/Content/bilder/adress.png" />
-                        <p>
-                            Nornegatan 3
-                            Malmö
-                            21620
-                        </p>
-                    </div>
-
-                    <div>
-                        <img src="~/Content/bilder/phone.png" />
-                        <p>0736379760</p>
-                    </div>
-
-                    <div>
-                        <img src="~/Content/bilder/contact.png" />
-                        <p>larnerhem@hotmail.com</p>
-                    </div>
-
+                            <img src="~/Content/bilder/adress.png"/><p>Nornegatan 3 <br/>
+                    Malmö
+                    <br/>
+                    21620</p>
                 </div>
 
-                <div class="bander-index-item" style="float:right;">
-
-                    <h6>Följ oss på sociala medier</h6>
-                    <section class="social-img">
-                        <img src="~/Content/bilder/fb.png" />
-                        <img src="~/Content/bilder/insta.png" />
-                    </section>
-
+                <div class="footer-item">
+                            <img src="~/Content/bilder/phone.png" /><p>0736379760</p>
                 </div>
 
+                <div class="footer-item">
+                            <img src="~/Content/bilder/contact.png" /><p>larnerhem@hotmail.com</p>
+                </div>
+
+</footer>
+<section>
+            <div class="social-container">
+                <p style="text-decoration:underline"><B>Följ oss på sociala medier</B></p>
+                <div class="social-img">
+                    <a target="_blank" href="https://www.facebook.com/www.larnerhemsevent.se/"><img src="~/Content/bilder/fb.png" /></a>
+                    <a target="_blank" href="https://www.instagram.com"><img src="~/Content/bilder/insta.png" /></a>
+                </div>
             </div>
-
-            <section>
-                <p id="footerText">&copy; @DateTime.Now.Year L-Event AB - All rights reserved</p>
-            </section>
-
-        </footer>
-    </div>
+            <p id="footerText">&copy; @DateTime.Now.Year L-Event AB - All rights reserved</p>
+</section>
+</div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
