@@ -153,21 +153,26 @@
   <ItemGroup>
     <Content Include="Content\bilder\10406396_404341456424364_1829847338104935371_n.jpg" />
     <Content Include="Content\bilder\14.jpg" />
+    <Content Include="Content\bilder\adress.png" />
     <Content Include="Content\bilder\Alexander.jpg" />
     <Content Include="Content\bilder\Alexander1.PNG" />
     <Content Include="Content\bilder\Alexander2.PNG" />
     <Content Include="Content\bilder\b.png" />
     <Content Include="Content\bilder\calendaricon.png" />
+    <Content Include="Content\bilder\contact.png" />
     <Content Include="Content\bilder\contractor-1623889__340.jpg" />
     <Content Include="Content\bilder\decoration.png" />
     <Content Include="Content\bilder\download_20150531_204607.jpg" />
+    <Content Include="Content\bilder\fb.png" />
     <Content Include="Content\bilder\hammer.png" />
     <Content Include="Content\bilder\homeicon.png" />
     <Content Include="Content\bilder\infoicon.png" />
+    <Content Include="Content\bilder\insta.png" />
     <Content Include="Content\bilder\leverans.png" />
     <Content Include="Content\bilder\logo1.jpg" />
     <Content Include="Content\bilder\logo2.png" />
     <Content Include="Content\bilder\montering.png" />
+    <Content Include="Content\bilder\phone.png" />
     <Content Include="Content\bilder\sloganLevent.png" />
     <Content Include="Content\bilder\tool-145375_1280.png" />
     <Content Include="Content\bilder\toolbox-162150_1280.png" />

@@ -33,9 +33,53 @@ button{font-family:Calibri;}
     margin-left:11%;
 
 }
-footer {
-
+footer 
+{
+    width:100%;
+    height:150px;
+    /*background-color:lightgrey;*/ 
+    
    
+}
+
+
+.footer-bander 
+{
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid lightgrey;
+    display: inline-block;
+    background-color:blue;  
+}
+
+.footer-item 
+{
+    width: 100px;
+    margin-top: 15px;
+    float: left;
+    margin-left: 5%;
+    display:inline-block;
+}
+
+
+
+footer h6 {
+    font-family: Calibri;
+}
+
+    .social-img img 
+    {
+        height:70px; 
+        width: 70px;
+        
+    }
+
+
+#footerText
+{
+  float: right;
 }
 .container-bander{
     display:inline-block;
