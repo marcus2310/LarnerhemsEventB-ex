@@ -16,12 +16,22 @@ button{font-family:Calibri;}
     width: 160px;
 
 }
-.bander-index{
+.bander-index {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    height: 100%;
+    /*border: 2px solid lightgrey;*/
     display:inline-block;
-    float:left;
-    width: 180px;
     text-align:center;
-    margin: 8%;
+}
+.bander-index-item{
+    text-align:center;
+    width:200px;
+    margin-top:15px;
+    float:left;
+    margin-left:11%;
+
 }
 footer {
 
