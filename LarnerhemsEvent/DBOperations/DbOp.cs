@@ -9,11 +9,16 @@ namespace LarnerhemsEvent.DBOperations
 {
     public class DbOp
     {
-        private leventsyd_se_dbEntities db = new leventsyd_se_dbEntities();
+        private leventsyd_se_dbEntities1 db = new leventsyd_se_dbEntities1();
 
 
-        
 
+        public List<package> GetSmallTentPackage()
+        {
+            var Smalltentpackage = db.packages.Where(x => x.packageID == 1).ToList();
+
+            return Smalltentpackage;
+        }
 
     }
 }

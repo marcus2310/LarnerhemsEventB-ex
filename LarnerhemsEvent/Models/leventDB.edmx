@@ -22,16 +22,6 @@
           <Property Name="phonenumber" Type="varchar" MaxLength="15" />
           <Property Name="email" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="extraproduct">
-          <Key>
-            <PropertyRef Name="extraproductID" />
-          </Key>
-          <Property Name="extraproductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="price" Type="int" />
-          <Property Name="info" Type="varchar" MaxLength="50" />
-          <Property Name="img" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="order">
           <Key>
             <PropertyRef Name="orderID" />
@@ -40,8 +30,6 @@
           <Property Name="orderdate" Type="datetime" />
           <Property Name="deliveryadress" Type="varchar" MaxLength="50" />
           <Property Name="eventdate" Type="datetime" />
-          <Property Name="fk_package_id" Type="int" />
-          <Property Name="fk_extraproduct_id" Type="int" />
           <Property Name="fk_customer_id" Type="int" />
         </EntityType>
         <EntityType Name="package">
@@ -51,19 +39,37 @@
           <Property Name="packageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="price" Type="int" />
-          <Property Name="info" Type="varchar" MaxLength="50" />
+          <Property Name="info" Type="varchar" MaxLength="255" />
           <Property Name="img" Type="varbinary(max)" />
-          <Property Name="fk_packproduct_id" Type="int" />
         </EntityType>
-        <EntityType Name="packproduct">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'leventsyd_se_db.dbo.packageorderdetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="packageorderdetails">
           <Key>
-            <PropertyRef Name="packproductID" />
+            <PropertyRef Name="fk_order_id" />
+            <PropertyRef Name="fk_package_id" />
           </Key>
-          <Property Name="packproductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_order_id" Type="int" Nullable="false" />
+          <Property Name="fk_package_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="prodpackdetails">
+          <Key>
+            <PropertyRef Name="fk_products_id" />
+            <PropertyRef Name="fk_package_id" />
+          </Key>
+          <Property Name="fk_products_id" Type="int" Nullable="false" />
+          <Property Name="fk_package_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="productsID" />
+          </Key>
+          <Property Name="productsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="info" Type="varchar" MaxLength="50" />
+          <Property Name="info" Type="varchar" MaxLength="255" />
           <Property Name="img" Type="varbinary(max)" />
-          <Property Name="amount" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -82,8 +88,9 @@
           <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="20" />
           <Property Name="fk_access_id" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
         </EntityType>
-        <Association Name="FK__order__fk_custom__3E52440B">
+        <Association Name="FK__order__fk_custom__440B1D61">
           <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
           <End Role="order" Type="Self.order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -95,39 +102,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__order__fk_extrap__3D5E1FD2">
-          <End Role="extraproduct" Type="Self.extraproduct" Multiplicity="0..1" />
-          <End Role="order" Type="Self.order" Multiplicity="*" />
+        <Association Name="FK__packageor__fk_or__48CFD27E">
+          <End Role="order" Type="Self.order" Multiplicity="1" />
+          <End Role="packageorderdetails" Type="Self.packageorderdetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="extraproduct">
-              <PropertyRef Name="extraproductID" />
+            <Principal Role="order">
+              <PropertyRef Name="orderID" />
             </Principal>
-            <Dependent Role="order">
-              <PropertyRef Name="fk_extraproduct_id" />
+            <Dependent Role="packageorderdetails">
+              <PropertyRef Name="fk_order_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__order__fk_packag__3C69FB99">
-          <End Role="package" Type="Self.package" Multiplicity="0..1" />
-          <End Role="order" Type="Self.order" Multiplicity="*" />
+        <Association Name="FK__packageor__fk_pa__49C3F6B7">
+          <End Role="package" Type="Self.package" Multiplicity="1" />
+          <End Role="packageorderdetails" Type="Self.packageorderdetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="package">
               <PropertyRef Name="packageID" />
             </Principal>
-            <Dependent Role="order">
+            <Dependent Role="packageorderdetails">
               <PropertyRef Name="fk_package_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__package__fk_pack__35BCFE0A">
-          <End Role="packproduct" Type="Self.packproduct" Multiplicity="0..1" />
-          <End Role="package" Type="Self.package" Multiplicity="*" />
+        <Association Name="FK__prodpackd__fk_pa__46E78A0C">
+          <End Role="package" Type="Self.package" Multiplicity="1" />
+          <End Role="prodpackdetails" Type="Self.prodpackdetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="packproduct">
-              <PropertyRef Name="packproductID" />
+            <Principal Role="package">
+              <PropertyRef Name="packageID" />
             </Principal>
-            <Dependent Role="package">
-              <PropertyRef Name="fk_packproduct_id" />
+            <Dependent Role="prodpackdetails">
+              <PropertyRef Name="fk_package_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__prodpackd__fk_pr__45F365D3">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="prodpackdetails" Type="Self.prodpackdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="productsID" />
+            </Principal>
+            <Dependent Role="prodpackdetails">
+              <PropertyRef Name="fk_products_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -146,27 +165,42 @@
         <EntityContainer Name="leventsyd_se_dbModelStoreContainer">
           <EntitySet Name="access" EntityType="Self.access" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="extraproduct" EntityType="Self.extraproduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="package" EntityType="Self.package" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="packproduct" EntityType="Self.packproduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__order__fk_custom__3E52440B" Association="Self.FK__order__fk_custom__3E52440B">
+          <EntitySet Name="packageorderdetails" EntityType="Self.packageorderdetails" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [packageorderdetails].[fk_order_id] AS [fk_order_id], 
+    [packageorderdetails].[fk_package_id] AS [fk_package_id]
+    FROM [dbo].[packageorderdetails] AS [packageorderdetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="prodpackdetails" EntityType="Self.prodpackdetails" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [prodpackdetails].[fk_products_id] AS [fk_products_id], 
+    [prodpackdetails].[fk_package_id] AS [fk_package_id]
+    FROM [dbo].[prodpackdetails] AS [prodpackdetails]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__order__fk_custom__440B1D61" Association="Self.FK__order__fk_custom__440B1D61">
             <End Role="customer" EntitySet="customer" />
             <End Role="order" EntitySet="order" />
           </AssociationSet>
-          <AssociationSet Name="FK__order__fk_extrap__3D5E1FD2" Association="Self.FK__order__fk_extrap__3D5E1FD2">
-            <End Role="extraproduct" EntitySet="extraproduct" />
+          <AssociationSet Name="FK__packageor__fk_or__48CFD27E" Association="Self.FK__packageor__fk_or__48CFD27E">
             <End Role="order" EntitySet="order" />
+            <End Role="packageorderdetails" EntitySet="packageorderdetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__order__fk_packag__3C69FB99" Association="Self.FK__order__fk_packag__3C69FB99">
+          <AssociationSet Name="FK__packageor__fk_pa__49C3F6B7" Association="Self.FK__packageor__fk_pa__49C3F6B7">
             <End Role="package" EntitySet="package" />
-            <End Role="order" EntitySet="order" />
+            <End Role="packageorderdetails" EntitySet="packageorderdetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__package__fk_pack__35BCFE0A" Association="Self.FK__package__fk_pack__35BCFE0A">
-            <End Role="packproduct" EntitySet="packproduct" />
+          <AssociationSet Name="FK__prodpackd__fk_pa__46E78A0C" Association="Self.FK__prodpackd__fk_pa__46E78A0C">
             <End Role="package" EntitySet="package" />
+            <End Role="prodpackdetails" EntitySet="prodpackdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__prodpackd__fk_pr__45F365D3" Association="Self.FK__prodpackd__fk_pr__45F365D3">
+            <End Role="products" EntitySet="products" />
+            <End Role="prodpackdetails" EntitySet="prodpackdetails" />
           </AssociationSet>
           <AssociationSet Name="FK__user__fk_access___4316F928" Association="Self.FK__user__fk_access___4316F928">
             <End Role="access" EntitySet="access" />
@@ -184,7 +218,7 @@
           </Key>
           <Property Name="accessID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="info" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="user" Relationship="Self.FK__user__fk_access___4316F928" FromRole="access" ToRole="user" />
+          <NavigationProperty Name="users" Relationship="Self.FK__user__fk_access___4316F928" FromRole="access" ToRole="user" />
         </EntityType>
         <EntityType Name="customer">
           <Key>
@@ -195,18 +229,7 @@
           <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="phonenumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="order" Relationship="Self.FK__order__fk_custom__3E52440B" FromRole="customer" ToRole="order" />
-        </EntityType>
-        <EntityType Name="extraproduct">
-          <Key>
-            <PropertyRef Name="extraproductID" />
-          </Key>
-          <Property Name="extraproductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="price" Type="Int32" />
-          <Property Name="info" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="order" Relationship="Self.FK__order__fk_extrap__3D5E1FD2" FromRole="extraproduct" ToRole="order" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__order__fk_custom__440B1D61" FromRole="customer" ToRole="order" />
         </EntityType>
         <EntityType Name="order">
           <Key>
@@ -216,12 +239,9 @@
           <Property Name="orderdate" Type="DateTime" Precision="3" />
           <Property Name="deliveryadress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="eventdate" Type="DateTime" Precision="3" />
-          <Property Name="fk_package_id" Type="Int32" />
-          <Property Name="fk_extraproduct_id" Type="Int32" />
           <Property Name="fk_customer_id" Type="Int32" />
-          <NavigationProperty Name="customer" Relationship="Self.FK__order__fk_custom__3E52440B" FromRole="order" ToRole="customer" />
-          <NavigationProperty Name="extraproduct" Relationship="Self.FK__order__fk_extrap__3D5E1FD2" FromRole="order" ToRole="extraproduct" />
-          <NavigationProperty Name="package" Relationship="Self.FK__order__fk_packag__3C69FB99" FromRole="order" ToRole="package" />
+          <NavigationProperty Name="customer" Relationship="Self.FK__order__fk_custom__440B1D61" FromRole="order" ToRole="customer" />
+          <NavigationProperty Name="packages" Relationship="Self.packageorderdetails" FromRole="order" ToRole="package" />
         </EntityType>
         <EntityType Name="package">
           <Key>
@@ -230,24 +250,22 @@
           <Property Name="packageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="price" Type="Int32" />
-          <Property Name="info" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="info" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="fk_packproduct_id" Type="Int32" />
-          <NavigationProperty Name="order" Relationship="Self.FK__order__fk_packag__3C69FB99" FromRole="package" ToRole="order" />
-          <NavigationProperty Name="packproduct" Relationship="Self.FK__package__fk_pack__35BCFE0A" FromRole="package" ToRole="packproduct" />
+          <NavigationProperty Name="orders" Relationship="Self.packageorderdetails" FromRole="package" ToRole="order" />
+          <NavigationProperty Name="products" Relationship="Self.prodpackdetails" FromRole="package" ToRole="products" />
         </EntityType>
-        <EntityType Name="packproduct">
+        <EntityType Name="product">
           <Key>
-            <PropertyRef Name="packproductID" />
+            <PropertyRef Name="productsID" />
           </Key>
-          <Property Name="packproductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="info" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="info" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="amount" Type="Int32" />
-          <NavigationProperty Name="package" Relationship="Self.FK__package__fk_pack__35BCFE0A" FromRole="packproduct" ToRole="package" />
+          <NavigationProperty Name="packages" Relationship="Self.prodpackdetails" FromRole="products" ToRole="package" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -264,6 +282,7 @@
           <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="fk_access_id" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="access" Relationship="Self.FK__user__fk_access___4316F928" FromRole="user" ToRole="access" />
         </EntityType>
         <Association Name="FK__user__fk_access___4316F928">
@@ -278,7 +297,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__order__fk_custom__3E52440B">
+        <Association Name="FK__order__fk_custom__440B1D61">
           <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
           <End Role="order" Type="Self.order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -290,70 +309,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__order__fk_extrap__3D5E1FD2">
-          <End Role="extraproduct" Type="Self.extraproduct" Multiplicity="0..1" />
+        <Association Name="packageorderdetails">
           <End Role="order" Type="Self.order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="extraproduct">
-              <PropertyRef Name="extraproductID" />
-            </Principal>
-            <Dependent Role="order">
-              <PropertyRef Name="fk_extraproduct_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__order__fk_packag__3C69FB99">
-          <End Role="package" Type="Self.package" Multiplicity="0..1" />
-          <End Role="order" Type="Self.order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="package">
-              <PropertyRef Name="packageID" />
-            </Principal>
-            <Dependent Role="order">
-              <PropertyRef Name="fk_package_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__package__fk_pack__35BCFE0A">
-          <End Role="packproduct" Type="Self.packproduct" Multiplicity="0..1" />
           <End Role="package" Type="Self.package" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="packproduct">
-              <PropertyRef Name="packproductID" />
-            </Principal>
-            <Dependent Role="package">
-              <PropertyRef Name="fk_packproduct_id" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="leventsyd_se_dbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="access" EntityType="Self.access" />
-          <EntitySet Name="customer" EntityType="Self.customer" />
-          <EntitySet Name="extraproduct" EntityType="Self.extraproduct" />
-          <EntitySet Name="order" EntityType="Self.order" />
-          <EntitySet Name="package" EntityType="Self.package" />
-          <EntitySet Name="packproduct" EntityType="Self.packproduct" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="user" EntityType="Self.user" />
+        <Association Name="prodpackdetails">
+          <End Role="package" Type="Self.package" Multiplicity="*" />
+          <End Role="products" Type="Self.product" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="leventsyd_se_dbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accesses" EntityType="Self.access" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="orders" EntityType="Self.order" />
+          <EntitySet Name="packages" EntityType="Self.package" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="users" EntityType="Self.user" />
           <AssociationSet Name="FK__user__fk_access___4316F928" Association="Self.FK__user__fk_access___4316F928">
-            <End Role="access" EntitySet="access" />
-            <End Role="user" EntitySet="user" />
+            <End Role="access" EntitySet="accesses" />
+            <End Role="user" EntitySet="users" />
           </AssociationSet>
-          <AssociationSet Name="FK__order__fk_custom__3E52440B" Association="Self.FK__order__fk_custom__3E52440B">
-            <End Role="customer" EntitySet="customer" />
-            <End Role="order" EntitySet="order" />
+          <AssociationSet Name="FK__order__fk_custom__440B1D61" Association="Self.FK__order__fk_custom__440B1D61">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="order" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__order__fk_extrap__3D5E1FD2" Association="Self.FK__order__fk_extrap__3D5E1FD2">
-            <End Role="extraproduct" EntitySet="extraproduct" />
-            <End Role="order" EntitySet="order" />
+          <AssociationSet Name="packageorderdetails" Association="Self.packageorderdetails">
+            <End Role="order" EntitySet="orders" />
+            <End Role="package" EntitySet="packages" />
           </AssociationSet>
-          <AssociationSet Name="FK__order__fk_packag__3C69FB99" Association="Self.FK__order__fk_packag__3C69FB99">
-            <End Role="package" EntitySet="package" />
-            <End Role="order" EntitySet="order" />
-          </AssociationSet>
-          <AssociationSet Name="FK__package__fk_pack__35BCFE0A" Association="Self.FK__package__fk_pack__35BCFE0A">
-            <End Role="packproduct" EntitySet="packproduct" />
-            <End Role="package" EntitySet="package" />
+          <AssociationSet Name="prodpackdetails" Association="Self.prodpackdetails">
+            <End Role="package" EntitySet="packages" />
+            <End Role="products" EntitySet="products" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -361,8 +347,8 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="leventsyd_se_dbModelStoreContainer" CdmEntityContainer="leventsyd_se_dbEntities">
-          <EntitySetMapping Name="access">
+        <EntityContainerMapping StorageEntityContainer="leventsyd_se_dbModelStoreContainer" CdmEntityContainer="leventsyd_se_dbEntities1">
+          <EntitySetMapping Name="accesses">
             <EntityTypeMapping TypeName="leventsyd_se_dbModel.access">
               <MappingFragment StoreEntitySet="access">
                 <ScalarProperty Name="accessID" ColumnName="accessID" />
@@ -370,7 +356,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="customer">
+          <EntitySetMapping Name="customers">
             <EntityTypeMapping TypeName="leventsyd_se_dbModel.customer">
               <MappingFragment StoreEntitySet="customer">
                 <ScalarProperty Name="customerID" ColumnName="customerID" />
@@ -381,31 +367,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="extraproduct">
-            <EntityTypeMapping TypeName="leventsyd_se_dbModel.extraproduct">
-              <MappingFragment StoreEntitySet="extraproduct">
-                <ScalarProperty Name="extraproductID" ColumnName="extraproductID" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="info" ColumnName="info" />
-                <ScalarProperty Name="img" ColumnName="img" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="order">
+          <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="leventsyd_se_dbModel.order">
               <MappingFragment StoreEntitySet="order">
                 <ScalarProperty Name="orderID" ColumnName="orderID" />
                 <ScalarProperty Name="orderdate" ColumnName="orderdate" />
                 <ScalarProperty Name="deliveryadress" ColumnName="deliveryadress" />
                 <ScalarProperty Name="eventdate" ColumnName="eventdate" />
-                <ScalarProperty Name="fk_package_id" ColumnName="fk_package_id" />
-                <ScalarProperty Name="fk_extraproduct_id" ColumnName="fk_extraproduct_id" />
                 <ScalarProperty Name="fk_customer_id" ColumnName="fk_customer_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="package">
+          <EntitySetMapping Name="packages">
             <EntityTypeMapping TypeName="leventsyd_se_dbModel.package">
               <MappingFragment StoreEntitySet="package">
                 <ScalarProperty Name="packageID" ColumnName="packageID" />
@@ -413,23 +386,21 @@
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="info" ColumnName="info" />
                 <ScalarProperty Name="img" ColumnName="img" />
-                <ScalarProperty Name="fk_packproduct_id" ColumnName="fk_packproduct_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="packproduct">
-            <EntityTypeMapping TypeName="leventsyd_se_dbModel.packproduct">
-              <MappingFragment StoreEntitySet="packproduct">
-                <ScalarProperty Name="packproductID" ColumnName="packproductID" />
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="leventsyd_se_dbModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="productsID" ColumnName="productsID" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="info" ColumnName="info" />
                 <ScalarProperty Name="img" ColumnName="img" />
-                <ScalarProperty Name="amount" ColumnName="amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="leventsyd_se_dbModel.sysdiagrams">
+            <EntityTypeMapping TypeName="leventsyd_se_dbModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -439,15 +410,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="user">
+          <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="leventsyd_se_dbModel.user">
               <MappingFragment StoreEntitySet="user">
                 <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="fk_access_id" ColumnName="fk_access_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="packageorderdetails" TypeName="leventsyd_se_dbModel.packageorderdetails" StoreEntitySet="packageorderdetails">
+            <EndProperty Name="order">
+              <ScalarProperty Name="orderID" ColumnName="fk_order_id" />
+            </EndProperty>
+            <EndProperty Name="package">
+              <ScalarProperty Name="packageID" ColumnName="fk_package_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="prodpackdetails" TypeName="leventsyd_se_dbModel.prodpackdetails" StoreEntitySet="prodpackdetails">
+            <EndProperty Name="package">
+              <ScalarProperty Name="packageID" ColumnName="fk_package_id" />
+            </EndProperty>
+            <EndProperty Name="products">
+              <ScalarProperty Name="productsID" ColumnName="fk_products_id" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -462,7 +450,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

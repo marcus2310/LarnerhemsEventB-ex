@@ -4,20 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="573806fc87e54b81843a945346e89602" Name="Diagram1">
-        <EntityTypeShape EntityType="leventsyd_se_dbModel.access" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="leventsyd_se_dbModel.customer" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="leventsyd_se_dbModel.extraproduct" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="leventsyd_se_dbModel.order" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="leventsyd_se_dbModel.package" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="leventsyd_se_dbModel.packproduct" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="leventsyd_se_dbModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="leventsyd_se_dbModel.user" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
+      <Diagram DiagramId="98ed3b0bce7448c28fdc1f3e34f1c5de" Name="Diagram1">
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.access" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.package" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.product" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.user" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <AssociationConnector Association="leventsyd_se_dbModel.FK__user__fk_access___4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="leventsyd_se_dbModel.FK__order__fk_custom__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="leventsyd_se_dbModel.FK__order__fk_extrap__3D5E1FD2" ManuallyRouted="false" />
-        <AssociationConnector Association="leventsyd_se_dbModel.FK__order__fk_packag__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="leventsyd_se_dbModel.FK__package__fk_pack__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="leventsyd_se_dbModel.FK__order__fk_custom__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="leventsyd_se_dbModel.packageorderdetails" ManuallyRouted="false" />
+        <AssociationConnector Association="leventsyd_se_dbModel.prodpackdetails" ManuallyRouted="true" >
+          <ConnectorPoint PointX="6.75" PointY="2.1151432291666667" />
+          <ConnectorPoint PointX="7.5" PointY="2.1151432291666667" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -14,16 +14,20 @@ namespace LarnerhemsEvent.Models
     
     public partial class order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public order()
+        {
+            this.packages = new HashSet<package>();
+        }
+    
         public int orderID { get; set; }
         public Nullable<System.DateTime> orderdate { get; set; }
         public string deliveryadress { get; set; }
         public Nullable<System.DateTime> eventdate { get; set; }
-        public Nullable<int> fk_package_id { get; set; }
-        public Nullable<int> fk_extraproduct_id { get; set; }
         public Nullable<int> fk_customer_id { get; set; }
     
         public virtual customer customer { get; set; }
-        public virtual extraproduct extraproduct { get; set; }
-        public virtual package package { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<package> packages { get; set; }
     }
 }

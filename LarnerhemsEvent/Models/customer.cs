@@ -17,7 +17,7 @@ namespace LarnerhemsEvent.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public customer()
         {
-            this.order = new HashSet<order>();
+            this.orders = new HashSet<order>();
         }
     
         public int customerID { get; set; }
@@ -27,6 +27,6 @@ namespace LarnerhemsEvent.Models
         public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<order> order { get; set; }
+        public virtual ICollection<order> orders { get; set; }
     }
 }

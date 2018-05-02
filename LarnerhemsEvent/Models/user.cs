@@ -17,6 +17,7 @@ namespace LarnerhemsEvent.Models
         public int userID { get; set; }
         public string password { get; set; }
         public Nullable<int> fk_access_id { get; set; }
+        public string username { get; set; }
     
         public virtual access access { get; set; }
     }

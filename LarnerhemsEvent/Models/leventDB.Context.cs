@@ -13,10 +13,10 @@ namespace LarnerhemsEvent.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class leventsyd_se_dbEntities : DbContext
+    public partial class leventsyd_se_dbEntities1 : DbContext
     {
-        public leventsyd_se_dbEntities()
-            : base("name=leventsyd_se_dbEntities")
+        public leventsyd_se_dbEntities1()
+            : base("name=leventsyd_se_dbEntities1")
         {
         }
     
@@ -25,13 +25,12 @@ namespace LarnerhemsEvent.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<access> access { get; set; }
-        public virtual DbSet<customer> customer { get; set; }
-        public virtual DbSet<extraproduct> extraproduct { get; set; }
-        public virtual DbSet<order> order { get; set; }
-        public virtual DbSet<package> package { get; set; }
-        public virtual DbSet<packproduct> packproduct { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<user> user { get; set; }
+        public virtual DbSet<access> accesses { get; set; }
+        public virtual DbSet<customer> customers { get; set; }
+        public virtual DbSet<order> orders { get; set; }
+        public virtual DbSet<package> packages { get; set; }
+        public virtual DbSet<product> products { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<user> users { get; set; }
     }
 }
