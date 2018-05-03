@@ -3,92 +3,179 @@
     ViewBag.Title = "Om oss";
 }
 
+<div style=" vertical-align:middle; text-align:center; padding-bottom:2%;">
+
+    <img src="~/Content/bilder/Om oss/OMOSSBANNER.jpg" style="width:100%; max-height:300px;height:auto;" />
+
+
+</div>
 
 
 
 
-    <div style=" vertical-align:middle; text-align:center;">
+<button class="tablink" onclick="openPage('Om-oss', this, 'white')" id="defaultOpen">Om oss</button>
+<button class="tablink" onclick="openPage('Bildgalleri', this, 'white')">Bildgalleri</button>
+<button class="tablink" onclick="openPage('Kundcitat', this, 'white')">Kundcitat</button>
+<button class="tablink" onclick="openPage('Meriter', this, 'white')">Meriter</button>
 
-        <img src="~/Content/bilder/Om oss/OMOSSBANNER.jpg" style="width:100%; max-height:300px;height:auto;" />
+
+<div class="tabcontent-container">
+
+    <div id="Om-oss" class="tabcontent">
+        <h1>Om L-event group AB</h1>
+
+        <p>
+            L-event syd organiserar allt från studentfester, bröllop, dop, affärsarrangemang och andra sammankomster.
+            Eftersom nöjda kunder alltid kommer i första hand fokuserar vi särskilt på vad som krävs för att göra ditt evenemang till en succé.
+            Beroende på evenemanget kan vi rekommendera och tillhandahålla det perfekta stället eller omgivningen, skapa ett program med underhållning som alltid passar och är smakfullt.
+            L-event syd är tidigare Lärnerhem´s event som varit igång sedan 2008.
+            Samma personal, samma lokaler bara nytt namn. Vi jobbar över hela Skåne men inriktar oss på sydväst och Söderslätt.
+            Vi är ditt personliga val av eventleverantör i Södra Sverige.
+        </p>
 
 
     </div>
 
+    <div id="Bildgalleri" class="tabcontent">
+        <h1>Bildgalleri</h1>
 
-    <div class="omoss-text-container">
+        <div class="gallery-item">
+            <img class="effectfront" src="~/Content/bilder/Om oss/Bildgalleri/31634081_10157054752007069_2749934600326217728_n.jpg" />
+        </div>
+        <div class="gallery-item">
+            <img class="effectfront" src="~/Content/bilder/Om oss/Bildgalleri/31789647_10157055117402069_7544261242567786496_n.jpg" />
+        </div>
+        <div class="gallery-item">
+            <img class="effectfront" src="~/Content/bilder/Om oss/Bildgalleri/31815508_10157055117497069_2378896455843708928_n.jpg" />
+        </div>
+        <div class="gallery-item">
+            <img class="effectfront" src="~/Content/bilder/Om oss/Bildgalleri/31817345_10157054751932069_1767055287669227520_n.jpg" />
+        </div>
+        <div class="gallery-item">
+            <img class="effectfront" src="~/Content/bilder/Om oss/Bildgalleri/31820676_10157054752197069_6539411445614903296_n.jpg" />
+        </div>
+        <div class="gallery-item">
+            <img class="effectfront" src="~/Content/bilder/Om oss/Bildgalleri/31870462_10157055117452069_4832544523961761792_n.jpg" />
+        </div>
+        <div class="gallery-item">
+            <img class="effectfront" src="~/Content/bilder/Om oss/Bildgalleri/31880912_10157054751927069_7920014238939086848_n.jpg" />
+        </div>
+        <div class="gallery-item">
+            <img class="effectfront" src="~/Content/bilder/Om oss/Bildgalleri/31882724_10157055117462069_5679286687734169600_n.jpg" />
+        </div>
+        <div class="gallery-item">
+            <img class="effectfront" src="~/Content/bilder/Om oss/Bildgalleri/31883010_10157054752117069_2122236198146539520_n.jpg" />
+        </div>
+        <div class="gallery-item">
+            <img class="effectfront" src="~/Content/bilder/Om oss/Bildgalleri/31949990_10157054751912069_7403593358452457472_n.jpg" />
+        </div>
+        <div class="social-media-gallery">
+            <p><B>Följ oss på sociala medier för mer inspiration</B></p>
+            <div class="social-img">
+                <a target="_blank" href="https://www.facebook.com/www.larnerhemsevent.se/"><img src="~/Content/bilder/fb.png" /></a>
+                <a target="_blank" href="https://www.instagram.com"><img src="~/Content/bilder/insta.png" /></a>
+            </div>
+        </div>
+        </div>
+
+        <div id="Kundcitat" class="tabcontent">
+            <h1>Kundcitat</h1>
+            <p>....</p>
+        </div>
+
+        <div id="Meriter" class="tabcontent">
+            <h1>Meriter</h1>
+            <p>....</p>
+        </div>
+    </div>
+<script>
+    function openPage(pageName, elmnt, color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+
+    }
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+
+
+@*<div class="omoss-text-container">
 
         <h1>Om L-event group AB</h1>
 
-        <p>L-event syd organiserar allt från studentfester, bröllop, dop, affärsarrangemang och andra sammankomster.
-        Eftersom nöjda kunder alltid kommer i första hand fokuserar vi särskilt på vad som krävs för att göra ditt evenemang till en succé.
-        Beroende på evenemanget kan vi rekommendera och tillhandahålla det perfekta stället eller omgivningen, skapa ett program med underhållning som alltid passar och är smakfullt.
-        L-event syd är tidigare Lärnerhem´s event som varit igång sedan 2008.
-        Samma personal, samma lokaler bara nytt namn. Vi jobbar över hela Skåne men inriktar oss på sydväst och Söderslätt. 
-        Vi är ditt personliga val av eventleverantör i Södra Sverige.</p>
+        <p>
+            L-event syd organiserar allt från studentfester, bröllop, dop, affärsarrangemang och andra sammankomster.
+            Eftersom nöjda kunder alltid kommer i första hand fokuserar vi särskilt på vad som krävs för att göra ditt evenemang till en succé.
+            Beroende på evenemanget kan vi rekommendera och tillhandahålla det perfekta stället eller omgivningen, skapa ett program med underhållning som alltid passar och är smakfullt.
+            L-event syd är tidigare Lärnerhem´s event som varit igång sedan 2008.
+            Samma personal, samma lokaler bara nytt namn. Vi jobbar över hela Skåne men inriktar oss på sydväst och Söderslätt.
+            Vi är ditt personliga val av eventleverantör i Södra Sverige.
+        </p>
 
+    </div>*@
+
+<div class="partner-container">
+
+    <h1>Våra samarbetspartners</h1>
+
+    <div class="partner-item">
+        <a href="http://2remmare.se/" target="_blank"><img src="~/Content/bilder/Om oss/2 remmare.png" /></a>
     </div>
-
-
-
-
-
-    <div class="partner-container">
-
-        <h1>Våra samarbetspartners</h1>
-
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/2 remmare.png" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/cancerkompisar.png" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/candatia.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/fallondrin.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/flyby.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/formhome.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/grillmästarna.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/Kafferista.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/Kakelgiganten.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/maderiet.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/paintballsyd.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/pampas.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/pyrex.png" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/strandgatan.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/Svedala företagsmässa.jpg" /></a>
-        </div>
-        <div class="partner-item">
-            <a href="#" target="_blank"><img src="~/Content/bilder/Om oss/teknikteamet.jpg" /></a>
-        </div>
-        
-
-
-
+    <div class="partner-item">
+        <a href="http://www.cancerkompisar.se/" target="_blank"><img src="~/Content/bilder/Om oss/cancerkompisar.png" /></a>
     </div>
+    <div class="partner-item">
+        <a href="http://candatia.se/" target="_blank"><img src="~/Content/bilder/Om oss/candatia.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="https://www.fallondrin.com/" target="_blank"><img src="~/Content/bilder/Om oss/fallondrin.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="http://flybyevents.se/" target="_blank"><img src="~/Content/bilder/Om oss/flyby.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="http://formhome.se/" target="_blank"><img src="~/Content/bilder/Om oss/formhome.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="https://www.facebook.com/Grillm%C3%A4starna-Svedala-150025355729696/" target="_blank"><img src="~/Content/bilder/Om oss/grillmästarna.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="https://www.facebook.com/kafferistapiaggio/" target="_blank"><img src="~/Content/bilder/Om oss/Kafferista.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="https://kakelgiganten.se/sv/" target="_blank"><img src="~/Content/bilder/Om oss/Kakelgiganten.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="http://maderiet.se/" target="_blank"><img src="~/Content/bilder/Om oss/maderiet.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="http://www.paintballsyd.se/" target="_blank"><img src="~/Content/bilder/Om oss/paintballsyd.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="http://pampasreklam.se/" target="_blank"><img src="~/Content/bilder/Om oss/pampas.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="https://www.pyrexware.com/" target="_blank"><img src="~/Content/bilder/Om oss/pyrex.png" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="http://www.dannegarden.se/startsida/" target="_blank"><img src="~/Content/bilder/Om oss/strandgatan.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="https://www.xn--svedalafretagsmssa-ztb66a.se/" target="_blank"><img src="~/Content/bilder/Om oss/Svedala företagsmässa.jpg" /></a>
+    </div>
+    <div class="partner-item">
+        <a href="https://www.facebook.com/teknikteamet/" target="_blank"><img src="~/Content/bilder/Om oss/teknikteamet.jpg" /></a>
+    </div>
+</div>
 
 
 
