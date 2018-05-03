@@ -4,13 +4,21 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="leventsyd_se_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="leventsyd_se_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="access">
           <Key>
             <PropertyRef Name="accessID" />
           </Key>
           <Property Name="accessID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="info" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="campaigncode">
+          <Key>
+            <PropertyRef Name="campaigncodeID" />
+          </Key>
+          <Property Name="campaigncodeID" Type="int" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="55" />
+          <Property Name="amount" Type="int" />
         </EntityType>
         <EntityType Name="customer">
           <Key>
@@ -31,6 +39,7 @@
           <Property Name="deliveryadress" Type="varchar" MaxLength="50" />
           <Property Name="eventdate" Type="datetime" />
           <Property Name="fk_customer_id" Type="int" />
+          <Property Name="fk_campaigncode_id" Type="int" />
         </EntityType>
         <EntityType Name="package">
           <Key>
@@ -39,8 +48,9 @@
           <Property Name="packageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="price" Type="int" />
+          <Property Name="originalprice" Type="int" />
           <Property Name="info" Type="varchar" MaxLength="255" />
-          <Property Name="img" Type="varbinary(max)" />
+          <Property Name="img" Type="varchar" MaxLength="255" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'leventsyd_se_db.dbo.packageorderdetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -90,6 +100,18 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <Property Name="fk_access_id" Type="int" />
           <Property Name="username" Type="varchar" MaxLength="20" />
         </EntityType>
+        <Association Name="FK__order__fk_campai__59063A47">
+          <End Role="campaigncode" Type="Self.campaigncode" Multiplicity="0..1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="campaigncode">
+              <PropertyRef Name="campaigncodeID" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="fk_campaigncode_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__order__fk_custom__440B1D61">
           <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
           <End Role="order" Type="Self.order" Multiplicity="*" />
@@ -114,7 +136,7 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__packageor__fk_pa__49C3F6B7">
+        <Association Name="FK__packageor__fk_pa__5165187F">
           <End Role="package" Type="Self.package" Multiplicity="1" />
           <End Role="packageorderdetails" Type="Self.packageorderdetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -126,7 +148,7 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__prodpackd__fk_pa__46E78A0C">
+        <Association Name="FK__prodpackd__fk_pa__5070F446">
           <End Role="package" Type="Self.package" Multiplicity="1" />
           <End Role="prodpackdetails" Type="Self.prodpackdetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -164,6 +186,7 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
         </Association>
         <EntityContainer Name="leventsyd_se_dbModelStoreContainer">
           <EntitySet Name="access" EntityType="Self.access" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="campaigncode" EntityType="Self.campaigncode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="package" EntityType="Self.package" Schema="dbo" store:Type="Tables" />
@@ -182,6 +205,10 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
     [prodpackdetails].[fk_package_id] AS [fk_package_id]
     FROM [dbo].[prodpackdetails] AS [prodpackdetails]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK__order__fk_campai__59063A47" Association="Self.FK__order__fk_campai__59063A47">
+            <End Role="campaigncode" EntitySet="campaigncode" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
           <AssociationSet Name="FK__order__fk_custom__440B1D61" Association="Self.FK__order__fk_custom__440B1D61">
             <End Role="customer" EntitySet="customer" />
             <End Role="order" EntitySet="order" />
@@ -190,11 +217,11 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
             <End Role="order" EntitySet="order" />
             <End Role="packageorderdetails" EntitySet="packageorderdetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__packageor__fk_pa__49C3F6B7" Association="Self.FK__packageor__fk_pa__49C3F6B7">
+          <AssociationSet Name="FK__packageor__fk_pa__5165187F" Association="Self.FK__packageor__fk_pa__5165187F">
             <End Role="package" EntitySet="package" />
             <End Role="packageorderdetails" EntitySet="packageorderdetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__prodpackd__fk_pa__46E78A0C" Association="Self.FK__prodpackd__fk_pa__46E78A0C">
+          <AssociationSet Name="FK__prodpackd__fk_pa__5070F446" Association="Self.FK__prodpackd__fk_pa__5070F446">
             <End Role="package" EntitySet="package" />
             <End Role="prodpackdetails" EntitySet="prodpackdetails" />
           </AssociationSet>
@@ -207,8 +234,7 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
             <End Role="user" EntitySet="user" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="leventsyd_se_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -242,6 +268,8 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <Property Name="fk_customer_id" Type="Int32" />
           <NavigationProperty Name="customer" Relationship="Self.FK__order__fk_custom__440B1D61" FromRole="order" ToRole="customer" />
           <NavigationProperty Name="packages" Relationship="Self.packageorderdetails" FromRole="order" ToRole="package" />
+          <Property Name="fk_campaigncode_id" Type="Int32" />
+          <NavigationProperty Name="campaigncode" Relationship="leventsyd_se_dbModel.FK__order__fk_campai__59063A47" FromRole="order" ToRole="campaigncode" />
         </EntityType>
         <EntityType Name="package">
           <Key>
@@ -251,9 +279,10 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="price" Type="Int32" />
           <Property Name="info" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="orders" Relationship="Self.packageorderdetails" FromRole="package" ToRole="order" />
           <NavigationProperty Name="products" Relationship="Self.prodpackdetails" FromRole="package" ToRole="products" />
+          <Property Name="originalprice" Type="Int32" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -317,7 +346,7 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <End Role="package" Type="Self.package" Multiplicity="*" />
           <End Role="products" Type="Self.product" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="leventsyd_se_dbEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="leventsyd_se_dbEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="accesses" EntityType="Self.access" />
           <EntitySet Name="customers" EntityType="Self.customer" />
           <EntitySet Name="orders" EntityType="Self.order" />
@@ -341,13 +370,39 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
             <End Role="package" EntitySet="packages" />
             <End Role="products" EntitySet="products" />
           </AssociationSet>
+          <EntitySet Name="campaigncodes" EntityType="leventsyd_se_dbModel.campaigncode" />
+          <AssociationSet Name="FK__order__fk_campai__59063A47" Association="leventsyd_se_dbModel.FK__order__fk_campai__59063A47">
+            <End Role="campaigncode" EntitySet="campaigncodes" />
+            <End Role="order" EntitySet="orders" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="campaigncode">
+          <Key>
+            <PropertyRef Name="campaigncodeID" />
+          </Key>
+          <Property Name="campaigncodeID" Type="Int32" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Int32" />
+          <NavigationProperty Name="orders" Relationship="leventsyd_se_dbModel.FK__order__fk_campai__59063A47" FromRole="campaigncode" ToRole="order" />
+        </EntityType>
+        <Association Name="FK__order__fk_campai__59063A47">
+          <End Type="leventsyd_se_dbModel.campaigncode" Role="campaigncode" Multiplicity="0..1" />
+          <End Type="leventsyd_se_dbModel.order" Role="order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="campaigncode">
+              <PropertyRef Name="campaigncodeID" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="fk_campaigncode_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="leventsyd_se_dbModelStoreContainer" CdmEntityContainer="leventsyd_se_dbEntities1">
+        <EntityContainerMapping StorageEntityContainer="leventsyd_se_dbModelStoreContainer" CdmEntityContainer="leventsyd_se_dbEntities2">
           <EntitySetMapping Name="accesses">
             <EntityTypeMapping TypeName="leventsyd_se_dbModel.access">
               <MappingFragment StoreEntitySet="access">
@@ -370,6 +425,7 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="leventsyd_se_dbModel.order">
               <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="fk_campaigncode_id" ColumnName="fk_campaigncode_id" />
                 <ScalarProperty Name="orderID" ColumnName="orderID" />
                 <ScalarProperty Name="orderdate" ColumnName="orderdate" />
                 <ScalarProperty Name="deliveryadress" ColumnName="deliveryadress" />
@@ -381,6 +437,7 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <EntitySetMapping Name="packages">
             <EntityTypeMapping TypeName="leventsyd_se_dbModel.package">
               <MappingFragment StoreEntitySet="package">
+                <ScalarProperty Name="originalprice" ColumnName="originalprice" />
                 <ScalarProperty Name="packageID" ColumnName="packageID" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="price" ColumnName="price" />
@@ -436,6 +493,15 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
               <ScalarProperty Name="productsID" ColumnName="fk_products_id" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="campaigncodes">
+            <EntityTypeMapping TypeName="leventsyd_se_dbModel.campaigncode">
+              <MappingFragment StoreEntitySet="campaigncode">
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="campaigncodeID" ColumnName="campaigncodeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

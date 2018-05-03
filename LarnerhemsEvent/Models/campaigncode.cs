@@ -12,24 +12,19 @@ namespace LarnerhemsEvent.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class order
+    public partial class campaigncode
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public order()
+        public campaigncode()
         {
-            this.packages = new HashSet<package>();
+            this.orders = new HashSet<order>();
         }
     
-        public int orderID { get; set; }
-        public Nullable<System.DateTime> orderdate { get; set; }
-        public string deliveryadress { get; set; }
-        public Nullable<System.DateTime> eventdate { get; set; }
-        public Nullable<int> fk_customer_id { get; set; }
-        public Nullable<int> fk_campaigncode_id { get; set; }
+        public int campaigncodeID { get; set; }
+        public string code { get; set; }
+        public Nullable<int> amount { get; set; }
     
-        public virtual customer customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<package> packages { get; set; }
-        public virtual campaigncode campaigncode { get; set; }
+        public virtual ICollection<order> orders { get; set; }
     }
 }

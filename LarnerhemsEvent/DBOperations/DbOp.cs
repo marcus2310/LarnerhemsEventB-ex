@@ -9,7 +9,7 @@ namespace LarnerhemsEvent.DBOperations
 {
     public class DbOp
     {
-        private leventsyd_se_dbEntities1 db = new leventsyd_se_dbEntities1();
+        private leventsyd_se_dbEntities2 db = new leventsyd_se_dbEntities2();
 
 
 

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="98ed3b0bce7448c28fdc1f3e34f1c5de" Name="Diagram1">
+      <Diagram DiagramId="ea653e71eb9a4cd88ab185acf92ff7bb" Name="Diagram1">
         <EntityTypeShape EntityType="leventsyd_se_dbModel.access" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="leventsyd_se_dbModel.customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="leventsyd_se_dbModel.order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
@@ -15,10 +15,9 @@
         <AssociationConnector Association="leventsyd_se_dbModel.FK__user__fk_access___4316F928" ManuallyRouted="false" />
         <AssociationConnector Association="leventsyd_se_dbModel.FK__order__fk_custom__440B1D61" ManuallyRouted="false" />
         <AssociationConnector Association="leventsyd_se_dbModel.packageorderdetails" ManuallyRouted="false" />
-        <AssociationConnector Association="leventsyd_se_dbModel.prodpackdetails" ManuallyRouted="true" >
-          <ConnectorPoint PointX="6.75" PointY="2.1151432291666667" />
-          <ConnectorPoint PointX="7.5" PointY="2.1151432291666667" />
-        </AssociationConnector>
+        <AssociationConnector Association="leventsyd_se_dbModel.prodpackdetails" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.campaigncode" Width="1.5" PointX="3.375" PointY="7.875" />
+        <AssociationConnector Association="leventsyd_se_dbModel.FK__order__fk_campai__59063A47" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

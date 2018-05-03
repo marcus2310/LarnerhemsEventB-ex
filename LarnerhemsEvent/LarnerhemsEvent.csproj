@@ -158,40 +158,43 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\access.cs">
-      <DependentUpon>leventDB.tt</DependentUpon>
+      <DependentUpon>leventdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\campaigncode.cs">
+      <DependentUpon>leventdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\customer.cs">
-      <DependentUpon>leventDB.tt</DependentUpon>
+      <DependentUpon>leventdb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\leventDB.Context.cs">
+    <Compile Include="Models\leventdb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>leventDB.Context.tt</DependentUpon>
+      <DependentUpon>leventdb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\leventDB.cs">
+    <Compile Include="Models\leventdb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>leventDB.tt</DependentUpon>
+      <DependentUpon>leventdb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\leventDB.Designer.cs">
+    <Compile Include="Models\leventdb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>leventDB.edmx</DependentUpon>
+      <DependentUpon>leventdb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\order.cs">
-      <DependentUpon>leventDB.tt</DependentUpon>
+      <DependentUpon>leventdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\package.cs">
-      <DependentUpon>leventDB.tt</DependentUpon>
+      <DependentUpon>leventdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\product.cs">
-      <DependentUpon>leventDB.tt</DependentUpon>
+      <DependentUpon>leventdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>leventDB.tt</DependentUpon>
+      <DependentUpon>leventdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user.cs">
-      <DependentUpon>leventDB.tt</DependentUpon>
+      <DependentUpon>leventdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -234,15 +237,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\leventDB.Context.tt">
+    <Content Include="Models\leventdb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>leventDB.edmx</DependentUpon>
-      <LastGenOutput>leventDB.Context.cs</LastGenOutput>
+      <DependentUpon>leventdb.edmx</DependentUpon>
+      <LastGenOutput>leventdb.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\leventDB.tt">
+    <Content Include="Models\leventdb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>leventDB.edmx</DependentUpon>
-      <LastGenOutput>leventDB.cs</LastGenOutput>
+      <DependentUpon>leventdb.edmx</DependentUpon>
+      <LastGenOutput>leventdb.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -250,12 +253,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\leventDB.edmx">
+    <EntityDeploy Include="Models\leventdb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>leventDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>leventdb.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\leventDB.edmx.diagram">
-      <DependentUpon>leventDB.edmx</DependentUpon>
+    <Content Include="Models\leventdb.edmx.diagram">
+      <DependentUpon>leventdb.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
