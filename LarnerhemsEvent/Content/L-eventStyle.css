@@ -33,6 +33,9 @@ button{font-family:Calibri;}
     margin-left:11%;
 
 }
+
+/*Footer*/
+
 footer 
 {
     width:100%;
@@ -101,4 +104,35 @@ footer h6 {
     padding:10%; 
     width: 100%;
     margin:auto;
+}
+
+
+  /*om oss*/
+
+  .omoss-text-container
+  {
+      padding-top:5%; 
+      text-align: center;
+  }
+
+
+.partner-container
+{
+    text-align:center;
+}
+
+.partner-item
+{
+  display: inline-block; 
+  padding: 1% 2%; 
+  text-align:center;
+}
+.partner-item img 
+{
+    max-height:200px; 
+    max-width: 230px; 
+    height:auto;
+    width:auto;
+   
+    
 }
