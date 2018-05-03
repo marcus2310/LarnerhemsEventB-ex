@@ -249,6 +249,8 @@
     <Content Include="Content\bilder\Om oss\teknikteamet.jpg" />
     <Content Include="Content\bilder\phone.png" />
     <Content Include="Content\bilder\sloganLevent.png" />
+    <Content Include="Content\bilder\socialmedia\facebooklogo.png" />
+    <Content Include="Content\bilder\socialmedia\instagramlogo.png" />
     <Content Include="Content\bilder\tool-145375_1280.png" />
     <Content Include="Content\bilder\toolbox-162150_1280.png" />
     <Content Include="Content\bilder\wrench-24261_1280.png" />
