@@ -206,6 +206,9 @@
     <Content Include="Content\bilder\Alexander1.PNG" />
     <Content Include="Content\bilder\Alexander2.PNG" />
     <Content Include="Content\bilder\b.png" />
+    <Content Include="Content\bilder\Boka\LITETPAKETTÄLT.jpg" />
+    <Content Include="Content\bilder\Boka\MELLANPAKETTÄLT.jpg" />
+    <Content Include="Content\bilder\Boka\STORTPAKETTÄLT.jpg" />
     <Content Include="Content\bilder\calendaricon.png" />
     <Content Include="Content\bilder\contact.png" />
     <Content Include="Content\bilder\contractor-1623889__340.jpg" />

@@ -233,6 +233,7 @@ footer h6 {
     }
 .social-media-gallery{
 
+
 }
 .social-media-gallery a :hover{
         opacity: 0.5;
@@ -250,4 +251,84 @@ footer h6 {
        
         font-size:28px;
     }
+}
+
+/*Boka vy*/
+
+.tablinkBoka {
+    /*background-color: #ebd67b;*/
+    background-color:#ebebeb;
+    color: Black;
+    float:left;
+    border: none;
+    outline: none;
+    
+    padding: 10px 12px;
+    font-size: 20px;
+    width: 16.66%;
+    border: solid 1px white;
+}
+.btn-bar-boka{
+    
+    height: 15px;
+    width:16.6%;
+    max-width:100%;
+    background-color:lawngreen;
+}
+
+
+    .tablinkBoka:hover {
+    }
+.tabcontent-containerBoka {
+    height: 100%;
+    border: solid 2px lightgrey;
+}
+
+.tabcontentBoka {
+    color: black;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+    text-align: center;
+    max-width: 100%;
+    width: auto;
+}
+
+
+#steg1 {
+    background-color: white;
+}
+
+#steg2 {
+    background-color: white;
+}
+
+#steg3 {
+    background-color: white;
+}
+
+#steg4 {
+    background-color: white;
+}
+#steg5 {
+    background-color: white;
+}
+#steg6 {
+    background-color: white;
+}
+
+.boka-products-container{
+   margin:5% 10% 10% 10%;
+}
+.boka-product{
+    border:solid 2px lightgrey;
+    width:30%;
+    height:100%;
+    display:inline-block;
+}
+.boka-product img{
+    height:160px;
+    width:220px;
+
+
 }
