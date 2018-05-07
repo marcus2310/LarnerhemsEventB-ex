@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<LarnerhemsEvent.Models.package>
+
 @{
     ViewBag.Title = "Boka";
 }
@@ -6,12 +7,12 @@
 <br />
 <div id="bar-boka" class="btn-bar-boka"></div>
 
-<button class="tablinkBoka" onclick="openPage('steg1', this, 'white')" id="defaultOpen"><b>Steg 1.</b><br /> Välj tältpaket</button>
-<button class="tablinkBoka" onclick="openPage('steg2', this, 'white')"><b>Steg 2.</b><br /> Välj Golvpaket</button>
-<button class="tablinkBoka" onclick="openPage('steg3', this, 'white')"><b>Steg 3.</b><br /> Välj Ljudpaket</button>
-<button class="tablinkBoka" onclick="openPage('steg4', this, 'white')"><b>Steg 4.</b><br /> Välj Ljuspaket</button>
-<button class="tablinkBoka" onclick="openPage('steg5', this, 'white')"><b>Steg 5.</b><br /> Välj Tillbehör</button>
-<button class="tablinkBoka" onclick="openPage('steg6', this, 'white')"><b>Steg 6.</b><br /> Slutför</button>
+<button class="tablinkBoka" onclick="openPage('steg1', this, 'white')" id="defaultOpen"><b>Steg 1.</b><br />Tält</button>
+<button class="tablinkBoka" disabled @*onclick="openPage('steg2', this, 'white')"*@><b>Steg 2.</b><br />Golv</button>
+<button class="tablinkBoka" disabled @*onclick="openPage('steg3', this, 'white')"*@><b>Steg 3.</b><br />Ljud</button>
+<button class="tablinkBoka" disabled @*onclick="openPage('steg4', this, 'white')"*@><b>Steg 4.</b><br />Ljus</button>
+<button class="tablinkBoka" disabled @*onclick="openPage('steg5', this, 'white')"*@><b>Steg 5.</b><br />Tillbehör</button>
+<button class="tablinkBoka" disabled @*onclick="openPage('steg6', this, 'white')"*@><b>Steg 6.</b><br />Slutför</button>
 <br />
 
 <div class="progress">
@@ -23,90 +24,84 @@
 
 
     <div id="steg1" class="tabcontentBoka">
-        <h1>Tält</h1>
+        <h1>Välj Tältpaket</h1>
         <div class="boka-products-container">
-            <div class="boka-product">
-                <img src="~/Content/bilder/Boka/LITETPAKETTÄLT.jpg" />
-                <h6>Tält litet</h6>
-                <p>detta tält är litet</p>
-                <button onclick="moveForw1()"class="btn-success btn-lg">Välj</button>
-            </div>
-            <div class="boka-product">
-                <img src="~/Content/bilder/Boka/MELLANPAKETTÄLT.jpg" />
-                <h6>Tält mellan</h6>
-                <p>detta tält är mellan</p>
-                <button onclick="moveForw1()"class="btn-success btn-lg">Välj</button>
-            </div>
-            <div class="boka-product">
-                <img src="~/Content/bilder/Boka/STORTPAKETTÄLT.jpg" />
-                <h6>Tält stor</h6>
-                <p>detta tält är stort</p>
-                <button onclick="moveForw1()"class="btn-success btn-lg">Välj</button>
-            </div>
+
+            @foreach (var item in Model)
+            {
+                <div class="boka-product">
+                    <img src="@Html.DisplayFor(Model => item.img)"/>
+                    <h6>@Html.DisplayFor(Model => item.name)</h6>
+                    <p class="product-price">@Html.DisplayFor(Model => item.price) Kr</p>
+                    <p>@Html.DisplayFor(Model => item.info)</p>
+                    <button onclick="moveForw1()" class="btn btn-success btn-group-lg">Välj</button>
+                </div>
+            }
+          
         </div>
 
-        <button onclick="moveForw1()" class="btn-lg btn-success">Nästa</button>
+        
         <p></p>
         <h6>Steg 1 av 6</h6>
     </div>
 
     <div id="steg2" class="tabcontentBoka">
-        <h1>Golv</h1>
+        <h1>Välj Golvpaket</h1>
         <div class="boka-products-container">
-            
+
 
 
 
 
         </div>
-        <button onclick="moveBack1()" class="btn-lg btn-success">Tillbaka</button>
-        <button onclick="moveForw2()" class="btn-lg btn-success">Nästa</button>
+        <button onclick="moveBack1()" class="btn btn-success btn-group-lg">Tillbaka</button>
+        <button onclick="moveForw2()" class="btn btn-success btn-group-lg">Nästa</button>
         <p></p>
         <h6>Steg 2 av 6</h6>
     </div>
 
     <div id="steg3" class="tabcontentBoka">
-        <h1>Ljud</h1>
+        <h1>Välj Ljudpaket</h1>
         <div class="boka-products-container">
-            
+
 
 
 
 
         </div>
-        <button onclick="moveBack2()" class="btn-lg btn-success">Tillbaka</button>
-        <button onclick="moveForw3()" class="btn-lg btn-success">Nästa</button>
+        <button onclick="moveBack2()" class="btn btn-success btn-group-lg">Tillbaka</button>
+        <button onclick="moveForw3()" class="btn btn-success btn-group-lg">Nästa</button>
         <p></p>
         <h6>Steg 3 av 6</h6>
     </div>
 
     <div id="steg4" class="tabcontentBoka">
-        <h1>Ljus</h1>
+        <h1>Välj Ljuspaket</h1>
         <div class="boka-products-container">
-          
+
 
 
 
 
         </div>
-        <button onclick="moveBack3()" class="btn-lg btn-success">Tillbaka</button>
-        <button onclick="moveForw4()" class="btn-lg btn-success">Nästa</button>
+        <button onclick="moveBack3()" class="btn btn-success btn-group-lg">Tillbaka</button>
+        <button onclick="moveForw4()" class="btn btn-success btn-group-lg">Nästa</button>
         <p></p>
         <h6>Steg 4 av 6</h6>
     </div>
 
     <div id="steg5" class="tabcontentBoka">
-        <h1>Tillbehör</h1>
+        <h1>Välj Tillbehör</h1>
         <div class="boka-products-container">
-           
+
 
 
 
 
 
         </div>
-        <button onclick="moveBack4()" class="btn-lg btn-success">Tillbaka</button>
-        <button onclick="moveForw5()" class="btn-lg btn-success">Nästa</button>
+        <button onclick="moveBack4()" class="btn btn-success btn-group-lg">Tillbaka</button>
+        <button onclick="moveForw5()" class="btn btn-success btn-group-lg">Nästa</button>
         <p></p>
         <h6>Steg 5 av 6</h6>
     </div>
@@ -114,12 +109,12 @@
     <div id="steg6" class="tabcontentBoka">
         <h1>Slutför</h1>
         <div class="boka-products-container">
-            
+
 
 
 
         </div>
-        <button onclick="moveBack5()" class="btn-lg btn-success">Tillbaka</button>
+        <button onclick="moveBack5()" class="btn btn-success btn-group-lg">Tillbaka</button>
         <p></p>
         <h6>Steg 6 av 6</h6>
 
@@ -127,17 +122,34 @@
 </div>
 <script>
     function moveForw1() {
+
         var elem = document.getElementById("bar-boka");
         var width1 = "33.2%";
-        
         elem.style.width = width1;
-        
+        tablinks = document.getElementsByClassName("tablinkBoka");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[0].style.backgroundColor = "#02b875";
+            tablinks[1].style.backgroundColor = "white";
+            tablinks[0].disabled = true;
+        }
+
+        openPage('steg2', this, 'white');
+
+
     }
     function moveForw2() {
         var elem = document.getElementById("bar-boka");
         var width1 = "50%";
 
         elem.style.width = width1;
+        tablinks = document.getElementsByClassName("tablinkBoka");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[1].style.backgroundColor = "#02b875";
+            tablinks[2].style.backgroundColor = "white";
+            tablinks[1].disabled = true;
+        }
+
+        openPage('steg3', this, 'white');
 
     }
     function moveForw3() {
@@ -145,13 +157,28 @@
         var width1 = "66.6%";
 
         elem.style.width = width1;
+        tablinks = document.getElementsByClassName("tablinkBoka");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[2].style.backgroundColor = "#02b875";
+            tablinks[3].style.backgroundColor = "white";
+            tablinks[2].disabled = true;
+        }
 
+        openPage('steg4', this, 'white');
     }
     function moveForw4() {
         var elem = document.getElementById("bar-boka");
         var width1 = "83.2%";
 
         elem.style.width = width1;
+        tablinks = document.getElementsByClassName("tablinkBoka");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[3].style.backgroundColor = "#02b875";
+            tablinks[4].style.backgroundColor = "white";
+            tablinks[3].disabled = true;
+        }
+
+        openPage('steg5', this, 'white');
 
     }
     function moveForw5() {
@@ -159,6 +186,14 @@
         var width1 = "100%";
 
         elem.style.width = width1;
+        tablinks = document.getElementsByClassName("tablinkBoka");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[4].style.backgroundColor = "#02b875";
+            tablinks[5].style.backgroundColor = "white";
+            tablinks[4].disabled = true;
+        }
+
+        openPage('steg6', this, 'white');
 
     }
     function moveBack1() {
@@ -166,6 +201,15 @@
         var width1 = "16.6%";
 
         elem.style.width = width1;
+        tablinks = document.getElementsByClassName("tablinkBoka");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[1].style.backgroundColor = "lightgrey";
+            tablinks[0].style.backgroundColor = "white";
+            tablinks[1].disabled = true;
+        }
+
+        openPage('steg1', this, 'white');
+
 
     }
     function moveBack2() {
@@ -173,6 +217,14 @@
         var width1 = "33.2%";
 
         elem.style.width = width1;
+        tablinks = document.getElementsByClassName("tablinkBoka");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[2].style.backgroundColor = "lightgrey";
+            tablinks[1].style.backgroundColor = "white";
+            tablinks[2].disabled = true;
+        }
+
+        openPage('steg2', this, 'white');
 
     }
     function moveBack3() {
@@ -180,6 +232,14 @@
         var width1 = "50%";
 
         elem.style.width = width1;
+        tablinks = document.getElementsByClassName("tablinkBoka");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[3].style.backgroundColor = "lightgrey";
+            tablinks[2].style.backgroundColor = "white";
+            tablinks[3].disabled = true;
+        }
+
+        openPage('steg3', this, 'white');
 
     }
     function moveBack4() {
@@ -187,6 +247,14 @@
         var width1 = "66.6%";
 
         elem.style.width = width1;
+        tablinks = document.getElementsByClassName("tablinkBoka");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[4].style.backgroundColor = "lightgrey";
+            tablinks[3].style.backgroundColor = "white";
+            tablinks[4].disabled = true;
+        }
+
+        openPage('steg4', this, 'white');
 
     }
     function moveBack5() {
@@ -194,41 +262,28 @@
         var width1 = "83.2%";
 
         elem.style.width = width1;
-
-    }
-   
-    function moveBack() {
-        var elem = document.getElementById("progbar");
-        var width = 0;
-        var id = setInterval(frame, 10);
-        function frame() {
-            if (width >= 100) {
-                clearInterval(id);
-            } else {
-                width++;
-                elem.style.width = width - '%';
-                elem.innerHTML = width * 1 - '%';
-            }
+        tablinks = document.getElementsByClassName("tablinkBoka");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[5].style.backgroundColor = "lightgrey";
+            tablinks[4].style.backgroundColor = "white";
+            tablinks[5].disabled = true;
         }
+
+        openPage('steg5', this, 'white');
+
     }
 
     function openPage(pageName, elmnt, color) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontentBoka");
-        
-       
 
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "";
-            if (tabcontent[i] == 1) {
-                progbar.style.backgroundColor = "black";
-            }
-            
         }
-       
+
         tablinks = document.getElementsByClassName("tablinkBoka");
         for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].style.backgroundColor = "";
+            //tablinks[i].style.backgroundColor = "";
         }
         document.getElementById(pageName).style.display = "block";
         elmnt.style.backgroundColor = color;

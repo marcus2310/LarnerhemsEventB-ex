@@ -228,8 +228,7 @@ footer h6 {
     .gallery-item img {
         height: 300px;
         width: 400px;
-        /*height: auto;
-        width: auto;*/
+        
     }
 .social-media-gallery{
 
@@ -251,6 +250,10 @@ footer h6 {
        
         font-size:28px;
     }
+    .gallery-item img {
+        height: 260px;
+        width: 195px;
+    }
 }
 
 /*Boka vy*/
@@ -267,13 +270,13 @@ footer h6 {
     font-size: 20px;
     width: 16.66%;
     border: solid 1px white;
+  
 }
-.btn-bar-boka{
-    
+.btn-bar-boka {
     height: 15px;
-    width:16.6%;
-    max-width:100%;
-    background-color:lawngreen;
+    width: 16.6%;
+    max-width: 100%;
+    background-color: #02B875;
 }
 
 
@@ -318,17 +321,29 @@ footer h6 {
 }
 
 .boka-products-container{
-   margin:5% 10% 10% 10%;
+   /*margin:5% 10% 10% 10%;*/
 }
-.boka-product{
-    border:solid 2px lightgrey;
-    width:30%;
-    height:100%;
-    display:inline-block;
+.boka-product {
+    border: solid 2px lightgrey;
+    max-width: 250px;
+    height: 100%;
+    width:auto;
+    display: inline-block;
+    text-align: center;
+    padding: 1% 2%;
+}
+.boka-product p{
+    font-size: 80%;
 }
 .boka-product img{
-    height:160px;
-    width:220px;
+    max-height:160px;
+    min-width:220px;
+    height:auto;
+    width:auto;
 
 
+}
+.product-price{
+    color: red;
+    font-weight: bold;
 }

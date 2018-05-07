@@ -33,5 +33,6 @@ namespace LarnerhemsEvent.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<campaigncode> campaigncodes { get; set; }
+        public virtual DbSet<genre> genres { get; set; }
     }
 }

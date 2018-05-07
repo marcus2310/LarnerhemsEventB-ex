@@ -166,6 +166,9 @@
     <Compile Include="Models\customer.cs">
       <DependentUpon>leventdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\genre.cs">
+      <DependentUpon>leventdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\leventdb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -196,6 +199,7 @@
     <Compile Include="Models\user.cs">
       <DependentUpon>leventdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\VMPackages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -206,9 +210,9 @@
     <Content Include="Content\bilder\Alexander1.PNG" />
     <Content Include="Content\bilder\Alexander2.PNG" />
     <Content Include="Content\bilder\b.png" />
-    <Content Include="Content\bilder\Boka\LITETPAKETTÄLT.jpg" />
-    <Content Include="Content\bilder\Boka\MELLANPAKETTÄLT.jpg" />
-    <Content Include="Content\bilder\Boka\STORTPAKETTÄLT.jpg" />
+    <Content Include="Content\bilder\Boka\Tält\LITETPAKETTÄLT.jpg" />
+    <Content Include="Content\bilder\Boka\Tält\MELLANPAKETTÄLT.jpg" />
+    <Content Include="Content\bilder\Boka\Tält\STORTPAKETTÄLT.jpg" />
     <Content Include="Content\bilder\calendaricon.png" />
     <Content Include="Content\bilder\contact.png" />
     <Content Include="Content\bilder\contractor-1623889__340.jpg" />
@@ -320,6 +324,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\bilder\Boka\Golv\" />
+    <Folder Include="Content\bilder\Boka\Ljud\" />
+    <Folder Include="Content\bilder\Boka\Ljus\" />
+    <Folder Include="Content\bilder\Boka\Tillbehör\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

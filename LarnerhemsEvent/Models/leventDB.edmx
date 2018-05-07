@@ -30,6 +30,13 @@
           <Property Name="phonenumber" Type="varchar" MaxLength="15" />
           <Property Name="email" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="genre">
+          <Key>
+            <PropertyRef Name="genreId" />
+          </Key>
+          <Property Name="genreId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="order">
           <Key>
             <PropertyRef Name="orderID" />
@@ -51,6 +58,7 @@
           <Property Name="originalprice" Type="int" />
           <Property Name="info" Type="varchar" MaxLength="255" />
           <Property Name="img" Type="varchar" MaxLength="255" />
+          <Property Name="fk_genre_id" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'leventsyd_se_db.dbo.packageorderdetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -79,7 +87,6 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <Property Name="productsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="info" Type="varchar" MaxLength="255" />
-          <Property Name="img" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -121,6 +128,18 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
             </Principal>
             <Dependent Role="order">
               <PropertyRef Name="fk_customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__package__fk_genr__6FE99F9F">
+          <End Role="genre" Type="Self.genre" Multiplicity="0..1" />
+          <End Role="package" Type="Self.package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genre">
+              <PropertyRef Name="genreId" />
+            </Principal>
+            <Dependent Role="package">
+              <PropertyRef Name="fk_genre_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -188,6 +207,7 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <EntitySet Name="access" EntityType="Self.access" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="campaigncode" EntityType="Self.campaigncode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="genre" EntityType="Self.genre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="package" EntityType="Self.package" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
@@ -212,6 +232,10 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <AssociationSet Name="FK__order__fk_custom__440B1D61" Association="Self.FK__order__fk_custom__440B1D61">
             <End Role="customer" EntitySet="customer" />
             <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__package__fk_genr__6FE99F9F" Association="Self.FK__package__fk_genr__6FE99F9F">
+            <End Role="genre" EntitySet="genre" />
+            <End Role="package" EntitySet="package" />
           </AssociationSet>
           <AssociationSet Name="FK__packageor__fk_or__48CFD27E" Association="Self.FK__packageor__fk_or__48CFD27E">
             <End Role="order" EntitySet="order" />
@@ -283,6 +307,8 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <NavigationProperty Name="orders" Relationship="Self.packageorderdetails" FromRole="package" ToRole="order" />
           <NavigationProperty Name="products" Relationship="Self.prodpackdetails" FromRole="package" ToRole="products" />
           <Property Name="originalprice" Type="Int32" />
+          <Property Name="fk_genre_id" Type="Int32" />
+          <NavigationProperty Name="genre" Relationship="leventsyd_se_dbModel.FK__package__fk_genr__6FE99F9F" FromRole="package" ToRole="genre" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -291,7 +317,6 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <Property Name="productsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="info" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="packages" Relationship="Self.prodpackdetails" FromRole="products" ToRole="package" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -375,6 +400,11 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
             <End Role="campaigncode" EntitySet="campaigncodes" />
             <End Role="order" EntitySet="orders" />
           </AssociationSet>
+          <EntitySet Name="genres" EntityType="leventsyd_se_dbModel.genre" />
+          <AssociationSet Name="FK__package__fk_genr__6FE99F9F" Association="leventsyd_se_dbModel.FK__package__fk_genr__6FE99F9F">
+            <End Role="genre" EntitySet="genres" />
+            <End Role="package" EntitySet="packages" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="campaigncode">
           <Key>
@@ -394,6 +424,26 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
             </Principal>
             <Dependent Role="order">
               <PropertyRef Name="fk_campaigncode_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="genre">
+          <Key>
+            <PropertyRef Name="genreId" />
+          </Key>
+          <Property Name="genreId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="packages" Relationship="leventsyd_se_dbModel.FK__package__fk_genr__6FE99F9F" FromRole="genre" ToRole="package" />
+        </EntityType>
+        <Association Name="FK__package__fk_genr__6FE99F9F">
+          <End Type="leventsyd_se_dbModel.genre" Role="genre" Multiplicity="0..1" />
+          <End Type="leventsyd_se_dbModel.package" Role="package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genre">
+              <PropertyRef Name="genreId" />
+            </Principal>
+            <Dependent Role="package">
+              <PropertyRef Name="fk_genre_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -437,6 +487,7 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
           <EntitySetMapping Name="packages">
             <EntityTypeMapping TypeName="leventsyd_se_dbModel.package">
               <MappingFragment StoreEntitySet="package">
+                <ScalarProperty Name="fk_genre_id" ColumnName="fk_genre_id" />
                 <ScalarProperty Name="originalprice" ColumnName="originalprice" />
                 <ScalarProperty Name="packageID" ColumnName="packageID" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -452,7 +503,6 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
                 <ScalarProperty Name="productsID" ColumnName="productsID" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="info" ColumnName="info" />
-                <ScalarProperty Name="img" ColumnName="img" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -499,6 +549,14 @@ warning 6002: The table/view 'leventsyd_se_db.dbo.prodpackdetails' does not have
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="campaigncodeID" ColumnName="campaigncodeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genres">
+            <EntityTypeMapping TypeName="leventsyd_se_dbModel.genre">
+              <MappingFragment StoreEntitySet="genre">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="genreId" ColumnName="genreId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

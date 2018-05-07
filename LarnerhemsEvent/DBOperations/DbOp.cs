@@ -19,6 +19,17 @@ namespace LarnerhemsEvent.DBOperations
 
             return Smalltentpackage;
         }
+        public List<package> GetTentPackages()
+        {
+            var tentpackages = db.packages.Where(x => x.fk_genre_id == 1).ToList();
 
+            return tentpackages;
+        }
+        public List<package> GetFloorPackages()
+        {
+            var floorPackages = db.packages.Where(x => x.fk_genre_id == 2).ToList();
+
+            return floorPackages;
+        }
     }
 }

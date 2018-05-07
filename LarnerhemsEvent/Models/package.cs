@@ -27,10 +27,12 @@ namespace LarnerhemsEvent.Models
         public string info { get; set; }
         public string img { get; set; }
         public Nullable<int> originalprice { get; set; }
+        public Nullable<int> fk_genre_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order> orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<product> products { get; set; }
+        public virtual genre genre { get; set; }
     }
 }

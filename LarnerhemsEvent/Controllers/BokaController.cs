@@ -11,16 +11,17 @@ namespace LarnerhemsEvent.Controllers
     public class BokaController : Controller
     {
         private DbOp dbc = new DbOp();
-        
+        List<package> tentpack = new List<package>();
+        List<package> floorPack = new List<package>();
 
         // GET: Boka
         public ActionResult Index()
         {
-            List<package> smalltent = new List<package>();
+            tentpack = dbc.GetTentPackages();
+            floorPack = dbc.GetFloorPackages();
             
-            smalltent = dbc.GetSmallTentPackage();
 
-            return View();
+            return View(tentpack);
         }
     }
 }

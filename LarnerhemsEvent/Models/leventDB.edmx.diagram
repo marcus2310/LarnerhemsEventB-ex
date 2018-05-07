@@ -18,6 +18,8 @@
         <AssociationConnector Association="leventsyd_se_dbModel.prodpackdetails" ManuallyRouted="false" />
         <EntityTypeShape EntityType="leventsyd_se_dbModel.campaigncode" Width="1.5" PointX="3.375" PointY="7.875" />
         <AssociationConnector Association="leventsyd_se_dbModel.FK__order__fk_campai__59063A47" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.genre" Width="1.5" PointX="0.75" PointY="7.875" />
+        <AssociationConnector Association="leventsyd_se_dbModel.FK__package__fk_genr__6FE99F9F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
