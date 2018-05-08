@@ -1,4 +1,5 @@
-﻿body {
+﻿
+body {
     
 }
 
@@ -320,34 +321,50 @@ footer h6 {
     background-color: white;
 }
 
-.boka-products-container{
-    display:inline-block;
-  
+.boka-products-container {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    
 }
 .boka-product {
-    border: solid 2px lightgrey;
-    width: 250px;
-    height: 100%;
-    /*width:auto;*/
-    display:inline-block;
+    /*width: 29%;*/
+    height: 150%;
+    /*display:inline-block;*/
+    width:auto;
+    float:left;
     text-align: center;
-    padding: 1% 2%;
+    margin:2% 6%;
 }
 .boka-product p{
     font-size: 80%;
 }
 
 .boka-product ul{
+    
     text-align:left;
+    margin-bottom:80px;
 }
+.boka-product-ul-container{
+    display:none;
+    margin-top:5%;
+}
+
 
 .boka-product-info{
     font-weight:bold;
 }
 
-.boka-product button
-{
-    width:100%; 
+.boka-product-button-container {
+    width: 100%;
+    /*position: absolute;
+    bottom: 0;*/
+    
+   
+}
+.boka-product-button-container button{
+    width:100%;
+
 }
 .boka-product img{
     max-height:160px;
@@ -360,4 +377,5 @@ footer h6 {
 .product-price{
     color: red;
     font-weight: bold;
+    font-size:20px;
 }

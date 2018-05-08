@@ -210,6 +210,14 @@
     <Content Include="Content\bilder\Alexander1.PNG" />
     <Content Include="Content\bilder\Alexander2.PNG" />
     <Content Include="Content\bilder\b.png" />
+    <Content Include="Content\bilder\Boka\Golv\Golv.jpg" />
+    <Content Include="Content\bilder\Boka\Golv\IngetGolv.jpg" />
+    <Content Include="Content\bilder\Boka\Ljud\ljud1.png" />
+    <Content Include="Content\bilder\Boka\Ljud\ljud2.png" />
+    <Content Include="Content\bilder\Boka\Ljud\ljud3.png" />
+    <Content Include="Content\bilder\Boka\Ljus\Ljus1.jpg" />
+    <Content Include="Content\bilder\Boka\Ljus\Ljus2.jpg" />
+    <Content Include="Content\bilder\Boka\Ljus\Ljus3.jpg" />
     <Content Include="Content\bilder\Boka\Tält\LITETPAKETTÄLT.jpg" />
     <Content Include="Content\bilder\Boka\Tält\MELLANPAKETTÄLT.jpg" />
     <Content Include="Content\bilder\Boka\Tält\STORTPAKETTÄLT.jpg" />
@@ -324,9 +332,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\bilder\Boka\Golv\" />
-    <Folder Include="Content\bilder\Boka\Ljud\" />
-    <Folder Include="Content\bilder\Boka\Ljus\" />
     <Folder Include="Content\bilder\Boka\Tillbehör\" />
   </ItemGroup>
   <ItemGroup>
