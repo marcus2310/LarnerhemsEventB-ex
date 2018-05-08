@@ -27,15 +27,30 @@
         <h1>Välj Tältpaket</h1>
         <div class="boka-products-container">
 
+            
+
             @foreach (var item in Model)
             {
-                <div class="boka-product">
-                    <img src="@Html.DisplayFor(Model => item.img)"/>
-                    <h6>@Html.DisplayFor(Model => item.name)</h6>
-                    <p class="product-price">@Html.DisplayFor(Model => item.price) Kr</p>
-                    <p>@Html.DisplayFor(Model => item.info)</p>
-                    <button onclick="moveForw1()" class="btn btn-success btn-group-lg">Välj</button>
-                </div>
+                if (item.fk_genre_id == 1)
+                {
+            <div class="boka-product">
+                <img src="@Html.DisplayFor(Model => item.img)" />
+                <h5>@Html.DisplayFor(Model => item.name)</h5>
+                <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+                <br/>
+                <ul>
+                    @foreach (var item2 in item.products)
+        {
+            <li>@Html.DisplayFor(Model => item2.name)</li>
+}
+                </ul>
+                <button onclick="moveForw1()" class="btn btn-success btn-group-lg">Välj</button>
+
+            </div>
+                }
+
             }
           
         </div>

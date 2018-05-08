@@ -31,5 +31,17 @@ namespace LarnerhemsEvent.DBOperations
 
             return floorPackages;
         }
+
+        public List<package>GetAllPackages()
+        {
+            var packages = db.packages.ToList(); 
+
+            return packages; 
+        }
+
+        //public List<prodpackdetails> GetAllPackProd()
+        //{
+        //    var packprod = db.packages.Where( )
+        //}
     }
 }

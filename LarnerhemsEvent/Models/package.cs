@@ -28,6 +28,7 @@ namespace LarnerhemsEvent.Models
         public string img { get; set; }
         public Nullable<int> originalprice { get; set; }
         public Nullable<int> fk_genre_id { get; set; }
+        public string moreinfo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order> orders { get; set; }

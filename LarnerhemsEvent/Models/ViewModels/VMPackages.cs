@@ -7,11 +7,12 @@ namespace LarnerhemsEvent.Models.ViewModels
 {
     public class VMPackages
     {
-        public List<package> Tent { get; set; }
-        public List<package> Golv { get; set; }
-        public List<package> Ljud { get; set; }
-        public List<package> Ljus { get; set; }
-        public List<package> Tillbehör { get; set; }
+        public package Tent { get; set; }
+        public package Golv { get; set; }
+        public package Ljud { get; set; }
+        public package Ljus { get; set; }
+        public package Tillbehör { get; set; }
+        
 
     }
 }

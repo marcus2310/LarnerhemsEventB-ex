@@ -326,15 +326,28 @@ footer h6 {
 }
 .boka-product {
     border: solid 2px lightgrey;
-    max-width: 250px;
+    width: 250px;
     height: 100%;
-    width:auto;
+    /*width:auto;*/
     display:inline-block;
     text-align: center;
     padding: 1% 2%;
 }
 .boka-product p{
     font-size: 80%;
+}
+
+.boka-product ul{
+    text-align:left;
+}
+
+.boka-product-info{
+    font-weight:bold;
+}
+
+.boka-product button
+{
+    width:100%; 
 }
 .boka-product img{
     max-height:160px;
