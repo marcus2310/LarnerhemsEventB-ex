@@ -2,17 +2,36 @@
 body {
     
 }
-
-*{font-family:Calibri !important;}
-p{font-family:Calibri;}
-h1{font-family:Calibri;}
-h2{font-family:Calibri;}
-h3{font-family:Calibri;}
-h4{font-family:Calibri;}
-h5{font-family:Calibri;}
-h6{font-family:Calibri;}
-a{font-family:Calibri;}
-button{font-family:Calibri;}
+html * {
+    font-family: Calibri !important;
+}
+* p {
+    font-family: Calibri !important;
+}
+h1 {
+    font-family: Calibri !important;
+}
+h2 {
+    font-family: Calibri !important;
+}
+h3 {
+    font-family: Calibri !important;
+}
+h4 {
+    font-family: Calibri !important;
+}
+h5 {
+    font-family: Calibri !important;
+}
+h6 {
+    font-family: Calibri !important;
+}
+a {
+    font-family: Calibri !important;
+}
+button {
+    font-family: Calibri !important;
+}
 
 #logotypLevent {
     max-width : 300px;
@@ -239,23 +258,7 @@ footer h6 {
         opacity: 0.5;
 }
 
-@media only screen and (max-width: 580px) {
-    .tablink {
-        width: 100%;
-    }
-    #logotypLevent {
-        width: 100%;
-        height: 100%;
-    }
-    h1{
-       
-        font-size:28px;
-    }
-    .gallery-item img {
-        height: 260px;
-        width: 195px;
-    }
-}
+
 
 /*Boka vy*/
 
@@ -279,11 +282,21 @@ footer h6 {
     max-width: 100%;
     background-color: #02B875;
 }
+.boka-product-btn-container{
+    width:100%;
+    margin-bottom:5%;
+    display:inline-block;
+}
+.boka-product-btn-container button{
+    margin-top:5%;
 
+
+}
 
     .tablinkBoka:hover {
     }
 .tabcontent-containerBoka {
+
     height: 100%;
     border: solid 2px lightgrey;
 }
@@ -330,11 +343,11 @@ footer h6 {
 .boka-product {
     /*width: 29%;*/
     height: 150%;
-    /*display:inline-block;*/
+    display:inline-block;
     width:auto;
-    float:left;
+    /*float:left;*/
     text-align: center;
-    margin:2% 6%;
+    margin:2% 3%;
 }
 #boka-product-info-item {
     
@@ -400,7 +413,7 @@ footer h6 {
     background-color: #f9f9f9;
     height: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    
+    text-align:left;
     margin-bottom: 0;
     z-index: 1;
 }
@@ -409,6 +422,7 @@ footer h6 {
         padding: 12px 16px;
         text-decoration: none;
         display: block;
+        font-family:Calibri;
     }
 
 .dropdown:hover .dropdown-content {
@@ -426,4 +440,37 @@ footer h6 {
     padding: 10px 10px;
     
     
+}
+#boka-product-plusandminus-container{
+    text-align:center;
+    display:inline-flex;
+    width:140px;
+
+}
+@media only screen and (max-width: 580px) {
+    .tablink {
+        width: 100%;
+    }
+
+    #logotypLevent {
+        width: 100%;
+        height: 100%;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .gallery-item img {
+        height: 260px;
+        width: 195px;
+    }
+
+    .tablinkBoka {
+        width: 100%;
+    }
+    .boka-product-btn-container button {
+        width:100%;
+    }
+   
 }

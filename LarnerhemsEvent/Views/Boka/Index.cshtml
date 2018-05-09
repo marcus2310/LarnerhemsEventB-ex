@@ -29,37 +29,39 @@
         <div class="boka-products-container">
 
             @foreach (var item in Model)
+        {
+            if (item.fk_genre_id == 1)
             {
-                if (item.fk_genre_id == 1)
-                {
-            <div class="boka-product">
-                <img src="@Html.DisplayFor(Model => item.img)" />
+                <div class="boka-product">
+                    <img src="@Html.DisplayFor(Model => item.img)" />
 
-                <h5>@Html.DisplayFor(Model => item.name)</h5>
-                <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                <div class="dropdown">
-                    <a href="#">⇓ Innehåll</a>
-                    <div class="dropdown-content">
-                        
+                    <h5>@Html.DisplayFor(Model => item.name)</h5>
+                    <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                    <div class="dropdown">
+                        <a href="#">⇓ Innehåll</a>
+                        <div class="dropdown-content">
+
                             @foreach (var item2 in item.products)
-                            {
-                                <a href="#">@Html.DisplayFor(Model => item2.name)</a>
-                            }
+                        {
+                            <a href="#">@Html.DisplayFor(Model => item2.name)</a>
+                    }
 
+                        </div>
+                    </div>
+                    <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                    <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+                    <br />
+                    <div class="boka-product-button-container">
+                        <button onclick="moveForw1()" class="btn btn-success btn-group-lg">Välj</button>
                     </div>
                 </div>
-                <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
-                <br />
-                <div class="boka-product-button-container">
-                    <button onclick="moveForw1()" class="btn btn-success btn-group-lg">Välj</button>
-                </div>
-            </div>
-                }
+        }
 
-             }
-            </div>
+    }
+        </div>
         <p></p>
+        <br />
+        <br />
         <h6>Steg 1 av 6</h6>
     </div>
 
@@ -71,58 +73,55 @@
         <h1>Välj Golvpaket</h1>
         <div class="boka-products-container">
             @foreach (var item in Model)
-    {
-        if (item.fk_genre_id == 2)
         {
-            <div class="boka-product">
-                <img src="@Html.DisplayFor(Model => item.img)" />
-                <h5>@Html.DisplayFor(Model => item.name)</h5>
-                <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
-                <br />
-                <div class="boka-product-ul-container">
-                    <ul>
-                        @foreach (var item2 in item.products)
+            if (item.fk_genre_id == 2)
             {
-                <li>@Html.DisplayFor(Model => item2.name)</li>
-}
-                    </ul>
+                <div class="boka-product">
+                    <img src="@Html.DisplayFor(Model => item.img)" />
+                    <h5>@Html.DisplayFor(Model => item.name)</h5>
+                    <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                    <div class="dropdown">
+                        <a href="#">⇓ Innehåll</a>
+                        <div class="dropdown-content">
+
+                            @foreach (var item2 in item.products)
+                        {
+                            <a href="#">@Html.DisplayFor(Model => item2.name)</a>
+                    }
+
+                        </div>
+                    </div>
+                    <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                    <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+                    <br />
+                    <div class="boka-product-ul-container">
+                        <ul>
+                            @foreach (var item2 in item.products)
+                        {
+                            <li>@Html.DisplayFor(Model => item2.name)</li>
+                    }
+                        </ul>
                     </div>
                     <div class="boka-product-button-container">
                         <button onclick="moveForw2()" class="btn btn-success btn-group-lg">Välj</button>
                     </div>
                 </div>
 
-                }
-                }
+        }
+    }
 
-            <div class="boka-product">
-                <img src="~/Content/bilder/Boka/Golv/IngetGolv.jpg" />
-                <h5>Inget Golv</h5>
-                <p class="boka-product-info">Inget Golv till tältpaketet</p>
-                <h6 class="product-price">0 Kr</h6>
-                <h6 class="product-ordprice">(Ord. 0 Kr)</h6>
-                <br />
-                <div class="boka-product-ul-container">
-                    <ul>
-                        <li>INGET GOLV</li>
-                    </ul>
-                    </div>
-                    <div class="boka-product-button-container">
-                        <button onclick="moveForw2()" class="btn btn-success btn-group-lg">Välj</button>
-                    </div>
-                </div>
-
-            </div>
+        </div>
 
 
-        <br/>
-        <button onclick="moveBack1()" class="btn btn-success btn-group-lg">⇐ Tillbaka</button>
-        
-        <p></p>
-        <h6>Steg 2 av 6</h6>
-    </div>
+        <br />
+        <br />
+        <div class="boka-product-btn-container">
+            <button onclick="moveBack1()" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
+            <button onclick="moveForw2()" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare utan Golv ⇒</button>
+        </div>
+            <p></p>
+            <h6>Steg 2 av 6</h6>
+        </div>
 
 
 @*------------------Steg3 Ljudpaket-------------------------*@
@@ -138,6 +137,17 @@
                     <img src="@Html.DisplayFor(Model => item.img)" />
                     <h5>@Html.DisplayFor(Model => item.name)</h5>
                     <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                                        <div class="dropdown">
+                        <a href="#">⇓ Innehåll</a>
+                        <div class="dropdown-content">
+
+                            @foreach (var item2 in item.products)
+                        {
+                            <a href="#">@Html.DisplayFor(Model => item2.name)</a>
+                    }
+
+                        </div>
+                    </div>
                     <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
                     <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
 
@@ -161,9 +171,11 @@
 
         </div>
         <br />
-
-        <button onclick="moveBack2()" class="btn btn-success btn-group-lg">⇐ Tillbaka</button>
-        <button onclick="moveForw3()" class="btn btn-success btn-group-lg">Gå vidare utan Ljud ⇒</button>
+        <br />
+        <div class="boka-product-btn-container">
+            <button onclick="moveBack2()" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
+            <button onclick="moveForw3()" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare utan Ljud ⇒</button>
+        </div>
         <p></p>
         <h6>Steg 3 av 6</h6>
     </div>
@@ -174,64 +186,132 @@
     <div id="steg4" class="tabcontentBoka">
         <h1>Välj Ljuspaket</h1>
         <div class="boka-products-container">
+            @foreach (var item in Model)
+    {
+        if (item.fk_genre_id == 4)
+        {
+            <div class="boka-product">
+                <img src="@Html.DisplayFor(Model => item.img)" />
+                <h5>@Html.DisplayFor(Model => item.name)</h5>
+                <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                <div class="dropdown">
+                    <a href="#">⇓ Innehåll</a>
+                    <div class="dropdown-content">
 
+                        @foreach (var item2 in item.products)
+                {
+                    <a href="#">@Html.DisplayFor(Model => item2.name)</a>
+        }
 
+                    </div>
+                </div>
+                <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
 
+                <br />
+                <div class="boka-product-ul-container">
 
+                    <ul>
+                        @foreach (var item2 in item.products)
+                {
+                    <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
+        }
+                    </ul>
+                </div>
+                <div class="boka-product-button-container">
+                    <button onclick="moveForw4()" class="btn btn-success btn-group-lg">Välj</button>
+                </div>
+            </div>
+
+}
+}
 
         </div>
 
         <br />
-        <button onclick="moveBack3()" class="btn btn-success btn-group-lg">⇐ Tillbaka</button>
-        
-        <button onclick="moveForw4()" class="btn btn-success btn-group-lg">Nästa</button>
-        <p></p>
-        <h6>Steg 4 av 6</h6>
-    </div>
+        <br />
+        <div class="boka-product-btn-container">
+            <button onclick="moveBack3()" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
+            <button onclick="moveForw4()" class="btn btn-secondary btn-group-lg"style="float:right;">Gå vidare utan Ljus ⇒</button>
+        </div>
+            <p></p>
+            <h6>Steg 4 av 6</h6>
+        </div>
 
 
-@*------------------Steg5 Tillbehör-------------------------*@
+        @*------------------Steg5 Tillbehör-------------------------*@
 
     <div id="steg5" class="tabcontentBoka">
         <h1>Välj Tillbehör</h1>
         <div class="boka-products-container">
+            @foreach (var item in Model)
+    {
+        if (item.fk_genre_id == 5)
+        {
+            <div class="boka-product">
+                <img src="@Html.DisplayFor(Model => item.img)" />
+                <h5>@Html.DisplayFor(Model => item.name)</h5>
+                <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                <a href="#">Detalj</a>
+                <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
 
+                <br />
+                <div class="boka-product-ul-container">
 
-
-
-
+                    <ul>
+                        @foreach (var item2 in item.products)
+            {
+                <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
+}
+                    </ul>
+                </div>
+                <div class="boka-product-button-container">
+                    <div id="boka-product-plusandminus-container" class="form-group">
+                        <button onclick="something()" class="btn btn-success btn-group-lg">-</button>
+                        <input class="form-control" id="readOnlyInput" type="text" placeholder="0" readonly="">
+                        <button onclick="something()" class="btn btn-success btn-group-lg">+</button>
+                    </div>
+                </div>
+            </div>
+}
+}
 
         </div>
 
         <br />
-        <button onclick="moveBack4()" class="btn btn-success btn-group-lg">⇐ Tillbaka</button>
-        <button onclick="moveForw5()" class="btn btn-success btn-group-lg">Nästa</button>
-        <p></p>
-        <h6>Steg 5 av 6</h6>
-    </div>
+        <br />
+        <div class="boka-product-btn-container">
+            <button onclick="moveBack4()" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
+            <button onclick="moveForw5()" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare till Slutför ⇒</button>
+           </div>
+            <p></p>
+            <h6>Steg 5 av 6</h6>
+        </div>
 
 
-@*------------------Steg6 Slutför-------------------------*@
+        @*------------------Steg6 Slutför-------------------------*@
 
-    <div id="steg6" class="tabcontentBoka">
-        <h1>Slutför</h1>
-        <div class="boka-products-container">
+        <div id="steg6" class="tabcontentBoka">
+            <h1>Slutför</h1>
+            <div class="boka-products-container">
 
 
+
+            </div>
+
+            <br />
+            <br />
+            <button onclick="moveBack5()" class="btn btn-secondary btn-group-lg">⇐ Tillbaka</button>
+
+            <p></p>
+            <h6>Steg 6 av 6</h6>
 
         </div>
 
-        <br />
-        <button onclick="moveBack5()" class="btn btn-success btn-group-lg">⇐ Tillbaka</button>
-      
-        <p></p>
-        <h6>Steg 6 av 6</h6>
+
 
     </div>
-
-
-
-</div>
 
 
 
@@ -319,7 +399,7 @@
         elem.style.width = width1;
         tablinks = document.getElementsByClassName("tablinkBoka");
         for (i = 0; i < tablinks.length; i++) {
-            tablinks[1].style.backgroundColor = "lightgrey";
+            tablinks[1].style.backgroundColor = "#ebebeb";
             tablinks[0].style.backgroundColor = "white";
             tablinks[1].disabled = true;
         }
@@ -335,7 +415,7 @@
         elem.style.width = width1;
         tablinks = document.getElementsByClassName("tablinkBoka");
         for (i = 0; i < tablinks.length; i++) {
-            tablinks[2].style.backgroundColor = "lightgrey";
+            tablinks[2].style.backgroundColor = "#ebebeb";
             tablinks[1].style.backgroundColor = "white";
             tablinks[2].disabled = true;
         }
@@ -350,7 +430,7 @@
         elem.style.width = width1;
         tablinks = document.getElementsByClassName("tablinkBoka");
         for (i = 0; i < tablinks.length; i++) {
-            tablinks[3].style.backgroundColor = "lightgrey";
+            tablinks[3].style.backgroundColor = "#ebebeb";
             tablinks[2].style.backgroundColor = "white";
             tablinks[3].disabled = true;
         }
@@ -365,7 +445,7 @@
         elem.style.width = width1;
         tablinks = document.getElementsByClassName("tablinkBoka");
         for (i = 0; i < tablinks.length; i++) {
-            tablinks[4].style.backgroundColor = "lightgrey";
+            tablinks[4].style.backgroundColor = "#ebebeb";
             tablinks[3].style.backgroundColor = "white";
             tablinks[4].disabled = true;
         }
@@ -380,7 +460,7 @@
         elem.style.width = width1;
         tablinks = document.getElementsByClassName("tablinkBoka");
         for (i = 0; i < tablinks.length; i++) {
-            tablinks[5].style.backgroundColor = "lightgrey";
+            tablinks[5].style.backgroundColor = "#ebebeb";
             tablinks[4].style.backgroundColor = "white";
             tablinks[5].disabled = true;
         }

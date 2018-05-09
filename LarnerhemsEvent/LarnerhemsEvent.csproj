@@ -218,6 +218,12 @@
     <Content Include="Content\bilder\Boka\Ljus\Ljus1.jpg" />
     <Content Include="Content\bilder\Boka\Ljus\Ljus2.jpg" />
     <Content Include="Content\bilder\Boka\Ljus\Ljus3.jpg" />
+    <Content Include="Content\bilder\Boka\Tillbehör\2-packPalm.jpg" />
+    <Content Include="Content\bilder\Boka\Tillbehör\Gråklaffbord.jpg" />
+    <Content Include="Content\bilder\Boka\Tillbehör\KLAFFSTOLAR.jpg" />
+    <Content Include="Content\bilder\Boka\Tillbehör\Kyl.jpg" />
+    <Content Include="Content\bilder\Boka\Tillbehör\ståbord.jpg" />
+    <Content Include="Content\bilder\Boka\Tillbehör\värmare.jpg" />
     <Content Include="Content\bilder\Boka\Tält\LITETPAKETTÄLT.jpg" />
     <Content Include="Content\bilder\Boka\Tält\MELLANPAKETTÄLT.jpg" />
     <Content Include="Content\bilder\Boka\Tält\STORTPAKETTÄLT.jpg" />
@@ -332,7 +338,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\bilder\Boka\Tillbehör\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
