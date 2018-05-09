@@ -22,6 +22,7 @@
 
 <div class="tabcontent-containerBoka">
 
+@*------------------Steg1 Tältpaket-------------------------*@
 
     <div id="steg1" class="tabcontentBoka">
         <h1>Välj Tältpaket</h1>
@@ -31,43 +32,40 @@
             {
                 if (item.fk_genre_id == 1)
                 {
-                
-
-
             <div class="boka-product">
                 <img src="@Html.DisplayFor(Model => item.img)" />
-                
+
                 <h5>@Html.DisplayFor(Model => item.name)</h5>
                 <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                <div class="dropdown">
+                    <a href="#">⇓ Innehåll</a>
+                    <div class="dropdown-content">
+                        
+                            @foreach (var item2 in item.products)
+                            {
+                                <a href="#">@Html.DisplayFor(Model => item2.name)</a>
+                            }
+
+                    </div>
+                </div>
                 <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
                 <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
                 <br />
-
-
                 <div class="boka-product-button-container">
                     <button onclick="moveForw1()" class="btn btn-success btn-group-lg">Välj</button>
                 </div>
-                <div id="boka-product-info-item">
-                    <ul>
-                        @foreach (var item2 in item.products)
-                        {
-                            <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
-                        }
-                    </ul>
-                </div>
-
-
             </div>
                 }
 
-                }
-
+             }
             </div>
-
-        
         <p></p>
         <h6>Steg 1 av 6</h6>
     </div>
+
+
+
+@*------------------Steg2 Golvpaket-------------------------*@
 
     <div id="steg2" class="tabcontentBoka">
         <h1>Välj Golvpaket</h1>
@@ -126,6 +124,9 @@
         <h6>Steg 2 av 6</h6>
     </div>
 
+
+@*------------------Steg3 Ljudpaket-------------------------*@
+
     <div id="steg3" class="tabcontentBoka">
         <h1>Välj Ljudpaket</h1>
         <div class="boka-products-container">
@@ -162,10 +163,13 @@
         <br />
 
         <button onclick="moveBack2()" class="btn btn-success btn-group-lg">⇐ Tillbaka</button>
-        <button onclick="moveForw3()" class="btn btn-success btn-group-lg">Gå vidare utan Ljud </button>
+        <button onclick="moveForw3()" class="btn btn-success btn-group-lg">Gå vidare utan Ljud ⇒</button>
         <p></p>
         <h6>Steg 3 av 6</h6>
     </div>
+
+
+@*------------------Steg4 Ljuspaket-------------------------*@
 
     <div id="steg4" class="tabcontentBoka">
         <h1>Välj Ljuspaket</h1>
@@ -185,6 +189,9 @@
         <h6>Steg 4 av 6</h6>
     </div>
 
+
+@*------------------Steg5 Tillbehör-------------------------*@
+
     <div id="steg5" class="tabcontentBoka">
         <h1>Välj Tillbehör</h1>
         <div class="boka-products-container">
@@ -203,6 +210,9 @@
         <h6>Steg 5 av 6</h6>
     </div>
 
+
+@*------------------Steg6 Slutför-------------------------*@
+
     <div id="steg6" class="tabcontentBoka">
         <h1>Slutför</h1>
         <div class="boka-products-container">
@@ -218,7 +228,14 @@
         <h6>Steg 6 av 6</h6>
 
     </div>
+
+
+
 </div>
+
+
+
+
 <script>
     function moveForw1() {
 
@@ -390,4 +407,5 @@
     }
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
+
 </script>
