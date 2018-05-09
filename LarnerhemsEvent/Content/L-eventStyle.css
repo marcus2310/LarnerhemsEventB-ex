@@ -336,6 +336,28 @@ footer h6 {
     text-align: center;
     margin:2% 6%;
 }
+#boka-product-info-item {
+    
+    visibility: hidden;
+    display:none;
+}
+
+
+.boka-product :hover > #boka-product-info-item{
+    
+    width:auto;
+    height:auto;
+    background-color:lightgrey;
+    visibility:visible;
+    display:inherit;
+   
+    
+}
+
+
+
+
+
 .boka-product p{
     font-size: 80%;
 }
