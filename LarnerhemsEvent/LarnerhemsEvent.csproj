@@ -269,6 +269,7 @@
     <Content Include="Content\bilder\Om oss\Svedala företagsmässa.jpg" />
     <Content Include="Content\bilder\Om oss\teknikteamet.jpg" />
     <Content Include="Content\bilder\phone.png" />
+    <Content Include="Content\bilder\shopping-cart.png" />
     <Content Include="Content\bilder\sloganLevent.png" />
     <Content Include="Content\bilder\socialmedia\facebooklogo.png" />
     <Content Include="Content\bilder\socialmedia\instagramlogo.png" />
@@ -338,6 +339,9 @@
     <Content Include="Views\Omoss\Index.cshtml" />
     <Content Include="Views\Boka\Golv.cshtml" />
     <Content Include="Views\Boka\Ljud.cshtml" />
+    <Content Include="Views\Boka\Ljus.cshtml" />
+    <Content Include="Views\Boka\Tillbehor.cshtml" />
+    <Content Include="Views\Boka\Slutfor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

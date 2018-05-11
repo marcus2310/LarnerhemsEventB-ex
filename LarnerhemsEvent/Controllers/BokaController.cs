@@ -18,6 +18,7 @@ namespace LarnerhemsEvent.Controllers
         List<package> soundPackList = new List<package>();
         List<package> LightPackList = new List<package>();
         List<package> ExtraPackList = new List<package>();
+        int[] ArrayofPackageID;
 
 
 
@@ -28,12 +29,20 @@ namespace LarnerhemsEvent.Controllers
         public ActionResult Index()
         {
             tentpackList = dbc.GetTentPackages();
-            allPackList = dbc.GetAllPackages(); 
+          
             
 
             return View(tentpackList);
         }
+        [HttpPost]
+        public ActionResult Index(package pg)
+        {
+            tentpackList = dbc.GetTentPackages();
 
+
+
+            return View(tentpackList);
+        }
         public ActionResult Golv()
         {
             floorPackList = dbc.GetFloorPackages();
@@ -61,6 +70,11 @@ namespace LarnerhemsEvent.Controllers
 
             return View(ExtraPackList);
         }
+        public ActionResult Slutfor()
+        {
+            allPackList = dbc.GetAllPackages();
 
+            return View(allPackList);
+        }
     }
 }

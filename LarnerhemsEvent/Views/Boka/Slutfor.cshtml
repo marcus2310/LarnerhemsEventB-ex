@@ -1,0 +1,52 @@
+﻿@model IEnumerable<LarnerhemsEvent.Models.package>
+
+@{
+    ViewBag.Title = "Boka";
+}
+
+<br />
+<div id="bar-boka" class="btn-bar-boka" style="width:100%"></div>
+
+
+<button class="tablinkBoka" disabled style="background-color:#02b875"><b>Steg 1.</b><br />Tält</button>
+<button class="tablinkBoka" disabled style="background-color:#02b875"><b>Steg 2.</b><br />Golv</button>
+<button class="tablinkBoka" disabled style="background-color:#02b875"><b>Steg 3.</b><br />Ljud</button>
+<button class="tablinkBoka" disabled style="background-color:#02b875"><b>Steg 4.</b><br />Ljus</button>
+<button class="tablinkBoka" disabled style="background-color:#02b875"><b>Steg 5.</b><br />Tillbehör</button>
+<button class="tablinkBoka" onclick="openPage('steg6', this, 'white')" id="defaultOpen"><b>Steg 6.</b><br />Slutför</button>
+<br />
+
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+</div>
+
+
+<div class="tabcontent-containerBoka">
+    @*------------------Steg6 Slutför-------------------------*@
+
+    <div id="steg6" class="tabcontentBoka">
+        <h1>Slutför</h1>
+        <div class="boka-shoppingcart-container">
+            <img src="~/Content/bilder/shopping-cart.png" />
+            <h5>Summa</h5>
+            <h6 style="color:red;">0 Kr</h6>
+        </div>
+        <div class="boka-products-container">
+
+
+
+        </div>
+
+        <br />
+        <br />
+        <button onclick="location.href='@Url.Action("Tillbehor", "Boka")'" class="btn btn-secondary btn-group-lg">⇐ Tillbaka</button>
+
+        <p></p>
+        <h6>Steg 6 av 6</h6>
+
+    </div>
+
+
+
+</div>
+<script src="~/Scripts/BokaScript.js"></script>

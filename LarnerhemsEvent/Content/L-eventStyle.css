@@ -447,6 +447,17 @@ footer h6 {
     width:140px;
 
 }
+.boka-shoppingcart-container{
+    float:right;
+    display:inline-block;
+    margin-right:3%;
+}
+.boka-shoppingcart-container img{
+    max-width:40px;
+    max-height:40px;
+    width:auto;
+    height:auto;
+}
 @media only screen and (max-width: 580px) {
     .tablink {
         width: 100%;

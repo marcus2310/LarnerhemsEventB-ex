@@ -1,19 +1,18 @@
-﻿
-@model IEnumerable<LarnerhemsEvent.Models.package>
+﻿@model IEnumerable<LarnerhemsEvent.Models.package>
 
 @{
     ViewBag.Title = "Boka";
 }
 
 <br />
-<div id="bar-boka" class="btn-bar-boka" style="width:50%"></div>
+<div id="bar-boka" class="btn-bar-boka" style="width:83.2%"></div>
 
 <button class="tablinkBoka" disabled style="background-color:#02b875"><b>Steg 1.</b><br />Tält</button>
 <button class="tablinkBoka" disabled style="background-color:#02b875"><b>Steg 2.</b><br />Golv</button>
-<button class="tablinkBoka" onclick="openPage('steg3', this, 'white')" id="defaultOpen"><b>Steg 3.</b><br />Ljud</button>
-<button class="tablinkBoka" disabled @*onclick="openPage('steg4', this, 'white')"*@><b>Steg 4.</b><br />Ljus</button>
-<button class="tablinkBoka" disabled @*onclick="openPage('steg5', this, 'white')"*@><b>Steg 5.</b><br />Tillbehör</button>
-<button class="tablinkBoka" disabled @*onclick="openPage('steg6', this, 'white')"*@><b>Steg 6.</b><br />Slutför</button>
+<button class="tablinkBoka" disabled style="background-color:#02b875"><b>Steg 3.</b><br />Ljud</button>
+<button class="tablinkBoka" disabled style="background-color:#02b875"><b>Steg 4.</b><br />Ljus</button>
+<button class="tablinkBoka" onclick="openPage('steg5', this, 'white')" id="defaultOpen"><b>Steg 5.</b><br />Tillbehör</button>
+<button class="tablinkBoka" disabled><b>Steg 6.</b><br />Slutför</button>
 <br />
 
 <div class="progress">
@@ -21,13 +20,14 @@
 </div>
 
 
-
 <div class="tabcontent-containerBoka">
 
-    @*------------------Steg3 Ljudpaket-------------------------*@
 
-    <div id="steg3" class="tabcontentBoka">
-        <h1>Välj Ljudpaket</h1>
+
+    @*------------------Steg5 Tillbehör-------------------------*@
+
+    <div id="steg5" class="tabcontentBoka">
+        <h1>Välj Tillbehör</h1>
         <div class="boka-shoppingcart-container">
             <img src="~/Content/bilder/shopping-cart.png" />
             <h5>Summa</h5>
@@ -36,23 +36,13 @@
         <div class="boka-products-container">
             @foreach (var item in Model)
         {
-            if (item.fk_genre_id == 3)
+            if (item.fk_genre_id == 5)
             {
                 <div class="boka-product">
                     <img src="@Html.DisplayFor(Model => item.img)" />
                     <h5>@Html.DisplayFor(Model => item.name)</h5>
                     <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                    <div class="dropdown">
-                        <a href="#">⇓ Innehåll</a>
-                        <div class="dropdown-content">
-
-                            @foreach (var item2 in item.products)
-                        {
-                            <a href="#">@Html.DisplayFor(Model => item2.name)</a>
-                    }
-
-                        </div>
-                    </div>
+                    <a href="#">Detalj</a>
                     <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
                     <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
 
@@ -67,24 +57,27 @@
                         </ul>
                     </div>
                     <div class="boka-product-button-container">
-                        <button onclick="location.href='@Url.Action("Ljus", "Boka")'" class="btn btn-success btn-group-lg">Välj</button>
+                        <div id="boka-product-plusandminus-container" class="form-group">
+                            <button id="minusTillbehör" onclick="something()" class="btn btn-success btn-group-lg">-</button>
+                            <input class="form-control" id="readOnlyInput" type="text" placeholder="0" readonly="">
+                            <button id="plusTillbehör" onclick="something()" class="btn btn-success btn-group-lg">+</button>
+                        </div>
                     </div>
                 </div>
-
         }
     }
 
         </div>
+
         <br />
         <br />
         <div class="boka-product-btn-container">
-            <button onclick="location.href='@Url.Action("Golv", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
-            <button onclick="location.href='@Url.Action("Ljus", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare utan Ljud ⇒</button>
+            <button onclick="location.href='@Url.Action("Ljus", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
+            <button onclick="location.href='@Url.Action("Slutfor", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare till Slutför ⇒</button>
         </div>
         <p></p>
-        <h6>Steg 3 av 6</h6>
+        <h6>Steg 5 av 6</h6>
     </div>
+
 </div>
-
-
 <script src="~/Scripts/BokaScript.js"></script>
