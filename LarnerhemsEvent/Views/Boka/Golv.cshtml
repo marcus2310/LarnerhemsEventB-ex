@@ -1,0 +1,85 @@
+﻿@model IEnumerable<LarnerhemsEvent.Models.package>
+
+@{
+    ViewBag.Title = "Boka";
+}
+
+<br />
+<div id="bar-boka"  class="btn-bar-boka" style="width:33.2%"></div>
+
+<button class="tablinkBoka" disabled style="background-color:#02b875"><b>Steg 1.</b><br />Tält</button>
+<button class="tablinkBoka" onclick="openPage('steg2', this, 'white')" id="defaultOpen"><b>Steg 2.</b><br />Golv</button>
+<button class="tablinkBoka" disabled @*onclick="openPage('steg3', this, 'white')"*@><b>Steg 3.</b><br />Ljud</button>
+<button class="tablinkBoka" disabled @*onclick="openPage('steg4', this, 'white')"*@><b>Steg 4.</b><br />Ljus</button>
+<button class="tablinkBoka" disabled @*onclick="openPage('steg5', this, 'white')"*@><b>Steg 5.</b><br />Tillbehör</button>
+<button class="tablinkBoka" disabled @*onclick="openPage('steg6', this, 'white')"*@><b>Steg 6.</b><br />Slutför</button>
+<br />
+
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+</div>
+
+
+
+<div class="tabcontent-containerBoka">
+
+    @*------------------Steg2 Golvpaket-------------------------*@
+
+    <div id="steg2" class="tabcontentBoka">
+        <h1>Välj Golvpaket</h1>
+        <div class="boka-products-container">
+            @foreach (var item in Model)
+            {
+                if (item.fk_genre_id == 2)
+                {
+                    <div class="boka-product">
+                        <img src="@Html.DisplayFor(Model => item.img)" />
+                        <h5>@Html.DisplayFor(Model => item.name)</h5>
+                        <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                        <div class="dropdown">
+                            <a href="#">⇓ Innehåll</a>
+                            <div class="dropdown-content">
+
+                                @foreach (var item2 in item.products)
+                                {
+                                    <a href="#">@Html.DisplayFor(Model => item2.name)</a>
+                                }
+
+                            </div>
+                        </div>
+                        <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                        <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+                        <br />
+                        <div class="boka-product-ul-container">
+                            <ul>
+                                @foreach (var item2 in item.products)
+                                {
+                                    <li>@Html.DisplayFor(Model => item2.name)</li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="boka-product-button-container">
+                            <button id="@item.packageID"  onclick="location.href='@Url.Action("Ljud", "Boka")'" class="btn btn-success btn-group-lg">Välj</button>
+                        </div>
+                    </div>
+
+                }
+            }
+
+        </div>
+
+
+        <br />
+        <br />
+        <div class="boka-product-btn-container">
+            <button onclick="moveBack1()" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
+            <button onclick="moveForw2()" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare utan Golv ⇒</button>
+        </div>
+        <p></p>
+        <h6>Steg 2 av 6</h6>
+    </div>
+</div>
+
+<script src="~/Scripts/BokaScript.js"></script>
+
+

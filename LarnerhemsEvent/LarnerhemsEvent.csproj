@@ -296,6 +296,7 @@
       <DependentUpon>leventdb.edmx</DependentUpon>
       <LastGenOutput>leventdb.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\BokaScript.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -335,6 +336,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Boka\Index.cshtml" />
     <Content Include="Views\Omoss\Index.cshtml" />
+    <Content Include="Views\Boka\Golv.cshtml" />
+    <Content Include="Views\Boka\Ljud.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

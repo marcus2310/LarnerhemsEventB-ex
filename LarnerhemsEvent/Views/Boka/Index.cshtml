@@ -22,43 +22,43 @@
 
 <div class="tabcontent-containerBoka">
 
-@*------------------Steg1 Tältpaket-------------------------*@
+    @*------------------Steg1 Tältpaket-------------------------*@
 
     <div id="steg1" class="tabcontentBoka">
         <h1>Välj Tältpaket</h1>
         <div class="boka-products-container">
 
             @foreach (var item in Model)
-        {
-            if (item.fk_genre_id == 1)
             {
-            <div class="boka-product">
-                <img src="@Html.DisplayFor(Model => item.img)" />
-           
+                if (item.fk_genre_id == 1)
+                {
+                    <div class="boka-product">
+                        <img src="@Html.DisplayFor(Model => item.img)" />
 
-                <h5>@Html.DisplayFor(Model => item.name)</h5>
-                <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                <div class="dropdown">
-                    <a href="#">⇓ Innehåll</a>
-                    <div class="dropdown-content">
 
-                        @foreach (var item2 in item.products)
-            {
-                <a href="#" data-toggle="modal" data-target="#myModal">@Html.DisplayFor(Model => item2.name)</a>
-}
+                        <h5>@Html.DisplayFor(Model => item.name)</h5>
+                        <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                        <div class="dropdown">
+                            <a href="#">⇓ Innehåll</a>
+                            <div class="dropdown-content">
 
+                                @foreach (var item2 in item.products)
+                                {
+                                    <a href="#" data-toggle="modal" data-target="#myModal">@Html.DisplayFor(Model => item2.name)</a>
+                                }
+
+                            </div>
+                        </div>
+                        <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                        <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+                        <br />
+                        <div class="boka-product-button-container">
+                            <button id="@item.packageID" onclick="location.href='@Url.Action("Golv", "Boka")'" class="btn btn-success btn-group-lg">Välj</button>
+                        </div>
                     </div>
-                </div>
-                <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
-                <br />
-                <div class="boka-product-button-container">
-                    <button id="@item.packageID" onclick="moveForw1(@item.packageID)"  class="btn btn-success btn-group-lg">Välj</button>
-                </div>
-            </div>
-        }
+                }
 
-    }
+            }
         </div>
         <p></p>
         <br />
@@ -68,164 +68,55 @@
 
 
 
-@*------------------Steg2 Golvpaket-------------------------*@
-
-    <div id="steg2" class="tabcontentBoka">
-        <h1>Välj Golvpaket</h1>
-        <div class="boka-products-container">
-            @foreach (var item in Model)
-        {
-            if (item.fk_genre_id == 2)
-            {
-                <div class="boka-product">
-                    <img src="@Html.DisplayFor(Model => item.img)" />
-                    <h5>@Html.DisplayFor(Model => item.name)</h5>
-                    <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                    <div class="dropdown">
-                        <a href="#">⇓ Innehåll</a>
-                        <div class="dropdown-content">
-
-                            @foreach (var item2 in item.products)
-                        {
-                            <a href="#">@Html.DisplayFor(Model => item2.name)</a>
-                    }
-
-                        </div>
-                    </div>
-                    <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                    <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
-                    <br />
-                    <div class="boka-product-ul-container">
-                        <ul>
-                            @foreach (var item2 in item.products)
-                        {
-                            <li>@Html.DisplayFor(Model => item2.name)</li>
-                    }
-                        </ul>
-                    </div>
-                    <div class="boka-product-button-container">
-                        <button id="@item.packageID" onclick="moveForw2(@item.packageID)" class="btn btn-success btn-group-lg">Välj</button>
-                    </div>
-                </div>
-
-        }
-    }
-
-        </div>
+   
 
 
-        <br />
-        <br />
-        <div class="boka-product-btn-container">
-            <button onclick="moveBack1()" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
-            <button onclick="moveForw2()" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare utan Golv ⇒</button>
-        </div>
-            <p></p>
-            <h6>Steg 2 av 6</h6>
-        </div>
+   
 
-
-@*------------------Steg3 Ljudpaket-------------------------*@
-
-    <div id="steg3" class="tabcontentBoka">
-        <h1>Välj Ljudpaket</h1>
-        <div class="boka-products-container">
-            @foreach (var item in Model)
-        {
-            if (item.fk_genre_id == 3)
-            {
-                <div class="boka-product">
-                    <img src="@Html.DisplayFor(Model => item.img)" />
-                    <h5>@Html.DisplayFor(Model => item.name)</h5>
-                    <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                                        <div class="dropdown">
-                        <a href="#">⇓ Innehåll</a>
-                        <div class="dropdown-content">
-
-                            @foreach (var item2 in item.products)
-                        {
-                            <a href="#">@Html.DisplayFor(Model => item2.name)</a>
-                    }
-
-                        </div>
-                    </div>
-                    <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                    <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
-
-                    <br />
-                    <div class="boka-product-ul-container">
-
-                        <ul>
-                            @foreach (var item2 in item.products)
-                        {
-                            <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
-                    }
-                        </ul>
-                    </div>
-                    <div class="boka-product-button-container">
-                        <button onclick="moveForw3()" class="btn btn-success btn-group-lg">Välj</button>
-                    </div>
-                </div>
-
-        }
-    }
-
-        </div>
-        <br />
-        <br />
-        <div class="boka-product-btn-container">
-            <button onclick="moveBack2()" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
-            <button onclick="moveForw3()" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare utan Ljud ⇒</button>
-        </div>
-        <p></p>
-        <h6>Steg 3 av 6</h6>
-    </div>
-
-
-@*------------------Steg4 Ljuspaket-------------------------*@
+    @*------------------Steg4 Ljuspaket-------------------------*@
 
     <div id="steg4" class="tabcontentBoka">
         <h1>Välj Ljuspaket</h1>
         <div class="boka-products-container">
             @foreach (var item in Model)
-    {
-        if (item.fk_genre_id == 4)
-        {
-            <div class="boka-product">
-                <img src="@Html.DisplayFor(Model => item.img)" />
-                <h5>@Html.DisplayFor(Model => item.name)</h5>
-                <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                <div class="dropdown">
-                    <a href="#">⇓ Innehåll</a>
-                    <div class="dropdown-content">
-
-                        @foreach (var item2 in item.products)
+            {
+                if (item.fk_genre_id == 4)
                 {
-                    <a href="#">@Html.DisplayFor(Model => item2.name)</a>
-        }
+                    <div class="boka-product">
+                        <img src="@Html.DisplayFor(Model => item.img)" />
+                        <h5>@Html.DisplayFor(Model => item.name)</h5>
+                        <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                        <div class="dropdown">
+                            <a href="#">⇓ Innehåll</a>
+                            <div class="dropdown-content">
 
+                                @foreach (var item2 in item.products)
+                                {
+                                    <a href="#">@Html.DisplayFor(Model => item2.name)</a>
+                                }
+
+                            </div>
+                        </div>
+                        <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                        <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+
+                        <br />
+                        <div class="boka-product-ul-container">
+
+                            <ul>
+                                @foreach (var item2 in item.products)
+                                {
+                                    <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="boka-product-button-container">
+                            <button onclick="moveForw4()" class="btn btn-success btn-group-lg">Välj</button>
+                        </div>
                     </div>
-                </div>
-                <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
 
-                <br />
-                <div class="boka-product-ul-container">
-
-                    <ul>
-                        @foreach (var item2 in item.products)
-                {
-                    <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
-        }
-                    </ul>
-                </div>
-                <div class="boka-product-button-container">
-                    <button onclick="moveForw4()" class="btn btn-success btn-group-lg">Välj</button>
-                </div>
-            </div>
-
-}
-}
+                }
+            }
 
         </div>
 
@@ -233,50 +124,50 @@
         <br />
         <div class="boka-product-btn-container">
             <button onclick="moveBack3()" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
-            <button onclick="moveForw4()" class="btn btn-secondary btn-group-lg"style="float:right;">Gå vidare utan Ljus ⇒</button>
+            <button onclick="moveForw4()" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare utan Ljus ⇒</button>
         </div>
-            <p></p>
-            <h6>Steg 4 av 6</h6>
-        </div>
+        <p></p>
+        <h6>Steg 4 av 6</h6>
+    </div>
 
 
-        @*------------------Steg5 Tillbehör-------------------------*@
+    @*------------------Steg5 Tillbehör-------------------------*@
 
     <div id="steg5" class="tabcontentBoka">
         <h1>Välj Tillbehör</h1>
         <div class="boka-products-container">
             @foreach (var item in Model)
-    {
-        if (item.fk_genre_id == 5)
-        {
-            <div class="boka-product">
-                <img src="@Html.DisplayFor(Model => item.img)" />
-                <h5>@Html.DisplayFor(Model => item.name)</h5>
-                <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                <a href="#">Detalj</a>
-                <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
-
-                <br />
-                <div class="boka-product-ul-container">
-
-                    <ul>
-                        @foreach (var item2 in item.products)
             {
-                <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
-}
-                    </ul>
-                </div>
-                <div class="boka-product-button-container">
-                    <div id="boka-product-plusandminus-container" class="form-group">
-                        <button id="minusTillbehör" onclick="something()" class="btn btn-success btn-group-lg">-</button>
-                        <input class="form-control" id="readOnlyInput" type="text" placeholder="0" readonly="">
-                        <button id="plusTillbehör" onclick="something()" class="btn btn-success btn-group-lg">+</button>
+                if (item.fk_genre_id == 5)
+                {
+                    <div class="boka-product">
+                        <img src="@Html.DisplayFor(Model => item.img)" />
+                        <h5>@Html.DisplayFor(Model => item.name)</h5>
+                        <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                        <a href="#">Detalj</a>
+                        <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                        <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+
+                        <br />
+                        <div class="boka-product-ul-container">
+
+                            <ul>
+                                @foreach (var item2 in item.products)
+                                {
+                                    <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="boka-product-button-container">
+                            <div id="boka-product-plusandminus-container" class="form-group">
+                                <button id="minusTillbehör" onclick="something()" class="btn btn-success btn-group-lg">-</button>
+                                <input class="form-control" id="readOnlyInput" type="text" placeholder="0" readonly="">
+                                <button id="plusTillbehör" onclick="something()" class="btn btn-success btn-group-lg">+</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-}
-}
+                }
+            }
 
         </div>
 
@@ -285,34 +176,34 @@
         <div class="boka-product-btn-container">
             <button onclick="moveBack4()" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
             <button onclick="moveForw5()" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare till Slutför ⇒</button>
-           </div>
-            <p></p>
-            <h6>Steg 5 av 6</h6>
         </div>
+        <p></p>
+        <h6>Steg 5 av 6</h6>
+    </div>
 
 
-        @*------------------Steg6 Slutför-------------------------*@
+    @*------------------Steg6 Slutför-------------------------*@
 
-        <div id="steg6" class="tabcontentBoka">
-            <h1>Slutför</h1>
-            <div class="boka-products-container">
+    <div id="steg6" class="tabcontentBoka">
+        <h1>Slutför</h1>
+        <div class="boka-products-container">
 
 
-
-            </div>
-
-            <br />
-            <br />
-            <button onclick="moveBack5()" class="btn btn-secondary btn-group-lg">⇐ Tillbaka</button>
-
-            <p></p>
-            <h6>Steg 6 av 6</h6>
 
         </div>
 
+        <br />
+        <br />
+        <button onclick="moveBack5()" class="btn btn-secondary btn-group-lg">⇐ Tillbaka</button>
 
+        <p></p>
+        <h6>Steg 6 av 6</h6>
 
     </div>
+
+
+
+</div>
 @*<div id="myModal" class="modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -333,188 +224,189 @@
     </div>
 </div>*@
 
-
+<script src="~/Scripts/BokaScript.js"></script>
 
 <script>
-    var items = [];
+    
+    //var items = [];
 
-    function moveForw1(id) {
+    //function moveForw1(id) {
         
-        items.push(id);
-        console.log(items);
+    //    items.push(id);
+    //    console.log(items);
 
-        var elem = document.getElementById("bar-boka");
-        var width1 = "33.2%";
-        elem.style.width = width1;
-        tablinks = document.getElementsByClassName("tablinkBoka");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[0].style.backgroundColor = "#02b875";
-            tablinks[1].style.backgroundColor = "white";
-            tablinks[0].disabled = true;
-        }
+    //    var elem = document.getElementById("bar-boka");
+    //    var width1 = "33.2%";
+    //    elem.style.width = width1;
+    //    tablinks = document.getElementsByClassName("tablinkBoka");
+    //    for (i = 0; i < tablinks.length; i++) {
+    //        tablinks[0].style.backgroundColor = "#02b875";
+    //        tablinks[1].style.backgroundColor = "white";
+    //        tablinks[0].disabled = true;
+    //    }
 
-        openPage('steg2', this, 'white');
-
-
-    }
-    function moveForw2(id) {
-
-        items.push(id);
-        console.log(items);
-
-        var elem = document.getElementById("bar-boka");
-        var width1 = "50%";
-
-        elem.style.width = width1;
-        tablinks = document.getElementsByClassName("tablinkBoka");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[1].style.backgroundColor = "#02b875";
-            tablinks[2].style.backgroundColor = "white";
-            tablinks[1].disabled = true;
-        }
-
-        openPage('steg3', this, 'white');
-
-    }
-    function moveForw3() {
-        var elem = document.getElementById("bar-boka");
-        var width1 = "66.6%";
-
-        elem.style.width = width1;
-        tablinks = document.getElementsByClassName("tablinkBoka");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[2].style.backgroundColor = "#02b875";
-            tablinks[3].style.backgroundColor = "white";
-            tablinks[2].disabled = true;
-        }
-
-        openPage('steg4', this, 'white');
-    }
-    function moveForw4() {
-        var elem = document.getElementById("bar-boka");
-        var width1 = "83.2%";
-
-        elem.style.width = width1;
-        tablinks = document.getElementsByClassName("tablinkBoka");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[3].style.backgroundColor = "#02b875";
-            tablinks[4].style.backgroundColor = "white";
-            tablinks[3].disabled = true;
-        }
-
-        openPage('steg5', this, 'white');
-
-    }
-    function moveForw5() {
-        var elem = document.getElementById("bar-boka");
-        var width1 = "100%";
-
-        elem.style.width = width1;
-        tablinks = document.getElementsByClassName("tablinkBoka");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[4].style.backgroundColor = "#02b875";
-            tablinks[5].style.backgroundColor = "white";
-            tablinks[4].disabled = true;
-        }
-
-        openPage('steg6', this, 'white');
-
-    }
-    function moveBack1() {
-        var elem = document.getElementById("bar-boka");
-        var width1 = "16.6%";
-
-        elem.style.width = width1;
-        tablinks = document.getElementsByClassName("tablinkBoka");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[1].style.backgroundColor = "#ebebeb";
-            tablinks[0].style.backgroundColor = "white";
-            tablinks[1].disabled = true;
-        }
-
-        openPage('steg1', this, 'white');
+    //    openPage('steg2', this, 'white');
 
 
-    }
-    function moveBack2() {
-        var elem = document.getElementById("bar-boka");
-        var width1 = "33.2%";
+    //}
+    //function moveForw2(id) {
 
-        elem.style.width = width1;
-        tablinks = document.getElementsByClassName("tablinkBoka");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[2].style.backgroundColor = "#ebebeb";
-            tablinks[1].style.backgroundColor = "white";
-            tablinks[2].disabled = true;
-        }
+    //    items.push(id);
+    //    console.log(items);
 
-        openPage('steg2', this, 'white');
+    //    var elem = document.getElementById("bar-boka");
+    //    var width1 = "50%";
 
-    }
-    function moveBack3() {
-        var elem = document.getElementById("bar-boka");
-        var width1 = "50%";
+    //    elem.style.width = width1;
+    //    tablinks = document.getElementsByClassName("tablinkBoka");
+    //    for (i = 0; i < tablinks.length; i++) {
+    //        tablinks[1].style.backgroundColor = "#02b875";
+    //        tablinks[2].style.backgroundColor = "white";
+    //        tablinks[1].disabled = true;
+    //    }
 
-        elem.style.width = width1;
-        tablinks = document.getElementsByClassName("tablinkBoka");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[3].style.backgroundColor = "#ebebeb";
-            tablinks[2].style.backgroundColor = "white";
-            tablinks[3].disabled = true;
-        }
+    //    openPage('steg3', this, 'white');
 
-        openPage('steg3', this, 'white');
+    //}
+    //function moveForw3() {
+    //    var elem = document.getElementById("bar-boka");
+    //    var width1 = "66.6%";
 
-    }
-    function moveBack4() {
-        var elem = document.getElementById("bar-boka");
-        var width1 = "66.6%";
+    //    elem.style.width = width1;
+    //    tablinks = document.getElementsByClassName("tablinkBoka");
+    //    for (i = 0; i < tablinks.length; i++) {
+    //        tablinks[2].style.backgroundColor = "#02b875";
+    //        tablinks[3].style.backgroundColor = "white";
+    //        tablinks[2].disabled = true;
+    //    }
 
-        elem.style.width = width1;
-        tablinks = document.getElementsByClassName("tablinkBoka");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[4].style.backgroundColor = "#ebebeb";
-            tablinks[3].style.backgroundColor = "white";
-            tablinks[4].disabled = true;
-        }
+    //    openPage('steg4', this, 'white');
+    //}
+    //function moveForw4() {
+    //    var elem = document.getElementById("bar-boka");
+    //    var width1 = "83.2%";
 
-        openPage('steg4', this, 'white');
+    //    elem.style.width = width1;
+    //    tablinks = document.getElementsByClassName("tablinkBoka");
+    //    for (i = 0; i < tablinks.length; i++) {
+    //        tablinks[3].style.backgroundColor = "#02b875";
+    //        tablinks[4].style.backgroundColor = "white";
+    //        tablinks[3].disabled = true;
+    //    }
 
-    }
-    function moveBack5() {
-        var elem = document.getElementById("bar-boka");
-        var width1 = "83.2%";
+    //    openPage('steg5', this, 'white');
 
-        elem.style.width = width1;
-        tablinks = document.getElementsByClassName("tablinkBoka");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[5].style.backgroundColor = "#ebebeb";
-            tablinks[4].style.backgroundColor = "white";
-            tablinks[5].disabled = true;
-        }
+    //}
+    //function moveForw5() {
+    //    var elem = document.getElementById("bar-boka");
+    //    var width1 = "100%";
 
-        openPage('steg5', this, 'white');
+    //    elem.style.width = width1;
+    //    tablinks = document.getElementsByClassName("tablinkBoka");
+    //    for (i = 0; i < tablinks.length; i++) {
+    //        tablinks[4].style.backgroundColor = "#02b875";
+    //        tablinks[5].style.backgroundColor = "white";
+    //        tablinks[4].disabled = true;
+    //    }
 
-    }
+    //    openPage('steg6', this, 'white');
 
-    function openPage(pageName, elmnt, color) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontentBoka");
+    //}
+    //function moveBack1() {
+    //    var elem = document.getElementById("bar-boka");
+    //    var width1 = "16.6%";
 
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "";
-        }
+    //    elem.style.width = width1;
+    //    tablinks = document.getElementsByClassName("tablinkBoka");
+    //    for (i = 0; i < tablinks.length; i++) {
+    //        tablinks[1].style.backgroundColor = "#ebebeb";
+    //        tablinks[0].style.backgroundColor = "white";
+    //        tablinks[1].disabled = true;
+    //    }
 
-        tablinks = document.getElementsByClassName("tablinkBoka");
-        for (i = 0; i < tablinks.length; i++) {
-            //tablinks[i].style.backgroundColor = "";
-        }
-        document.getElementById(pageName).style.display = "block";
-        elmnt.style.backgroundColor = color;
+    //    openPage('steg1', this, 'white');
 
-    }
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
+
+    //}
+    //function moveBack2() {
+    //    var elem = document.getElementById("bar-boka");
+    //    var width1 = "33.2%";
+
+    //    elem.style.width = width1;
+    //    tablinks = document.getElementsByClassName("tablinkBoka");
+    //    for (i = 0; i < tablinks.length; i++) {
+    //        tablinks[2].style.backgroundColor = "#ebebeb";
+    //        tablinks[1].style.backgroundColor = "white";
+    //        tablinks[2].disabled = true;
+    //    }
+
+    //    openPage('steg2', this, 'white');
+
+    //}
+    //function moveBack3() {
+    //    var elem = document.getElementById("bar-boka");
+    //    var width1 = "50%";
+
+    //    elem.style.width = width1;
+    //    tablinks = document.getElementsByClassName("tablinkBoka");
+    //    for (i = 0; i < tablinks.length; i++) {
+    //        tablinks[3].style.backgroundColor = "#ebebeb";
+    //        tablinks[2].style.backgroundColor = "white";
+    //        tablinks[3].disabled = true;
+    //    }
+
+    //    openPage('steg3', this, 'white');
+
+    //}
+    //function moveBack4() {
+    //    var elem = document.getElementById("bar-boka");
+    //    var width1 = "66.6%";
+
+    //    elem.style.width = width1;
+    //    tablinks = document.getElementsByClassName("tablinkBoka");
+    //    for (i = 0; i < tablinks.length; i++) {
+    //        tablinks[4].style.backgroundColor = "#ebebeb";
+    //        tablinks[3].style.backgroundColor = "white";
+    //        tablinks[4].disabled = true;
+    //    }
+
+    //    openPage('steg4', this, 'white');
+
+    //}
+    //function moveBack5() {
+    //    var elem = document.getElementById("bar-boka");
+    //    var width1 = "83.2%";
+
+    //    elem.style.width = width1;
+    //    tablinks = document.getElementsByClassName("tablinkBoka");
+    //    for (i = 0; i < tablinks.length; i++) {
+    //        tablinks[5].style.backgroundColor = "#ebebeb";
+    //        tablinks[4].style.backgroundColor = "white";
+    //        tablinks[5].disabled = true;
+    //    }
+
+    //    openPage('steg5', this, 'white');
+
+    //}
+
+    //function openPage(pageName, elmnt, color) {
+    //    var i, tabcontent, tablinks;
+    //    tabcontent = document.getElementsByClassName("tabcontentBoka");
+
+    //    for (i = 0; i < tabcontent.length; i++) {
+    //        tabcontent[i].style.display = "";
+    //    }
+
+    //    tablinks = document.getElementsByClassName("tablinkBoka");
+    //    for (i = 0; i < tablinks.length; i++) {
+    //        //tablinks[i].style.backgroundColor = "";
+    //    }
+    //    document.getElementById(pageName).style.display = "block";
+    //    elmnt.style.backgroundColor = color;
+
+    //}
+    //// Get the element with id="defaultOpen" and click on it
+    //document.getElementById("defaultOpen").click();
 
 
 </script>
