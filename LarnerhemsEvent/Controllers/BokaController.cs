@@ -26,5 +26,7 @@ namespace LarnerhemsEvent.Controllers
 
             return View(allPackList);
         }
+       
+
     }
 }
