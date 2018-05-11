@@ -104,7 +104,7 @@
                         </ul>
                     </div>
                     <div class="boka-product-button-container">
-                        <button onclick="moveForw2()" class="btn btn-success btn-group-lg">Välj</button>
+                        <button id="@item.packageID" onclick="moveForw2(@item.packageID)" class="btn btn-success btn-group-lg">Välj</button>
                     </div>
                 </div>
 
@@ -336,10 +336,13 @@
 
 
 <script>
+    var items = [];
 
     function moveForw1(id) {
         
-        
+        items.push(id);
+        console.log(items);
+
         var elem = document.getElementById("bar-boka");
         var width1 = "33.2%";
         elem.style.width = width1;
@@ -354,7 +357,11 @@
 
 
     }
-    function moveForw2() {
+    function moveForw2(id) {
+
+        items.push(id);
+        console.log(items);
+
         var elem = document.getElementById("bar-boka");
         var width1 = "50%";
 
