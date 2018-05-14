@@ -22,31 +22,33 @@
 
 
 <div class="tabcontent-containerBoka">
-    @*------------------Steg6 Slutför-------------------------*@
+    @using (Html.BeginForm())
+    {
+        @*------------------Steg6 Slutför-------------------------*@
 
-    <div id="steg6" class="tabcontentBoka">
-        <h1>Slutför</h1>
-        <div class="boka-shoppingcart-container">
-            <img src="~/Content/bilder/shopping-cart.png" />
-            <h5>Summa</h5>
-            <h6 style="color:red;">0 Kr</h6>
+        <div id="steg6" class="tabcontentBoka">
+            <h1>Slutför</h1>
+            <div class="boka-shoppingcart-container">
+                <img src="~/Content/bilder/shopping-cart.png" />
+                <h5>Summa</h5>
+                <h6 style="color:red;">0 Kr</h6>
+            </div>
+            <div class="boka-products-container">
+
+
+
+            </div>
+
+            <br />
+            <br />
+            <button onclick="location.href='@Url.Action("Tillbehor", "Boka")'" class="btn btn-secondary btn-group-lg">⇐ Tillbaka</button>
+
+            <p></p>
+            <h6>Steg 6 av 6</h6>
+
         </div>
-        <div class="boka-products-container">
 
 
-
-        </div>
-
-        <br />
-        <br />
-        <button onclick="location.href='@Url.Action("Tillbehor", "Boka")'" class="btn btn-secondary btn-group-lg">⇐ Tillbaka</button>
-
-        <p></p>
-        <h6>Steg 6 av 6</h6>
-
+    }
     </div>
-
-
-
-</div>
 <script src="~/Scripts/BokaScript.js"></script>

@@ -21,63 +21,64 @@
 
 
 <div class="tabcontent-containerBoka">
+    @using (Html.BeginForm())
+    {
 
 
+        @*------------------Steg5 Tillbehör-------------------------*@
 
-    @*------------------Steg5 Tillbehör-------------------------*@
+        <div id="steg5" class="tabcontentBoka">
+            <h1>Välj Tillbehör</h1>
+            <div class="boka-shoppingcart-container">
+                <img src="~/Content/bilder/shopping-cart.png" />
+                <h5>Summa</h5>
+                <h6 style="color:red;">0 Kr</h6>
+            </div>
+            <div class="boka-products-container">
+                @foreach (var item in Model)
+                {
+                    if (item.fk_genre_id == 5)
+                    {
+                        <div class="boka-product">
+                            <img src="@Html.DisplayFor(Model => item.img)" />
+                            <h5>@Html.DisplayFor(Model => item.name)</h5>
+                            <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                            <a href="#">Detalj</a>
+                            <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                            <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
 
-    <div id="steg5" class="tabcontentBoka">
-        <h1>Välj Tillbehör</h1>
-        <div class="boka-shoppingcart-container">
-            <img src="~/Content/bilder/shopping-cart.png" />
-            <h5>Summa</h5>
-            <h6 style="color:red;">0 Kr</h6>
-        </div>
-        <div class="boka-products-container">
-            @foreach (var item in Model)
-        {
-            if (item.fk_genre_id == 5)
-            {
-                <div class="boka-product">
-                    <img src="@Html.DisplayFor(Model => item.img)" />
-                    <h5>@Html.DisplayFor(Model => item.name)</h5>
-                    <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                    <a href="#">Detalj</a>
-                    <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                    <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+                            <br />
+                            <div class="boka-product-ul-container">
 
-                    <br />
-                    <div class="boka-product-ul-container">
-
-                        <ul>
-                            @foreach (var item2 in item.products)
-                        {
-                            <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
-                    }
-                        </ul>
-                    </div>
-                    <div class="boka-product-button-container">
-                        <div id="boka-product-plusandminus-container" class="form-group">
-                            <button id="minusTillbehör" onclick="something()" class="btn btn-success btn-group-lg">-</button>
-                            <input class="form-control" id="readOnlyInput" type="text" placeholder="0" readonly="">
-                            <button id="plusTillbehör" onclick="something()" class="btn btn-success btn-group-lg">+</button>
+                                <ul>
+                                    @foreach (var item2 in item.products)
+                                    {
+                                        <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="boka-product-button-container">
+                                <div id="boka-product-plusandminus-container" class="form-group">
+                                    @*<button id="minusTillbehör" onclick="something()" class="btn btn-success btn-group-lg">-</button>*@
+                                    <input class="form-control" maxlength="2" type="text" value="0" id="@item.packageID"  name="@item.packageID" placeholder="0">
+                                    @*<button id="plusTillbehör" onclick="something()" class="btn btn-success btn-group-lg">+</button>*@
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-        }
+                    }
+                }
+
+            </div>
+
+            <br />
+            <br />
+            <div class="boka-product-btn-container">
+                <button onclick="location.href='@Url.Action("Ljus", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
+                <button onclick="location.href='@Url.Action("Slutfor", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare till Slutför ⇒</button>
+            </div>
+            <p></p>
+            <h6>Steg 5 av 6</h6>
+        </div>
     }
-
-        </div>
-
-        <br />
-        <br />
-        <div class="boka-product-btn-container">
-            <button onclick="location.href='@Url.Action("Ljus", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
-            <button onclick="location.href='@Url.Action("Slutfor", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare till Slutför ⇒</button>
-        </div>
-        <p></p>
-        <h6>Steg 5 av 6</h6>
     </div>
-
-</div>
 <script src="~/Scripts/BokaScript.js"></script>
