@@ -17,23 +17,23 @@ namespace LarnerhemsEvent.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public package()
         {
-            this.orders = new HashSet<order>();
-            this.products = new HashSet<product>();
+            this.packageorderdetails = new HashSet<packageorderdetail>();
+            this.prodpackdetails = new HashSet<prodpackdetail>();
         }
     
         public int packageID { get; set; }
         public string name { get; set; }
         public Nullable<int> price { get; set; }
-        public string info { get; set; }
-        public string img { get; set; }
         public Nullable<int> originalprice { get; set; }
-        public Nullable<int> fk_genre_id { get; set; }
+        public string info { get; set; }
         public string moreinfo { get; set; }
+        public string img { get; set; }
+        public Nullable<int> fk_genre_id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<order> orders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<product> products { get; set; }
         public virtual genre genre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<packageorderdetail> packageorderdetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<prodpackdetail> prodpackdetails { get; set; }
     }
 }

@@ -48,15 +48,6 @@
                             <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
 
                             <br />
-                            <div class="boka-product-ul-container">
-
-                                <ul>
-                                    @foreach (var item2 in item.products)
-                                    {
-                                        <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
-                                    }
-                                </ul>
-                            </div>
                             <div class="boka-product-button-container">
                                 <div id="boka-product-plusandminus-container" class="form-group">
                                     @*<button id="minusTillbehör" onclick="something()" class="btn btn-success btn-group-lg">-</button>*@

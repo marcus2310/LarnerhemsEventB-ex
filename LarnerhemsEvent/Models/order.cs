@@ -17,7 +17,7 @@ namespace LarnerhemsEvent.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public order()
         {
-            this.packages = new HashSet<package>();
+            this.packageorderdetails = new HashSet<packageorderdetail>();
         }
     
         public int orderID { get; set; }
@@ -27,9 +27,9 @@ namespace LarnerhemsEvent.Models
         public Nullable<int> fk_customer_id { get; set; }
         public Nullable<int> fk_campaigncode_id { get; set; }
     
+        public virtual campaigncode campaigncode { get; set; }
         public virtual customer customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<package> packages { get; set; }
-        public virtual campaigncode campaigncode { get; set; }
+        public virtual ICollection<packageorderdetail> packageorderdetails { get; set; }
     }
 }

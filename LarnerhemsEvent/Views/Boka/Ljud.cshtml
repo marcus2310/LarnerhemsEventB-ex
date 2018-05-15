@@ -47,9 +47,9 @@
                                 <a href="#">⇓ Innehåll</a>
                                 <div class="dropdown-content">
 
-                                    @foreach (var item2 in item.products)
+                                    @foreach (var item2 in item.prodpackdetails)
                                     {
-                                        <a href="#">@Html.DisplayFor(Model => item2.name)</a>
+                                        <a href="#">@Html.DisplayFor(Model => item2.product.name)</a>
                                     }
 
                                 </div>
@@ -58,15 +58,7 @@
                             <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
 
                             <br />
-                            <div class="boka-product-ul-container">
 
-                                <ul>
-                                    @foreach (var item2 in item.products)
-                                    {
-                                        <li><a href="#">@Html.DisplayFor(Model => item2.name)</a></li>
-                                    }
-                                </ul>
-                            </div>
                             <div class="boka-product-button-container">
                                 <button type="submit" value="@item.packageID" id="@item.packageID" name="buttonItem" onclick="location.href='@Url.Action("Ljus", "Boka")'" class="btn btn-success btn-group-lg">Välj</button>
                             </div>

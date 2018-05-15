@@ -17,7 +17,7 @@ namespace LarnerhemsEvent.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public product()
         {
-            this.packages = new HashSet<package>();
+            this.prodpackdetails = new HashSet<prodpackdetail>();
         }
     
         public int productsID { get; set; }
@@ -25,6 +25,6 @@ namespace LarnerhemsEvent.Models
         public string info { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<package> packages { get; set; }
+        public virtual ICollection<prodpackdetail> prodpackdetails { get; set; }
     }
 }

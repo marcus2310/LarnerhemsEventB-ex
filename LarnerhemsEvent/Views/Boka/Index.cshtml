@@ -42,7 +42,7 @@
                     {
                         <div class="boka-product">
                             <img src="@Html.DisplayFor(Model => item.img)" />
-
+                            
 
                             <h5> @Html.DisplayFor(Model => item.name)</h5>
                             <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
@@ -50,9 +50,9 @@
                                 <a href="#">⇓ Innehåll</a>
                                 <div class="dropdown-content">
 
-                                    @foreach (var item2 in item.products)
+                                    @foreach (var item2 in item.prodpackdetails)
                                     {
-                                        <a href="#" data-toggle="modal" data-target="#myModal">@Html.DisplayFor(Model => item2.name)</a>
+                                        <a href="#" data-toggle="modal" data-target="#myModal">@Html.DisplayFor(Model => item2.product.name)</a>
                                     }
 
                                 </div>

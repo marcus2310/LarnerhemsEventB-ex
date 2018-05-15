@@ -13,10 +13,10 @@ namespace LarnerhemsEvent.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class leventsyd_se_dbEntities2 : DbContext
+    public partial class leventsyd_se_dbEntities3 : DbContext
     {
-        public leventsyd_se_dbEntities2()
-            : base("name=leventsyd_se_dbEntities2")
+        public leventsyd_se_dbEntities3()
+            : base("name=leventsyd_se_dbEntities3")
         {
         }
     
@@ -26,13 +26,15 @@ namespace LarnerhemsEvent.Models
         }
     
         public virtual DbSet<access> accesses { get; set; }
+        public virtual DbSet<campaigncode> campaigncodes { get; set; }
         public virtual DbSet<customer> customers { get; set; }
+        public virtual DbSet<genre> genres { get; set; }
         public virtual DbSet<order> orders { get; set; }
         public virtual DbSet<package> packages { get; set; }
+        public virtual DbSet<packageorderdetail> packageorderdetails { get; set; }
+        public virtual DbSet<prodpackdetail> prodpackdetails { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<user> users { get; set; }
-        public virtual DbSet<campaigncode> campaigncodes { get; set; }
-        public virtual DbSet<genre> genres { get; set; }
     }
 }

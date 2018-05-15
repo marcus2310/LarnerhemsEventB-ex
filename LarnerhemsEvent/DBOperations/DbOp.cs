@@ -9,7 +9,7 @@ namespace LarnerhemsEvent.DBOperations
 {
     public class DbOp
     {
-        private leventsyd_se_dbEntities2 db = new leventsyd_se_dbEntities2();
+        private leventsyd_se_dbEntities3 db = new leventsyd_se_dbEntities3();
 
 
 
@@ -23,15 +23,15 @@ namespace LarnerhemsEvent.DBOperations
             return pack;
         }
         //hämta en specifik order och skicka tillbaka paket som ligger i den ordern.
-        public List<package> GetOrderPackages(int id)
-        {
+        //public List<package> GetOrderPackages(int id)
+        //{
 
-            var order = db.orders.Find(id);
+        //    //var order = db.orders.Find(id);
 
-            var OrderPackages = order.packages.ToList();
+        //    //var OrderPackages = order.packageorderdetails.ToList();
 
-            return OrderPackages;
-        }
+        //    return OrderPackages;
+        //}
         //hämtar alla tältpaket
         public List<package> GetTentPackages()
         {
@@ -74,6 +74,7 @@ namespace LarnerhemsEvent.DBOperations
 
             return packages; 
         }
+
 
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b9e0aa8719c412c928c2b25f0b94cdf" Name="Diagram1">
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.access" Width="1.5" PointX="5.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.campaigncode" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.customer" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.genre" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.order" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.package" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.packageorderdetail" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.prodpackdetail" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.product" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.sysdiagram" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="leventsyd_se_dbModel.user" Width="1.5" PointX="8" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="leventsyd_se_dbModel.FK__user__fk_access___4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="leventsyd_se_dbModel.FK__order__fk_campai__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="leventsyd_se_dbModel.FK__order__fk_custom__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="leventsyd_se_dbModel.FK__package__fk_genr__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="leventsyd_se_dbModel.FK__packageor__fk_or__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="leventsyd_se_dbModel.FK__packageor__fk_pa__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="leventsyd_se_dbModel.FK__prodpackd__fk_pa__07C12930" ManuallyRouted="false" />
+        <AssociationConnector Association="leventsyd_se_dbModel.FK__prodpackd__fk_pr__06CD04F7" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
