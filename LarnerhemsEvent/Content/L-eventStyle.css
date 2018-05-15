@@ -458,6 +458,11 @@ footer h6 {
     width:auto;
     height:auto;
 }
+.boka-Products-slutfor-container {
+    width: 50%;
+    display: inline-grid;
+    float: left;
+}
 @media only screen and (max-width: 580px) {
     .tablink {
         width: 100%;

@@ -74,6 +74,33 @@ namespace LarnerhemsEvent.DBOperations
 
             return packages; 
         }
+        public List<package> GetSelectedPackages(List<int> id)
+        {
+            var allPacks = db.packages.ToList();
+            List<package> SelectedPacks = new List<package>();
+            foreach (var item in allPacks)
+            {
+                foreach (var item2 in id)
+                {
+                    if(item.packageID == item2)
+                    {
+                        SelectedPacks.Add(item);
+
+                    }
+                }
+
+            }
+
+            return SelectedPacks;
+
+        }
+        public void CreateOrder()
+        {
+
+
+
+        }
+
 
 
     }
