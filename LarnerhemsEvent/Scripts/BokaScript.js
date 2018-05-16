@@ -160,7 +160,7 @@ function moveBack5() {
     openPage('steg5', this, 'white');
 
 }
-
+ 
 function openPage(pageName, elmnt, color) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontentBoka");

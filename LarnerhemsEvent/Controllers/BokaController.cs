@@ -256,19 +256,14 @@ namespace LarnerhemsEvent.Controllers
         {
             try
             {
-                var PackageId1 = form["13"];
-                var PackageId2 = form["14"];
-                var PackageId3 = form["15"];
-                var PackageId4 = form["16"];
-                var PackageId5 = form["17"];
-                var PackageId6 = form["18"];
+                var PackageValue1 = form["13"];
+                var PackageValue2 = form["14"];
+                var PackageValue3 = form["15"];
+                var PackageValue4 = form["16"];
+                var PackageValue5 = form["17"];
+                var PackageValue6 = form["18"];
 
-                int itemAmount1 = Convert.ToInt32(PackageId1);
-                int itemAmount2 = Convert.ToInt32(PackageId2);
-                int itemAmount3 = Convert.ToInt32(PackageId3);
-                int itemAmount4 = Convert.ToInt32(PackageId4);
-                int itemAmount5 = Convert.ToInt32(PackageId5);
-                int itemAmount6 = Convert.ToInt32(PackageId6);
+                
 
                 var item1 = dbc.GetAPackage(13);
                 var item2 = dbc.GetAPackage(14);
@@ -277,21 +272,53 @@ namespace LarnerhemsEvent.Controllers
                 var item5 = dbc.GetAPackage(17);
                 var item6 = dbc.GetAPackage(18);
 
+               
+
+                if(PackageValue1 != "" && PackageValue1 != "0" && PackageValue1 != "00")
+                {
+                    int itemAmount1 = Convert.ToInt32(PackageValue1);
+                    TempData["TillbehorItem1"] = item1.packageID;
+                    TempData["TillbehorAmount1"] = itemAmount1;
+                }
+                if (PackageValue2 != "" && PackageValue2 != "0" && PackageValue2 != "00")
+                {
+                    int itemAmount2 = Convert.ToInt32(PackageValue2);
+                    TempData["TillbehorItem2"] = item2.packageID;
+                    TempData["TillbehorAmount2"] = itemAmount2;
+                }
+                if (PackageValue3 != "" && PackageValue3 != "0" && PackageValue3 != "00")
+                {
+
+                    int itemAmount3 = Convert.ToInt32(PackageValue3);
+                    TempData["TillbehorItem3"] = item3.packageID;
+                    TempData["TillbehorAmount3"] = itemAmount3;
+
+                }
+                if (PackageValue4 != "" && PackageValue4!= "0" && PackageValue4 != "00")
+                {
+                    int itemAmount4 = Convert.ToInt32(PackageValue4);
+                    TempData["TillbehorItem4"] = item4.packageID;
+                    TempData["TillbehorAmount4"] = itemAmount4;
+
+                }
+                if (PackageValue5 != "" && PackageValue5 != "0" && PackageValue5 != "00")
+                {
+                    int itemAmount5 = Convert.ToInt32(PackageValue5);
+                    TempData["TillbehorItem5"] = item5.packageID;
+                    TempData["TillbehorAmount5"] = itemAmount5;
+
+                }
+                if (PackageValue6 != "" && PackageValue6 != "0" && PackageValue6 != "00")
+                {
+                    int itemAmount6 = Convert.ToInt32(PackageValue6);
+                    TempData["TillbehorItem6"] = item6.packageID;
+                    TempData["TillbehorAmount6"] = itemAmount6;
+
+                }
 
 
-                TempData["TillbehorItem1"] = item1.packageID;
-                TempData["TillbehorItem2"] = item2.packageID;
-                TempData["TillbehorItem3"] = item3.packageID;
-                TempData["TillbehorItem4"] = item4.packageID;
-                TempData["TillbehorItem5"] = item5.packageID;
-                TempData["TillbehorItem6"] = item6.packageID;
 
-                TempData["TillbehorAmount1"] = itemAmount1;
-                TempData["TillbehorAmount2"] = itemAmount2;
-                TempData["TillbehorAmount3"] = itemAmount3;
-                TempData["TillbehorAmount4"] = itemAmount4;
-                TempData["TillbehorAmount5"] = itemAmount5;
-                TempData["TillbehorAmount6"] = itemAmount6;
+
             }
             catch (Exception)
             {
@@ -324,23 +351,23 @@ namespace LarnerhemsEvent.Controllers
 
                         if(tempItem !="steg5" && i.Key != "TillbehorAmount1" && i.Key != "TillbehorAmount2" && i.Key != "TillbehorAmount3" && i.Key != "TillbehorAmount4" && i.Key != "TillbehorAmount5" && i.Key != "TillbehorAmount6")
                         {
-                            if(i.Key == "TillbehorItem1" || i.Key == "TillbehorItem2" || i.Key == "TillbehorItem3" || i.Key == "TillbehorItem4" || i.Key == "TillbehorItem5" || i.Key == "TillbehorItem6")
-                            {
-                                //Här måste vi kolla så att om det är 0 så ska den inte lägga till i listan........
+                            //if(i.Key == "TillbehorItem1" || i.Key == "TillbehorItem2" || i.Key == "TillbehorItem3" || i.Key == "TillbehorItem4" || i.Key == "TillbehorItem5" || i.Key == "TillbehorItem6")
+                            //{
+                            //    //Här måste vi kolla så att om det är 0 så ska den inte lägga till i listan........
 
-                                //if(tempItem != "0")
-                                //{
-                                //    PackageIDList.Add(Convert.ToInt32(tempItem));
-                                //}
-                                //else
-                                //{
+                            //    //if ()
+                            //    //{
+                            //    //    PackageIDList.Add(Convert.ToInt32(tempItem));
+                            //    //}
+                            //    //else
+                            //    //{
 
-                                //}
-                            }
-                            else
-                            {
+                            //    //}
+                            //}
+                            //else
+                            
                                 PackageIDList.Add(Convert.ToInt32(tempItem));
-                            }
+                            
                                 
 
                         }
