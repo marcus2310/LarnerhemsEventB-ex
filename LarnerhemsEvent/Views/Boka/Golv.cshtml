@@ -38,29 +38,31 @@
                 {
                     if (item.fk_genre_id == 2)
                     {
-                        <div class="boka-product">
-                            <img src="@Html.DisplayFor(Model => item.img)" />
-                            <h5>@Html.DisplayFor(Model => item.name)</h5>
-                            <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                            <div class="dropdown">
-                                <a href="#">⇓ Innehåll</a>
-                                <div class="dropdown-content">
+                <div class="boka-product">
+                    <img src="~/@Html.DisplayFor(Model => item.img)" />
 
-                                    @foreach (var item2 in item.prodpackdetails)
-                                    {
-                                        <a href="#">@Html.DisplayFor(Model => item2.product.name)</a>
-                                    }
+                    <h5>@Html.DisplayFor(Model => item.name)</h5>
+                    <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                    <p class="boka-product-info">@Html.DisplayFor(Model => item.moreinfo)</p>
+                    <div class="dropdown">
+                        <a href="#">⇓ Innehåll</a>
+                        <div class="dropdown-content">
 
-                                </div>
-                            </div>
-                            <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                            <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
-                            <br />
+                            @foreach (var item2 in item.prodpackdetails)
+            {
+                <a href="#">@Html.DisplayFor(Model => item2.product.name)</a>
+}
 
-                            <div class="boka-product-button-container">
-                                <button type="submit" value="@item.packageID" id="@item.packageID" name="buttonItem" onclick="location.href='@Url.Action("Ljud", "Boka")'" class="btn btn-success btn-group-lg">Välj</button>
-                            </div>
                         </div>
+                    </div>
+                    <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                    <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+                    <br />
+
+                    <div class="boka-product-button-container">
+                        <button type="submit" value="@item.packageID" id="@item.packageID" name="buttonItem" onclick="location.href='@Url.Action("Ljud", "Boka")'" class="btn btn-success btn-group-lg">Välj</button>
+                    </div>
+                </div>
 
                     }
                 }
