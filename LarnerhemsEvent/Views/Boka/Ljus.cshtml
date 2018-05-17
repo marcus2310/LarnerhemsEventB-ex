@@ -28,11 +28,13 @@
         @*------------------Steg4 Ljuspaket-------------------------*@
 
         <div id="steg4" class="tabcontentBoka">
-            <h1>Välj Ljuspaket</h1>
-            <div class="boka-shoppingcart-container">
-                <img src="~/Content/bilder/shopping-cart.png" />
-                <h5>Summa</h5>
-                <h6 style="color:red;">0 Kr</h6>
+            <div class="title-container">
+                <h1>Välj Ljuspaket</h1>
+                <div class="boka-shoppingcart-container">
+                    <img src="~/Content/bilder/shopping-cart.png" />
+                    <h5>Summa</h5>
+                    <h6 style="color:red;">0 Kr</h6>
+                </div>
             </div>
             <div class="boka-products-container">
                 @foreach (var item in Model)
@@ -44,7 +46,7 @@
                             <h5>@Html.DisplayFor(Model => item.name)</h5>
                             <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
                             <div class="dropdown">
-                                <a id="drop-down-contains">⇓ Innehåll</a>
+                                <a id="drop-down-contains">✚ Innehåll</a>
                                 <div class="dropdown-content">
 
                                     @foreach (var item2 in item.prodpackdetails)

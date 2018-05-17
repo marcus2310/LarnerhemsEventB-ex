@@ -28,13 +28,16 @@
         @*------------------Steg5 Tillbehör-------------------------*@
 
         <div id="steg5" class="tabcontentBoka">
-            <h1>Välj Tillbehör</h1>
-            <div class="boka-shoppingcart-container">
-                <img src="~/Content/bilder/shopping-cart.png" />
-                <h5>Summa</h5>
-                <h6 style="color:red;">0 Kr</h6>
+            <div class="title-container">
+                <h1>Välj Tillbehör</h1>
+                <div class="boka-shoppingcart-container">
+                    <img src="~/Content/bilder/shopping-cart.png" />
+                    <h5>Summa</h5>
+                    <h6 style="color:red;">0 Kr</h6>
+                </div>
             </div>
             <div class="boka-products-container">
+           
                 @foreach (var item in Model)
                 {
                     if (item.fk_genre_id == 5)
@@ -52,6 +55,7 @@
                             <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
 
                             <br />
+                            <h6>Antal:</h6>
                             <div class="boka-product-button-container">
                                     <input class="form-control" maxlength="2" type="text"  id="@item.packageID"  name="@item.packageID" placeholder="0">
                                 

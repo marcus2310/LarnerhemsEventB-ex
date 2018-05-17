@@ -35,6 +35,7 @@
         </div>
         <div class="boka-products-container">
             <div class="boka-Products-slutfor-container">
+            <h2 style="float:left; margin-left:5%; text-decoration:underline;">Valda produkter</h2>
                 @foreach (var item in Model)
                 {
                     if(item.fk_genre_id != 5) { 
@@ -58,6 +59,7 @@
                             </div>
                             <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
                             <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+                            <button class="btn btn-danger btn-group-lg">Ta Bort</button>
                             <br />
                             
                         </div>
@@ -86,6 +88,7 @@
                             </div>
                             <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
                             <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+                            <button class="btn btn-danger btn-group-lg">Ta Bort</button>
                             <br />
                             
                         </div>

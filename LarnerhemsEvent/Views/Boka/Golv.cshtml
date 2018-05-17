@@ -26,18 +26,20 @@
     {
         @*------------------Steg2 Golvpaket-------------------------*@
 
-        <div id="steg2" class="tabcontentBoka">
+    <div id="steg2" class="tabcontentBoka">
+        <div class="title-container">
             <h1>Välj Golvpaket</h1>
             <div class="boka-shoppingcart-container">
                 <img src="~/Content/bilder/shopping-cart.png" />
                 <h5>Summa</h5>
                 <h6 style="color:red;">0 Kr</h6>
             </div>
-            <div class="boka-products-container">
-                @foreach (var item in Model)
-                {
-                    if (item.fk_genre_id == 2)
-                    {
+        </div>
+        <div class="boka-products-container">
+            @foreach (var item in Model)
+        {
+            if (item.fk_genre_id == 2)
+            {
                 <div class="boka-product">
                     <img src="~/@Html.DisplayFor(Model => item.img)" />
 
@@ -45,13 +47,13 @@
                     <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
                     <p class="boka-product-info">@Html.DisplayFor(Model => item.moreinfo)</p>
                     <div class="dropdown">
-                        <a id="drop-down-contains">⇓ Innehåll</a>
+                        <a id="drop-down-contains">✚ Innehåll</a>
                         <div class="dropdown-content">
 
                             @foreach (var item2 in item.prodpackdetails)
-        {
-                    <a href="~/ProduktInfo/index/@item2.product.productsID" target="_blank">@Html.DisplayFor(Model => item2.product.name)</a>
-}
+                        {
+                            <a href="~/ProduktInfo/index/@item2.product.productsID" target="_blank">@Html.DisplayFor(Model => item2.product.name)</a>
+                    }
 
                         </div>
                     </div>
@@ -64,21 +66,21 @@
                     </div>
                 </div>
 
-                    }
-                }
+        }
+    }
 
-            </div>
-
-
-            <br />
-            <br />
-            <div class="boka-product-btn-container">
-                <button id="tillbaka" value="true" name="tillbaka" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
-                <button id="fram" onclick="location.href='@Url.Action("Ljud", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare utan Golv ⇒</button>
-            </div>
-            <p></p>
-            <h6>Steg 2 av 6</h6>
         </div>
+
+
+        <br />
+        <br />
+        <div class="boka-product-btn-container">
+            <button id="tillbaka" value="true" name="tillbaka" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
+            <button id="fram" onclick="location.href='@Url.Action("Ljud", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare utan Golv ⇒</button>
+        </div>
+        <p></p>
+        <h6>Steg 2 av 6</h6>
+    </div>
     }
     </div>
 

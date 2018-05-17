@@ -27,56 +27,59 @@
     {
         @*------------------Steg3 Ljudpaket-------------------------*@
 
-        <div id="steg3" class="tabcontentBoka">
+    <div id="steg3" class="tabcontentBoka">
+        <div class="title-container">
             <h1>Välj Ljudpaket</h1>
             <div class="boka-shoppingcart-container">
                 <img src="~/Content/bilder/shopping-cart.png" />
                 <h5>Summa</h5>
                 <h6 style="color:red;">0 Kr</h6>
             </div>
-            <div class="boka-products-container">
-                @foreach (var item in Model)
-                {
-                    if (item.fk_genre_id == 3)
-                    {
-                        <div class="boka-product">
-                            <img src="~/@Html.DisplayFor(Model => item.img)" />
-                            <h5>@Html.DisplayFor(Model => item.name)</h5>
-                            <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                            <div class="dropdown">
-                                <a id="drop-down-contains">⇓ Innehåll</a>
-                                <div class="dropdown-content">
-
-                                    @foreach (var item2 in item.prodpackdetails)
-    {
-                                <a href="~/ProduktInfo/index/@item2.product.productsID" target="_blank">@Html.DisplayFor(Model => item2.product.name)</a>
-}
-
-                                </div>
-                            </div>
-                            <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                            <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
-
-                            <br />
-
-                            <div class="boka-product-button-container">
-                                <button type="submit" value="@item.packageID" id="@item.packageID" name="buttonItem" onclick="location.href='@Url.Action("Ljus", "Boka")'" class="btn btn-success btn-group-lg">Välj</button>
-                            </div>
-                        </div>
-
-                    }
-                }
-
-            </div>
-            <br />
-            <br />
-            <div class="boka-product-btn-container">
-                <button id="tillbaka" value="true" name="tillbaka" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
-                <button onclick="location.href='@Url.Action("Ljus", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare utan Ljud ⇒</button>
-            </div>
-            <p></p>
-            <h6>Steg 3 av 6</h6>
         </div>
+        <div class="boka-products-container">
+            @foreach (var item in Model)
+        {
+            if (item.fk_genre_id == 3)
+            {
+                <div class="boka-product">
+                    <img src="~/@Html.DisplayFor(Model => item.img)" />
+                    <h5>@Html.DisplayFor(Model => item.name)</h5>
+                    <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
+                    <p class="boka-product-info">@Html.DisplayFor(Model => item.moreinfo)</p>
+                    <div class="dropdown">
+                        <a id="drop-down-contains">✚ Innehåll</a>
+                        <div class="dropdown-content">
+
+                            @foreach (var item2 in item.prodpackdetails)
+                        {
+                            <a href="~/ProduktInfo/index/@item2.product.productsID" target="_blank">@Html.DisplayFor(Model => item2.product.name)</a>
+                    }
+
+                        </div>
+                    </div>
+                    <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                    <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
+
+                    <br />
+
+                    <div class="boka-product-button-container">
+                        <button type="submit" value="@item.packageID" id="@item.packageID" name="buttonItem" onclick="location.href='@Url.Action("Ljus", "Boka")'" class="btn btn-success btn-group-lg">Välj</button>
+                    </div>
+                </div>
+
+        }
+    }
+
+        </div>
+        <br />
+        <br />
+        <div class="boka-product-btn-container">
+            <button id="tillbaka" value="true" name="tillbaka" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
+            <button onclick="location.href='@Url.Action("Ljus", "Boka")'" class="btn btn-secondary btn-group-lg" style="float:right;">Gå vidare utan Ljud ⇒</button>
+        </div>
+        <p></p>
+        <h6>Steg 3 av 6</h6>
+    </div>
     }
     </div>
 
