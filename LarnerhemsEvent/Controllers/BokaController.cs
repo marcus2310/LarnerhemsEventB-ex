@@ -351,20 +351,7 @@ namespace LarnerhemsEvent.Controllers
 
                         if(tempItem !="steg5" && i.Key != "TillbehorAmount1" && i.Key != "TillbehorAmount2" && i.Key != "TillbehorAmount3" && i.Key != "TillbehorAmount4" && i.Key != "TillbehorAmount5" && i.Key != "TillbehorAmount6")
                         {
-                            //if(i.Key == "TillbehorItem1" || i.Key == "TillbehorItem2" || i.Key == "TillbehorItem3" || i.Key == "TillbehorItem4" || i.Key == "TillbehorItem5" || i.Key == "TillbehorItem6")
-                            //{
-                            //    //Här måste vi kolla så att om det är 0 så ska den inte lägga till i listan........
-
-                            //    //if ()
-                            //    //{
-                            //    //    PackageIDList.Add(Convert.ToInt32(tempItem));
-                            //    //}
-                            //    //else
-                            //    //{
-
-                            //    //}
-                            //}
-                            //else
+                         
                             
                                 PackageIDList.Add(Convert.ToInt32(tempItem));
                             

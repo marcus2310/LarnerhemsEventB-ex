@@ -153,6 +153,7 @@
     <Compile Include="Controllers\BokaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OmossController.cs" />
+    <Compile Include="Controllers\ProduktInfoController.cs" />
     <Compile Include="DBOperations\DbOp.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -348,6 +349,7 @@
     <Content Include="Views\Boka\Ljus.cshtml" />
     <Content Include="Views\Boka\Tillbehor.cshtml" />
     <Content Include="Views\Boka\Slutfor.cshtml" />
+    <Content Include="Views\ProduktInfo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

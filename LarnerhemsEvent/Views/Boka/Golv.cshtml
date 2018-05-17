@@ -45,12 +45,12 @@
                     <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
                     <p class="boka-product-info">@Html.DisplayFor(Model => item.moreinfo)</p>
                     <div class="dropdown">
-                        <a href="#">⇓ Innehåll</a>
+                        <a id="drop-down-contains">⇓ Innehåll</a>
                         <div class="dropdown-content">
 
                             @foreach (var item2 in item.prodpackdetails)
-            {
-                <a href="#">@Html.DisplayFor(Model => item2.product.name)</a>
+        {
+                    <a href="~/ProduktInfo/index/@item2.product.productsID" target="_blank">@Html.DisplayFor(Model => item2.product.name)</a>
 }
 
                         </div>

@@ -384,12 +384,12 @@ footer h6 {
    
 }
 .boka-product-button-container button{
-    width:100%;
+    width:200px;
 
 }
 .boka-product img{
     max-height:160px;
-    min-width:220px;
+    max-width:220px;
     height:auto;
     width:auto;
 
@@ -400,9 +400,18 @@ footer h6 {
     font-weight: bold;
     font-size:30px;
 }
+#drop-down-contains{
+    color:royalblue;
+}
+    #drop-down-contains:hover {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+    }
 .dropdown {
     position: relative;
     display: inline-block;
+
 }
 
 .dropdown-content {

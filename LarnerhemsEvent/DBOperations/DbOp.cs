@@ -94,6 +94,12 @@ namespace LarnerhemsEvent.DBOperations
             return SelectedPacks;
 
         }
+        public product GetProduct(int id)
+        {
+            var theProduct = db.products.Find(id);
+
+            return theProduct;
+        }
         public void CreateOrder()
         {
 
