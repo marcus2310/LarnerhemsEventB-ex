@@ -497,5 +497,9 @@ footer h6 {
     .boka-product-btn-container button {
         width:100%;
     }
+
+    .boka-product-info{
+        text-align:center;
+    }
    
 }

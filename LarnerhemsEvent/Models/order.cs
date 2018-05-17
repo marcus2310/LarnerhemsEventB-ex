@@ -26,6 +26,8 @@ namespace LarnerhemsEvent.Models
         public Nullable<System.DateTime> eventdate { get; set; }
         public Nullable<int> fk_customer_id { get; set; }
         public Nullable<int> fk_campaigncode_id { get; set; }
+        public string approved { get; set; }
+        public Nullable<int> totalprice { get; set; }
     
         public virtual campaigncode campaigncode { get; set; }
         public virtual customer customer { get; set; }
