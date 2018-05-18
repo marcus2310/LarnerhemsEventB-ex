@@ -29,6 +29,10 @@
 
             <div class="title-container">
                 <h1>Välj Tältpaket</h1>
+                @if(TempData["orderID"] != null)
+                { 
+                <h1>@TempData["orderID"]</h1>
+                }
                 <div class="boka-shoppingcart-container">
                     <img src="~/Content/bilder/shopping-cart.png" />
                     <h5>Summa</h5>

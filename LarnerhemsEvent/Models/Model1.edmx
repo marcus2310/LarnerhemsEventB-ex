@@ -45,7 +45,8 @@
           <Property Name="orderdate" Type="datetime" />
           <Property Name="deliveryadress" Type="varchar" MaxLength="50" />
           <Property Name="eventdate" Type="datetime" />
-          <Property Name="approved" Type="varchar" MaxLength="1" />
+          <Property Name="approved" Type="varchar" MaxLength="50" />
+          <Property Name="sent" Type="varchar" MaxLength="50" />
           <Property Name="totalprice" Type="int" />
           <Property Name="fk_customer_id" Type="int" />
           <Property Name="fk_campaigncode_id" Type="int" />
@@ -107,7 +108,7 @@
           <Property Name="fk_access_id" Type="int" />
           <Property Name="username" Type="varchar" MaxLength="20" />
         </EntityType>
-        <Association Name="FK__order__fk_campai__0C85DE4D">
+        <Association Name="FK__order__fk_campai__114A936A">
           <End Role="campaigncode" Type="Self.campaigncode" Multiplicity="0..1" />
           <End Role="order" Type="Self.order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -119,7 +120,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__order__fk_custom__0B91BA14">
+        <Association Name="FK__order__fk_custom__10566F31">
           <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
           <End Role="order" Type="Self.order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -143,7 +144,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__packageor__fk_or__0A9D95DB">
+        <Association Name="FK__packageor__fk_or__0F624AF8">
           <End Role="order" Type="Self.order" Multiplicity="1" />
           <End Role="packageorderdetails" Type="Self.packageorderdetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -215,11 +216,11 @@
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__order__fk_campai__0C85DE4D" Association="Self.FK__order__fk_campai__0C85DE4D">
+          <AssociationSet Name="FK__order__fk_campai__114A936A" Association="Self.FK__order__fk_campai__114A936A">
             <End Role="campaigncode" EntitySet="campaigncode" />
             <End Role="order" EntitySet="order" />
           </AssociationSet>
-          <AssociationSet Name="FK__order__fk_custom__0B91BA14" Association="Self.FK__order__fk_custom__0B91BA14">
+          <AssociationSet Name="FK__order__fk_custom__10566F31" Association="Self.FK__order__fk_custom__10566F31">
             <End Role="customer" EntitySet="customer" />
             <End Role="order" EntitySet="order" />
           </AssociationSet>
@@ -227,7 +228,7 @@
             <End Role="genre" EntitySet="genre" />
             <End Role="package" EntitySet="package" />
           </AssociationSet>
-          <AssociationSet Name="FK__packageor__fk_or__0A9D95DB" Association="Self.FK__packageor__fk_or__0A9D95DB">
+          <AssociationSet Name="FK__packageor__fk_or__0F624AF8" Association="Self.FK__packageor__fk_or__0F624AF8">
             <End Role="order" EntitySet="order" />
             <End Role="packageorderdetails" EntitySet="packageorderdetails" />
           </AssociationSet>
@@ -301,8 +302,9 @@
           <NavigationProperty Name="campaigncode" Relationship="Self.FK__order__fk_campai__59063A47" FromRole="order" ToRole="campaigncode" />
           <NavigationProperty Name="customer" Relationship="Self.FK__order__fk_custom__440B1D61" FromRole="order" ToRole="customer" />
           <NavigationProperty Name="packageorderdetails" Relationship="Self.FK__packageor__fk_or__02FC7413" FromRole="order" ToRole="packageorderdetails" />
-          <Property Name="approved" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="approved" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="totalprice" Type="Int32" />
+          <Property Name="sent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="package">
           <Key>
@@ -556,6 +558,7 @@
           <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="leventsyd_se_dbModel.order">
               <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="sent" ColumnName="sent" />
                 <ScalarProperty Name="totalprice" ColumnName="totalprice" />
                 <ScalarProperty Name="approved" ColumnName="approved" />
                 <ScalarProperty Name="orderID" ColumnName="orderID" />

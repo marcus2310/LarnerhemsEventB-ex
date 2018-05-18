@@ -28,6 +28,7 @@ namespace LarnerhemsEvent.Models
         public Nullable<int> fk_campaigncode_id { get; set; }
         public string approved { get; set; }
         public Nullable<int> totalprice { get; set; }
+        public string sent { get; set; }
     
         public virtual campaigncode campaigncode { get; set; }
         public virtual customer customer { get; set; }

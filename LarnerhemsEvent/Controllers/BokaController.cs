@@ -19,24 +19,20 @@ namespace LarnerhemsEvent.Controllers
         List<package> soundPackList = new List<package>();
         List<package> LightPackList = new List<package>();
         List<package> ExtraPackList = new List<package>();
-
-
- 
-
-
         List<package> ChoosenPackages = new List<package>();
-
-
-
 
         VMPackages Packages = new VMPackages();
 
         // GET: Boka
         public ActionResult Index()
         {
+            HttpCookie cookie = new HttpCookie("OrderIDCookie");
+
+            cookie.Expires = DateTime.Now.AddHours(5);
+            HttpContext.Response.SetCookie(cookie);
+
+
             tentpackList = dbc.GetTentPackages();
-          
-            
 
             return View(tentpackList);
         }
@@ -46,13 +42,28 @@ namespace LarnerhemsEvent.Controllers
       
         public ActionResult Index(FormCollection form)
         {
+
             try
             {
-                var PackageId = form["buttonItem"];
-                int itemID = Convert.ToInt32(PackageId);
+                HttpCookie Newcookie = Request.Cookies["OrderIDCookie"];
+                Newcookie.Expires = DateTime.Now.AddHours(5);
 
+
+                if (Newcookie.Value == "")
+                {
+                    var orderIDt = dbc.CreateOrder();
+                    Newcookie.Value = orderIDt.ToString();
+                    HttpContext.Response.SetCookie(Newcookie);
+                }
+                
+
+                var PackageId = form["buttonItem"];
+                
+                int itemID = Convert.ToInt32(PackageId);
+                int orderID = Convert.ToInt32(Newcookie.Value);
                 var item = dbc.GetAPackage(itemID);
                 TempData["tentItem"] = item.packageID;
+                dbc.AddToPackOrderDetail(orderID, itemID, 1);
 
             }
             catch (Exception)
@@ -93,14 +104,24 @@ namespace LarnerhemsEvent.Controllers
         {
             try
             {
+                
+                HttpCookie Newcookie = Request.Cookies["OrderIDCookie"];
+                Newcookie.Expires = DateTime.Now.AddHours(5);
+
+
+                if (Newcookie.Value == "")
+                {
+                    return RedirectToAction("Index", "Boka");
+                }
+
+
                 var PackageId = form["buttonItem"];
 
                 int itemID = Convert.ToInt32(PackageId);
-
+                int orderID = Convert.ToInt32(Newcookie.Value);
                 var item = dbc.GetAPackage(itemID);
-
                 TempData["floorItem"] = item.packageID;
-
+                dbc.AddToPackOrderDetail(orderID, itemID, 1);
 
 
             }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using LarnerhemsEvent.Models;
+using System.Data.Entity.Validation;
 
 namespace LarnerhemsEvent.DBOperations
 {
@@ -100,12 +101,54 @@ namespace LarnerhemsEvent.DBOperations
 
             return theProduct;
         }
-        public void CreateOrder()
+        public int CreateOrder()
         {
+            order ord = new order();
+            ord.orderdate = DateTime.Today;
+            ord.approved = "false";
+            ord.sent = "false";
+            ord.totalprice = 0;
+            ord.orderID = ord.orderID;
 
+            try
+            {
+                db.orders.Add(ord);
+                db.SaveChanges();
+                return ord.orderID;
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        System.Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
+            }
 
+            return 0;
 
         }
+        public void AddToPackOrderDetail(int OrderID, int PacketID, int amount)
+        {
+            packageorderdetail PackOrder = new packageorderdetail();
+            PackOrder.fk_order_id = OrderID;
+            PackOrder.fk_package_id = PacketID;
+            PackOrder.amount = amount;
+
+            try
+            {
+                db.packageorderdetails.Add(PackOrder);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+     
 
 
 

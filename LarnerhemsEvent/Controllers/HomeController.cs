@@ -10,6 +10,8 @@ namespace LarnerhemsEvent.Controllers
     {
         public ActionResult Index()
         {
+
+
             return View();
         }
 
