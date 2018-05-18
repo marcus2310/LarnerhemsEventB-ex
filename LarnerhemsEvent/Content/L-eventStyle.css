@@ -483,9 +483,24 @@ footer h6 {
     font-size:22px;
 }
 .boka-Products-slutfor-container {
-    width: 250px;
-    display: inline-grid;
-    float: left;
+
+
+
+}
+.boka-product-slutfor {
+
+
+
+}
+.table-slutfor-im {
+    height: 100px;
+    width: 150px;
+    
+}
+.slutfor-valda-produkter-bander{
+    background-color:lightgrey;
+    height:50px;
+    width: 100%;
 }
 @media only screen and (max-width: 580px) {
     .tablink {
@@ -516,5 +531,10 @@ footer h6 {
     .boka-product-info{
         text-align:center;
     }
-   
+    .table-slutfor-im {
+        max-height: 100px;
+        max-width: 150px;
+        height:60%;
+        width:60%;
+    }
 }

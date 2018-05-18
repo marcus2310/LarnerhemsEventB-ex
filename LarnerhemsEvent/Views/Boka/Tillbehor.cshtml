@@ -32,8 +32,8 @@
                 <h1>Välj Tillbehör</h1>
                 <div class="boka-shoppingcart-container">
                     <img src="~/Content/bilder/shopping-cart.png" />
-                    <h5>Summa</h5>
-                    <h6 style="color:red;">0 Kr</h6>
+                    <h5>Totalsumma</h5>
+                    <h6 style="color:red;">@TempData["summa"] Kr</h6>
                 </div>
             </div>
             <div class="boka-products-container">
@@ -51,7 +51,7 @@
                                 if(item2.p)
                             }
                             <a href="~/ProduktInfo/index/@item.packageI" target="_blank">Detalj</a>*@
-                            <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
+                            <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr / st</h6>
                             <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
 
                             <br />

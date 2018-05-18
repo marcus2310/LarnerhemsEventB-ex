@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LarnerhemsEvent.Models.package>
+﻿@model IEnumerable<LarnerhemsEvent.Models.ViewModels.VMPackOrder>
 
 @{
     ViewBag.Title = "Boka";
@@ -30,71 +30,53 @@
         <h1>Slutför</h1>
         <div class="boka-shoppingcart-container">
             <img src="~/Content/bilder/shopping-cart.png" />
-            <h5>Summa</h5>
-            <h6 style="color:red;">0 Kr</h6>
+            <h5>Totalsumma</h5>
+            <h6 style="color:red;">@TempData["summa"] Kr</h6>
         </div>
         <div class="boka-products-container">
             <div class="boka-Products-slutfor-container">
-            <h2 style="float:left; margin-left:5%; text-decoration:underline;">Valda produkter</h2>
+                <div class="slutfor-valda-produkter-bander">
+                    <h2>1. Valda produkter</h2>
+                </div>
+
                 @foreach (var item in Model)
                 {
-                    if(item.fk_genre_id != 5) { 
-                        <div class="boka-product">
-                            
-                            <img src="~/@Html.DisplayFor(Model => item.img)" />
-                            
+                    //if (item.VMPackages.fk_genre_id != 1)
+                    //{
 
-                            <h5> @Html.DisplayFor(Model => item.name)</h5>
-                            <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                            <div class="dropdown">
-                                <a href="#">⇓ Innehåll</a>
-                                <div class="dropdown-content">
+<table class="table" style="width:100%;">
+  <thead>
+      <tr>
+          <th scope="col"></th>
+          <th scope="col">Antal</th>
+          <th scope="col">Namn</th>
+          <th scope="col">Pris</th>
+          <th scope="col"></th>
+      </tr>
+  </thead>
 
-                                    @foreach (var item2 in item.prodpackdetails)
-                                    {
-                                        <a href="#" data-toggle="modal" data-target="#myModal">@Html.DisplayFor(Model => item2.product.name)</a>
-                                    }
-
-                                </div>
-                            </div>
-                            <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                            <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
-                            <button class="btn btn-danger btn-group-lg">Ta Bort</button>
-                            <br />
-                            
-                        </div>
-                    }
-
-                    else
-                    {
-                        <div class="boka-product">
-                            
-                            
-                            <img src="~/@Html.DisplayFor(Model => item.img)" />
-                            
-
-                            <h5> @Html.DisplayFor(Model => item.name) </h5> <h5 style="color:red">Antal: 2</h5>
-                            <p class="boka-product-info">@Html.DisplayFor(Model => item.info)</p>
-                            <div class="dropdown">
-                                <a href="#">⇓ Innehåll</a>
-                                <div class="dropdown-content">
-
-                                    @foreach (var item2 in item.prodpackdetails)
-                                    {
-                                        <a href="#" data-toggle="modal" data-target="#myModal">@Html.DisplayFor(Model => item2.product.name)</a>
-                                    }
-
-                                </div>
-                            </div>
-                            <h6 class="product-price">@Html.DisplayFor(Model => item.price) Kr</h6>
-                            <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
-                            <button class="btn btn-danger btn-group-lg">Ta Bort</button>
-                            <br />
-                            
-                        </div>
-                    }
+  <tbody>
+      <tr class="table-light">
+          <td><img class="table-slutfor-im"src="~/@Html.DisplayFor(Model => item.VMPackages.img)" /></td>
+          <td>@Html.DisplayFor(Model => item.antal)</td>
+          <td>@Html.DisplayFor(Model => item.VMPackages.name)</td>
+          <td>@Html.DisplayFor(Model => item.VMPackages.price) Kr / st</td>
+          <td><button class="btn btn-danger btn-group-lg">Ta Bort</button></td>
+      </tr>
+  </tbody>
+</table> 
+                       
+                    
 
                 }
+                <div class="slutfor-valda-produkter-bander">
+                    <h2>2. Person- och leveransuppgifter</h2>
+                </div>
+
+
+
+
+
             </div>
 
 

@@ -69,11 +69,11 @@ namespace LarnerhemsEvent.DBOperations
             return ExtraPackages;
         }
         //hämtar alla paket som finns
-        public List<package>GetAllPackages()
+        public List<package> GetAllPackages()
         {
-            var packages = db.packages.ToList(); 
+            var packages = db.packages.ToList();
 
-            return packages; 
+            return packages;
         }
         public List<package> GetSelectedPackages(List<int> id)
         {
@@ -83,7 +83,7 @@ namespace LarnerhemsEvent.DBOperations
             {
                 foreach (var item2 in id)
                 {
-                    if(item.packageID == item2)
+                    if (item.packageID == item2)
                     {
                         SelectedPacks.Add(item);
 
@@ -133,12 +133,14 @@ namespace LarnerhemsEvent.DBOperations
         public void AddToPackOrderDetail(int OrderID, int PacketID, int amount)
         {
             packageorderdetail PackOrder = new packageorderdetail();
-            PackOrder.fk_order_id = OrderID;
-            PackOrder.fk_package_id = PacketID;
-            PackOrder.amount = amount;
 
             try
             {
+                PackOrder.fk_order_id = OrderID;
+                PackOrder.fk_package_id = PacketID;
+                PackOrder.amount = amount;
+
+
                 db.packageorderdetails.Add(PackOrder);
                 db.SaveChanges();
             }
@@ -146,6 +148,41 @@ namespace LarnerhemsEvent.DBOperations
             {
 
             }
+
+        }
+        public List<packageorderdetail> getOrderdetails(int orderID)
+        {
+            List<packageorderdetail> SelectedPackOrdList = new List<packageorderdetail>();
+
+            SelectedPackOrdList = db.packageorderdetails.Where(x => x.fk_order_id == orderID).ToList();
+
+            return SelectedPackOrdList;
+
+        }
+        public void SetTotalpriceOrder(int orderID, int totalprice)
+        {
+            try
+            {
+                var order = db.orders.Find(orderID);
+
+                order.totalprice = totalprice;
+                db.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+
+                
+            }
+            
+
+        }
+        public order GetOrder(int orderID)
+        {
+            order TheOrder = new order();
+            TheOrder = db.orders.Find(orderID);
+
+            return TheOrder;
 
         }
      

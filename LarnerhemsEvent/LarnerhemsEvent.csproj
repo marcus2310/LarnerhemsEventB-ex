@@ -57,8 +57,10 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -207,6 +209,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\VMPackages.cs" />
+    <Compile Include="Models\ViewModels\VMPackOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +221,7 @@
     <Content Include="Content\bilder\Alexander2.PNG" />
     <Content Include="Content\bilder\b.png" />
     <Content Include="Content\bilder\Boka\Golv\Golv.jpg" />
+    <Content Include="Content\bilder\Boka\Golv\Golv2.jpg" />
     <Content Include="Content\bilder\Boka\Golv\IngetGolv.jpg" />
     <Content Include="Content\bilder\Boka\Ljud\ljud1.png" />
     <Content Include="Content\bilder\Boka\Ljud\ljud2.png" />
