@@ -1,17 +1,20 @@
-﻿using System;
+﻿using LarnerhemsEvent.DBOperations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace LarnerhemsEvent.Controllers
 {
     public class HomeController : Controller
     {
+        private DbOp dbc = new DbOp();
         public ActionResult Index()
         {
-
-
+            dbc.DeleteUnfinnishedOrder();
+            
             return View();
         }
 

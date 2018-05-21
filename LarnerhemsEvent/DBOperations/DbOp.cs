@@ -15,6 +15,80 @@ namespace LarnerhemsEvent.DBOperations
 
 
         //hämtar ett specifikt paket med ID
+
+        #region Lägg till i DB
+        public int CreateOrder()
+        {
+            order ord = new order();
+            ord.orderdate = DateTime.Today;
+            ord.approved = "false";
+            ord.sent = "false";
+            ord.totalprice = 0;
+            ord.orderID = ord.orderID;
+
+            try
+            {
+                db.orders.Add(ord);
+                db.SaveChanges();
+                return ord.orderID;
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        System.Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
+            }
+
+            return 0;
+
+        }
+        public void AddToPackOrderDetail(int OrderID, int PacketID, int amount)
+        {
+            packageorderdetail PackOrder = new packageorderdetail();
+
+            try
+            {
+                PackOrder.fk_order_id = OrderID;
+                PackOrder.fk_package_id = PacketID;
+                PackOrder.amount = amount;
+
+
+                db.packageorderdetails.Add(PackOrder);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        public void SetTotalpriceOrder(int orderID, int totalprice)
+        {
+            try
+            {
+                var order = db.orders.Find(orderID);
+
+                order.totalprice = totalprice;
+                db.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+
+        }
+
+
+        #endregion
+
+        #region Hämta från databas
         public package GetAPackage(int id)
         {
 
@@ -101,55 +175,6 @@ namespace LarnerhemsEvent.DBOperations
 
             return theProduct;
         }
-        public int CreateOrder()
-        {
-            order ord = new order();
-            ord.orderdate = DateTime.Today;
-            ord.approved = "false";
-            ord.sent = "false";
-            ord.totalprice = 0;
-            ord.orderID = ord.orderID;
-
-            try
-            {
-                db.orders.Add(ord);
-                db.SaveChanges();
-                return ord.orderID;
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        System.Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-                    }
-                }
-            }
-
-            return 0;
-
-        }
-        public void AddToPackOrderDetail(int OrderID, int PacketID, int amount)
-        {
-            packageorderdetail PackOrder = new packageorderdetail();
-
-            try
-            {
-                PackOrder.fk_order_id = OrderID;
-                PackOrder.fk_package_id = PacketID;
-                PackOrder.amount = amount;
-
-
-                db.packageorderdetails.Add(PackOrder);
-                db.SaveChanges();
-            }
-            catch (Exception)
-            {
-
-            }
-
-        }
         public List<packageorderdetail> getOrderdetails(int orderID)
         {
             List<packageorderdetail> SelectedPackOrdList = new List<packageorderdetail>();
@@ -157,24 +182,6 @@ namespace LarnerhemsEvent.DBOperations
             SelectedPackOrdList = db.packageorderdetails.Where(x => x.fk_order_id == orderID).ToList();
 
             return SelectedPackOrdList;
-
-        }
-        public void SetTotalpriceOrder(int orderID, int totalprice)
-        {
-            try
-            {
-                var order = db.orders.Find(orderID);
-
-                order.totalprice = totalprice;
-                db.SaveChanges();
-
-            }
-            catch (Exception)
-            {
-
-                
-            }
-            
 
         }
         public order GetOrder(int orderID)
@@ -185,8 +192,42 @@ namespace LarnerhemsEvent.DBOperations
             return TheOrder;
 
         }
-     
+        #endregion
 
+        #region Tabort Från DB
+ public void DeleteUnfinnishedOrder()
+        {
+            var time = DateTime.Today;
+            var selectedOrderdetailsList = db.packageorderdetails.Where(x => x.order.sent == "false" && x.order.orderdate < time).ToList();
+            var selectedOrderList = db.orders.Where(x => x.sent == "false" && x.orderdate < time).ToList();
+
+
+            try
+            {
+                foreach (var i in selectedOrderdetailsList)
+                {
+                    db.Entry(i).State = EntityState.Deleted;
+                    db.SaveChanges();
+                }
+                foreach (var item in selectedOrderList)
+                {
+                    db.Entry(item).State = EntityState.Deleted;
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception)
+            {
+
+               
+            }
+            
+        }
+
+
+
+        #endregion
+       
 
 
     }
