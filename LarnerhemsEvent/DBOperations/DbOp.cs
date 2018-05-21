@@ -89,6 +89,21 @@ namespace LarnerhemsEvent.DBOperations
         #endregion
 
         #region Hämta från databas
+        public int GetTotalPrice(int OrderID)
+        {
+            int TotalPrice = 0;
+            int pricePerItem;
+
+            var orders = db.packageorderdetails.Where(x => x.fk_order_id == OrderID).ToList();
+
+            foreach (var item in orders)
+            {
+                pricePerItem = Convert.ToInt32(item.package.price) * Convert.ToInt32(item.amount);
+                TotalPrice = TotalPrice + pricePerItem;
+            }
+
+            return TotalPrice;
+        }
         public package GetAPackage(int id)
         {
 
@@ -222,6 +237,29 @@ namespace LarnerhemsEvent.DBOperations
                
             }
             
+        }
+        //tabort ett visst packet i orden.
+        public void DeleteSelectedPackage(int OrderID, int GenreID)
+        {
+            packageorderdetail packOrd = new packageorderdetail();
+
+            var PackOrdList = db.packageorderdetails.Where(x => x.fk_order_id == OrderID && x.package.fk_genre_id == GenreID).ToList();
+
+            try
+            {
+                foreach (var item in PackOrdList)
+                {
+                    db.Entry(item).State = EntityState.Deleted;
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception)
+            {
+                
+            }
+           
+
         }
 
 

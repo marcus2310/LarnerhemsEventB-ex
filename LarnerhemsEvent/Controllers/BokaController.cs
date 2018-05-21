@@ -64,12 +64,15 @@ namespace LarnerhemsEvent.Controllers
                 var item = dbc.GetAPackage(itemID);
 
                 //sätter värden på ordern
+                TempData["tentItem"] = item.packageID;
+                dbc.AddToPackOrderDetail(orderID, itemID, 1);
+
+
                 var order = dbc.GetOrder(orderID);
                 dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + item.price));
                 TempData["summa"] = order.totalprice;
 
-                TempData["tentItem"] = item.packageID;
-                dbc.AddToPackOrderDetail(orderID, itemID, 1);
+
                 
                
             }
@@ -127,15 +130,33 @@ namespace LarnerhemsEvent.Controllers
                 int itemID = Convert.ToInt32(PackageId);
                 int orderID = Convert.ToInt32(Newcookie.Value);
                 var item = dbc.GetAPackage(itemID);
+                int totalPrice;
+
+                var tillbaka = form["tillbaka"];
+
+                if (tillbaka != null)
+                {
+                    //här kan vi sedan ta bort paket som valts
+                    dbc.DeleteSelectedPackage(orderID, 1);
+                    TempData["auth"] = "steg2";
+                    totalPrice = dbc.GetTotalPrice(orderID);
+                    TempData["summa"] = totalPrice;
+                    dbc.SetTotalpriceOrder(orderID, totalPrice);
+                    return RedirectToAction("Index", "Boka");
+
+                }
 
                 //sätter värden på ordern
-                var order = dbc.GetOrder(orderID);
-                dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + item.price));
-                TempData["summa"] = order.totalprice;
-
-
                 TempData["floorItem"] = item.packageID;
                 dbc.AddToPackOrderDetail(orderID, itemID, 1);
+
+                var order = dbc.GetOrder(orderID);
+                totalPrice = dbc.GetTotalPrice(orderID);
+                dbc.SetTotalpriceOrder(orderID, totalPrice);
+                TempData["summa"] = totalPrice;
+
+
+
         
 
             }
@@ -143,14 +164,7 @@ namespace LarnerhemsEvent.Controllers
             {
 
             }
-            var tillbaka = form["tillbaka"];
 
-            if (tillbaka != null)
-            {
-                //här kan vi sedan ta bort paket som valts
-
-                return RedirectToAction("Index", "Boka");
-            }
 
             TempData["Auth"] = "steg2";
             return RedirectToAction("Ljud", "Boka");
@@ -200,15 +214,32 @@ namespace LarnerhemsEvent.Controllers
                 int itemID = Convert.ToInt32(PackageId);
                 int orderID = Convert.ToInt32(Newcookie.Value);
                 var item = dbc.GetAPackage(itemID);
+                int totalPrice;
+                var tillbaka = form["tillbaka"];
+
+                if (tillbaka != null)
+                {
+                    //här kan vi sedan ta bort paket som valts
+
+                    dbc.DeleteSelectedPackage(orderID, 2);
+                    TempData["auth"] = "steg2";
+                    totalPrice = dbc.GetTotalPrice(orderID);
+                    TempData["summa"] = totalPrice;
+                    dbc.SetTotalpriceOrder(orderID, totalPrice);
+                    return RedirectToAction("Golv", "Boka");
+                }
 
                 //sätter värden på ordern
                 var order = dbc.GetOrder(orderID);
-                dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + item.price));
-                TempData["summa"] = order.totalprice;
+                totalPrice = dbc.GetTotalPrice(orderID);
+                dbc.SetTotalpriceOrder(orderID, totalPrice);
+                //dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + item.price));
+                TempData["summa"] = totalPrice;
 
 
                 TempData["soundItem"] = item.packageID;
                 dbc.AddToPackOrderDetail(orderID, itemID, 1);
+
 
 
 
@@ -217,15 +248,7 @@ namespace LarnerhemsEvent.Controllers
             {
 
             }
-            var tillbaka = form["tillbaka"];
 
-            if (tillbaka != null)
-            {
-
-
-                TempData["auth"] = "steg2";
-                return RedirectToAction("Golv", "Boka");
-            }
 
             TempData["Auth"] = "steg3";
             return RedirectToAction("Ljus", "Boka");
