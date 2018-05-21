@@ -62,14 +62,14 @@ namespace LarnerhemsEvent.Controllers
                 int itemID = Convert.ToInt32(PackageId);
                 int orderID = Convert.ToInt32(Newcookie.Value);
                 var item = dbc.GetAPackage(itemID);
-
+                int totalPrice;
                 //sätter värden på ordern
                 TempData["tentItem"] = item.packageID;
                 dbc.AddToPackOrderDetail(orderID, itemID, 1);
 
-
+                totalPrice = dbc.GetTotalPrice(orderID);
                 var order = dbc.GetOrder(orderID);
-                dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + item.price));
+                dbc.SetTotalpriceOrder(orderID, totalPrice);
                 TempData["summa"] = order.totalprice;
 
 
@@ -133,6 +133,7 @@ namespace LarnerhemsEvent.Controllers
                 int totalPrice;
 
                 var tillbaka = form["tillbaka"];
+                var fram = form["fram"];
 
                 if (tillbaka != null)
                 {
@@ -143,6 +144,17 @@ namespace LarnerhemsEvent.Controllers
                     TempData["summa"] = totalPrice;
                     dbc.SetTotalpriceOrder(orderID, totalPrice);
                     return RedirectToAction("Index", "Boka");
+
+                }
+                if(fram != null)
+                {
+                    //går framåt utan paket.
+                    totalPrice = dbc.GetTotalPrice(orderID);
+                    TempData["summa"] = totalPrice;
+                    dbc.SetTotalpriceOrder(orderID, totalPrice);
+                    TempData["Auth"] = "steg2";
+                    return RedirectToAction("Ljud", "Boka");
+
 
                 }
 
@@ -214,34 +226,41 @@ namespace LarnerhemsEvent.Controllers
                 int itemID = Convert.ToInt32(PackageId);
                 int orderID = Convert.ToInt32(Newcookie.Value);
                 var item = dbc.GetAPackage(itemID);
-                int totalPrice;
-                var tillbaka = form["tillbaka"];
 
+                int totalPrice;
+
+                var tillbaka = form["tillbaka"];
+                var fram = form["fram"];
                 if (tillbaka != null)
                 {
                     //här kan vi sedan ta bort paket som valts
-
                     dbc.DeleteSelectedPackage(orderID, 2);
                     TempData["auth"] = "steg2";
                     totalPrice = dbc.GetTotalPrice(orderID);
                     TempData["summa"] = totalPrice;
                     dbc.SetTotalpriceOrder(orderID, totalPrice);
                     return RedirectToAction("Golv", "Boka");
+
                 }
+                if (fram != null)
+                {
+                    //går framåt utan paket.
+                    totalPrice = dbc.GetTotalPrice(orderID);
+                    TempData["summa"] = totalPrice;
+                    dbc.SetTotalpriceOrder(orderID, totalPrice);
+                    TempData["Auth"] = "steg3";
+                    return RedirectToAction("Ljus", "Boka");
 
+
+                }
                 //sätter värden på ordern
-                var order = dbc.GetOrder(orderID);
-                totalPrice = dbc.GetTotalPrice(orderID);
-                dbc.SetTotalpriceOrder(orderID, totalPrice);
-                //dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + item.price));
-                TempData["summa"] = totalPrice;
-
-
                 TempData["soundItem"] = item.packageID;
                 dbc.AddToPackOrderDetail(orderID, itemID, 1);
 
-
-
+                var order = dbc.GetOrder(orderID);
+                totalPrice = dbc.GetTotalPrice(orderID);
+                dbc.SetTotalpriceOrder(orderID, totalPrice);
+                TempData["summa"] = totalPrice;
 
             }
             catch (Exception)
@@ -299,29 +318,47 @@ namespace LarnerhemsEvent.Controllers
                 int itemID = Convert.ToInt32(PackageId);
                 int orderID = Convert.ToInt32(Newcookie.Value);
                 var item = dbc.GetAPackage(itemID);
+                int totalPrice;
 
+                var tillbaka = form["tillbaka"];
+                var fram = form["fram"];
+                if (tillbaka != null)
+                {
+                    //här kan vi sedan ta bort paket som valts
+                    dbc.DeleteSelectedPackage(orderID, 3);
+                    TempData["auth"] = "steg3";
+                    totalPrice = dbc.GetTotalPrice(orderID);
+                    TempData["summa"] = totalPrice;
+                    dbc.SetTotalpriceOrder(orderID, totalPrice);
+                    return RedirectToAction("Ljud", "Boka");
+
+                }
+                if (fram != null)
+                {
+                    //går framåt utan paket.
+                    totalPrice = dbc.GetTotalPrice(orderID);
+                    TempData["summa"] = totalPrice;
+                    dbc.SetTotalpriceOrder(orderID, totalPrice);
+                    TempData["Auth"] = "steg4";
+                    return RedirectToAction("Tillbehor", "Boka");
+
+
+                }
                 //sätter värden på ordern
-                var order = dbc.GetOrder(orderID);
-                dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + item.price));
-                TempData["summa"] = order.totalprice;
-
                 TempData["lightItem"] = item.packageID;
                 dbc.AddToPackOrderDetail(orderID, itemID, 1);
 
-
+                var order = dbc.GetOrder(orderID);
+                totalPrice = dbc.GetTotalPrice(orderID);
+                dbc.SetTotalpriceOrder(orderID, totalPrice);
+                TempData["summa"] = totalPrice;
 
             }
             catch (Exception)
             {
 
             }
-            var tillbaka = form["tillbaka"];
 
-            if (tillbaka != null)
-            {
-                TempData["auth"] = "steg3";
-                return RedirectToAction("Ljud", "Boka");
-            }
             TempData["Auth"] = "steg4";
             return RedirectToAction("Tillbehor", "Boka");
         }
@@ -369,7 +406,7 @@ namespace LarnerhemsEvent.Controllers
 
                 HttpCookie Newcookie = Request.Cookies["OrderIDCookie"];
                 Newcookie.Expires = DateTime.Now.AddHours(5);
-
+                
 
                 if (Newcookie.Value == "")
                 {
@@ -379,108 +416,121 @@ namespace LarnerhemsEvent.Controllers
                 {
                     int orderID = Convert.ToInt32(Newcookie.Value);
                     var order = dbc.GetOrder(orderID);
+                    var tillbaka = form["tillbaka"];
+
+                    if (tillbaka != null)
+                    {
+                        //här kan vi sedan ta bort paket som valts
+                        int totalPrice;
+                        dbc.DeleteSelectedPackage(orderID, 4);
+                        TempData["auth"] = "steg4";
+                        totalPrice = dbc.GetTotalPrice(orderID);
+                        TempData["summa"] = totalPrice;
+                        dbc.SetTotalpriceOrder(orderID, totalPrice);
+                        return RedirectToAction("Ljus", "Boka");
+
+                    }
+
+                   
 
                     if (PackageValue1 != "" && PackageValue1 != "0" && PackageValue1 != "00")
                     {
+                        int totalPrice;
                         int itemAmount1 = Convert.ToInt32(PackageValue1);
                         TempData["TillbehorItem1"] = item1.packageID;
                         TempData["TillbehorAmount1"] = itemAmount1;
 
                         //sätter värden på ordern
-                        
-                        dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + (item1.price * itemAmount1)));
-                        
-
-
                         dbc.AddToPackOrderDetail(orderID, item1.packageID, itemAmount1);
+                        totalPrice = dbc.GetTotalPrice(orderID);
+                        dbc.SetTotalpriceOrder(orderID, totalPrice);
+                        TempData["summa"] = totalPrice;
+
                     }
                     if (PackageValue2 != "" && PackageValue2 != "0" && PackageValue2 != "00")
                     {
+                        int totalPrice;
                         int itemAmount2 = Convert.ToInt32(PackageValue2);
                         TempData["TillbehorItem2"] = item2.packageID;
                         TempData["TillbehorAmount2"] = itemAmount2;
 
                         //sätter värden på ordern
-                      
-                        dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + (item2.price * itemAmount2)));
-                    
-
                         dbc.AddToPackOrderDetail(orderID, item2.packageID, itemAmount2);
+                        totalPrice = dbc.GetTotalPrice(orderID);
+                        dbc.SetTotalpriceOrder(orderID, totalPrice);
+                        TempData["summa"] = totalPrice;
                     }
                     if (PackageValue3 != "" && PackageValue3 != "0" && PackageValue3 != "00")
                     {
-
+                        int totalPrice;
                         int itemAmount3 = Convert.ToInt32(PackageValue3);
                         TempData["TillbehorItem3"] = item3.packageID;
                         TempData["TillbehorAmount3"] = itemAmount3;
 
                         //sätter värden på ordern
-                       
-                        dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + (item3.price * itemAmount3)));
-                   
-
                         dbc.AddToPackOrderDetail(orderID, item3.packageID, itemAmount3);
-
+                        totalPrice = dbc.GetTotalPrice(orderID);
+                        dbc.SetTotalpriceOrder(orderID, totalPrice);
+                        TempData["summa"] = totalPrice;
                     }
                     if (PackageValue4 != "" && PackageValue4 != "0" && PackageValue4 != "00")
                     {
+                        int totalPrice;
                         int itemAmount4 = Convert.ToInt32(PackageValue4);
                         TempData["TillbehorItem4"] = item4.packageID;
                         TempData["TillbehorAmount4"] = itemAmount4;
 
                         //sätter värden på ordern
-                       
-                        dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + (item4.price * itemAmount4)));
-                   
-
-
                         dbc.AddToPackOrderDetail(orderID, item4.packageID, itemAmount4);
+                        totalPrice = dbc.GetTotalPrice(orderID);
+                        dbc.SetTotalpriceOrder(orderID, totalPrice);
+                        TempData["summa"] = totalPrice;
                     }
                     if (PackageValue5 != "" && PackageValue5 != "0" && PackageValue5 != "00")
                     {
+                        int totalPrice;
                         int itemAmount5 = Convert.ToInt32(PackageValue5);
                         TempData["TillbehorItem5"] = item5.packageID;
                         TempData["TillbehorAmount5"] = itemAmount5;
 
                         //sätter värden på ordern
-                        
-                        dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + (item5.price * itemAmount5)));
-                      
-
-
                         dbc.AddToPackOrderDetail(orderID, item5.packageID, itemAmount5);
+                        totalPrice = dbc.GetTotalPrice(orderID);
+                        dbc.SetTotalpriceOrder(orderID, totalPrice);
+                        TempData["summa"] = totalPrice;
                     }
                     if (PackageValue6 != "" && PackageValue6 != "0" && PackageValue6 != "00")
                     {
+                        int totalPrice;
                         int itemAmount6 = Convert.ToInt32(PackageValue6);
                         TempData["TillbehorItem6"] = item6.packageID;
                         TempData["TillbehorAmount6"] = itemAmount6;
 
                         //sätter värden på ordern
-                        
-                        dbc.SetTotalpriceOrder(orderID, Convert.ToInt32(order.totalprice + (item6.price * itemAmount6)));
-                        
-
                         dbc.AddToPackOrderDetail(orderID, item6.packageID, itemAmount6);
+                        totalPrice = dbc.GetTotalPrice(orderID);
+                        dbc.SetTotalpriceOrder(orderID, totalPrice);
+                        TempData["summa"] = totalPrice;
+                    }
+                    else
+                    {
+                        int totalPrice;
+                        totalPrice = dbc.GetTotalPrice(orderID);
+                        dbc.SetTotalpriceOrder(orderID, totalPrice);
+                        TempData["summa"] = totalPrice;
                     }
 
-                    TempData["summa"] = order.totalprice;
 
                 }
 
             }
             catch (Exception)
             {
+                TempData["Auth"] = "steg1";
+                return RedirectToAction("Index", "Boka");
 
-               
             }
-            var tillbaka = form["tillbaka"];
 
-            if (tillbaka != null)
-            {
-                TempData["auth"] = "steg4";
-                return RedirectToAction("Ljus", "Boka");
-            }
             TempData["Auth"] = "steg5";
             return RedirectToAction("Slutfor", "Boka");
         }
@@ -552,6 +602,29 @@ namespace LarnerhemsEvent.Controllers
         {
             try
             {
+                HttpCookie Newcookie = Request.Cookies["OrderIDCookie"];
+                Newcookie.Expires = DateTime.Now.AddHours(5);
+
+
+                if (Newcookie.Value == "")
+                {
+                    return RedirectToAction("Index", "Boka");
+                }
+                var tillbaka = form["tillbaka"];
+                int orderID = Convert.ToInt32(Newcookie.Value);
+
+            if (tillbaka != null)
+            {
+                //här kan vi sedan ta bort paket som valts
+                int totalPrice;
+                dbc.DeleteSelectedPackage(orderID, 5);
+                TempData["auth"] = "steg4";
+                totalPrice = dbc.GetTotalPrice(orderID);
+                TempData["summa"] = totalPrice;
+                dbc.SetTotalpriceOrder(orderID, totalPrice);
+                return RedirectToAction("Tillbehor", "Boka");
+
+            }
 
 
             }
@@ -559,13 +632,7 @@ namespace LarnerhemsEvent.Controllers
             {
 
             }
-            var tillbaka = form["tillbaka"];
 
-            if (tillbaka != null)
-            {
-                TempData["auth"] = "steg5";
-                return RedirectToAction("Tillbehor", "Boka");
-            }
 
             TempData["Auth"] = "steg6";
             return RedirectToAction("Tillbehor", "Boka");
