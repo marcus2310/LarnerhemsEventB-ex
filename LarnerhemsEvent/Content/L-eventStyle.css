@@ -495,13 +495,38 @@ footer h6 {
 .table-slutfor-im {
     height: 100px;
     width: 150px;
-    
+    float:left; 
 }
 .slutfor-valda-produkter-bander{
     background-color:lightgrey;
     height:50px;
     width: 100%;
 }
+
+
+#table-package-name {
+    width: 40%;
+}
+
+#table-package-amount {
+    width: 10%;
+}
+
+#table-package-price {
+    width: 10%;
+    color:red;
+}
+
+#table-package-im
+{
+    width: 30%;
+}
+#table-package-button
+{
+    width: 10%; 
+}
+
+
 @media only screen and (max-width: 580px) {
     .tablink {
         width: 100%;
@@ -534,7 +559,54 @@ footer h6 {
     .table-slutfor-im {
         max-height: 100px;
         max-width: 150px;
-        height:60%;
-        width:60%;
+        height:auto;
+        width:auto;
+        float:none;
+        
     }
+
+    .slutfor-valda-produkter-bander
+    {
+        margin-bottom:20%;
+        width:100%;
+    }
+
+    .table-light
+    {
+        display:grid;
+        width:225px;
+    }
+
+    #package-slutfor-banner
+    {
+        visibility:hidden;
+    }
+
+    #table-package-name 
+    {
+        width: 100%;
+        height: 80px;
+    }
+
+    #table-package-amount {
+        width:100%;
+    }
+
+    #table-package-price {
+        width: 100%;
+        height: 80px;
+    }
+
+    #table-package-im {
+        width: 100%;
+        height: 100%;
+    }
+
+    #table-package-button {
+        width: 100%;
+        height: 80px;
+    }
+
+  
+
 }
