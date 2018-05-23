@@ -602,6 +602,18 @@ namespace LarnerhemsEvent.Controllers
         {
             try
             {
+                var firstname = form["firstname"];
+                var lastname = form["lastname"];
+                var telenumber = form["telenumber"];
+                var email = form["email"];
+
+                var address = form["address"];
+                var town = form["town"];
+                var zipcode = form["zipcode"];
+                var date = form["date"];
+                var moreinfo = form["moreinfo"];
+                var kampanjkod = form["kampanjkod"];
+
                 HttpCookie Newcookie = Request.Cookies["OrderIDCookie"];
                 Newcookie.Expires = DateTime.Now.AddHours(5);
 
@@ -613,19 +625,33 @@ namespace LarnerhemsEvent.Controllers
                 var tillbaka = form["tillbaka"];
                 int orderID = Convert.ToInt32(Newcookie.Value);
 
-            if (tillbaka != null)
-            {
-                //här kan vi sedan ta bort paket som valts
-                int totalPrice;
-                dbc.DeleteSelectedPackage(orderID, 5);
-                TempData["auth"] = "steg4";
-                totalPrice = dbc.GetTotalPrice(orderID);
-                TempData["summa"] = totalPrice;
-                dbc.SetTotalpriceOrder(orderID, totalPrice);
-                return RedirectToAction("Tillbehor", "Boka");
+                if (tillbaka != null)
+                {
+                    //här kan vi sedan ta bort paket som valts
+                    int totalPrice;
+                    dbc.DeleteSelectedPackage(orderID, 5);
+                    TempData["auth"] = "steg4";
+                    totalPrice = dbc.GetTotalPrice(orderID);
+                    TempData["summa"] = totalPrice;
+                    dbc.SetTotalpriceOrder(orderID, totalPrice);
+                    return RedirectToAction("Tillbehor", "Boka");
+                }
+                else
+                {
+                    //här ska det skrivas kod för att skapa HELA ORDERN!!
 
-            }
+                    //skapar en kund!
+                    customer cust = new customer();
+                    cust.firstname = firstname;
+                    cust.lastname = lastname;
+                    cust.phonenumber = telenumber;
+                    cust.email = email;
+                    dbc.CreateCustomer(cust);
 
+
+
+
+                }
 
             }
             catch (Exception)

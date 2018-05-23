@@ -29,6 +29,8 @@ namespace LarnerhemsEvent.Models
         public string approved { get; set; }
         public Nullable<int> totalprice { get; set; }
         public string sent { get; set; }
+        public string zipcode { get; set; }
+        public string town { get; set; }
     
         public virtual campaigncode campaigncode { get; set; }
         public virtual customer customer { get; set; }

@@ -46,6 +46,20 @@ namespace LarnerhemsEvent.DBOperations
             return 0;
 
         }
+        public int CreateCustomer(customer cust)
+        {
+            try
+            {
+                db.customers.Add(cust);
+                db.SaveChanges();
+                return cust.customerID;
+            }
+            catch(Exception)
+            {
+                
+            }
+            return 0;
+        }
         public void AddToPackOrderDetail(int OrderID, int PacketID, int amount)
         {
             packageorderdetail PackOrder = new packageorderdetail();

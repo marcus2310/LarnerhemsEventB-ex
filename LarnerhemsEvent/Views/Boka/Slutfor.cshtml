@@ -73,72 +73,85 @@
         </div>
 
 
-        <div class="Customer-input-container">
+        
             <div class="slutfor-valda-produkter-bander">
                 <h2>2. Person- och leveransuppgifter</h2>
             </div>
 
-            <div class="Name-input">
-                <div class="form-group" id="firstname">
-                    <label for="exampleInputEmail1">Förnamn</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div class="Customer-input-container">
+            <div class="two-input">
+                <div class="form-group" id="input-1">
+                    <label>Förnamn</label>
+                    <input type="text" class="form-control" name="firstname" maxlength="15" pattern="[A-Za-z,åäö,ÅÄÖ]{1,}" title="Ett förnamn består endast av bokstäver!" required>
+                    <small class="form-text text-muted">Fyll i ditt förnamn</small>
                 </div>
 
-                <div class="form-group" id="lastname">
-                    <label for="exampleInputEmail1">Efternamn</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <div class="form-group" id="input-2">
+                    <label>Efternamn</label>
+                    <input type="text" class="form-control" name="lastname" maxlength="15" pattern="[A-Za-z,åäö,ÅÄÖ]{1,}" title="Ett efternamn består endast av bokstäver!" required>
+                    <small id="emailHelp" class="form-text text-muted">Fyll i ditt efternamn</small>
                 </div>
             </div>
 
+            <div class="two-input">
+                <div class="form-group" id="input-1">
+                    <label>Leveransadress</label>
+                    <input type="text" class="form-control" name="address" maxlength="30" required>
+                    <small class="form-text text-muted">Fyll i den adress där evenemanget ska äga rum</small>
+                </div>
 
-            <div class="form-group">
-                <label for="exampleInputEmail1">Leveransadress</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">Fyll i den adress där evenemanget/festen ska äga rum.</small>
+                <div class="form-group" id="input-2">
+                    <label>Ort</label>
+                    <input type="text" class="form-control" name="town" maxlength="20" pattern="[A-Za-z,åäö,ÅÄÖ]{1,}" title="En ort består endast av bokstäver!" required>
+                    <small class="form-text text-muted">Fyll i din ort</small>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="exampleInputEmail1">Ort</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted"></small>
+            <div class="two-input">
+                <div class="form-group" id="input-1">
+                    <label>Postnr</label>
+                    <input type="tel" class="form-control" name="zipcode" maxlength="10" pattern="\d*" title="Ett postnr består endast av bokstäver!" required>
+                    <small class="form-text text-muted">Fyll i ditt postnr</small>
+                </div>
+
+                <div class="form-group" id="input-2">
+                    <label>Evenemangsdatum</label>
+                    <input type="date" class="form-control" name="date" required>
+                    <small class="form-text text-muted">Fyll i det datum då evenemanget ska äga rum.</small>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="exampleInputEmail1">Postnr</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <div class="two-info">
+                <div class="form-group" id="input-1">
+                    <label for="exampleInputEmail1">E-postadress</label>
+                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp" maxlength="30" required>
+                    <small id="emailHelp" class="form-text text-muted">Fyll i din E-postadress</small>
+                </div>
+
+                <div class="form-group" id="input-2">
+                    <label>Mobilnummer</label>
+                    <input type="tel" class="form-control" name="telenumber" maxlength="15" pattern="\d*" required>
+                    <small class="form-text text-muted">Fyll i ditt mobilnummer</small>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="exampleInputEmail1">Evenemangsdatum</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">Fyll i det datum då evenemanget/festen ska äga rum.</small>
+            <div class="two-info">
+                <div class="form-group" id="input-1">
+                    <label for="exampleTextarea">Övriga frågor</label>
+                    <textarea class="form-control" name="moreinfo" rows="5" style="max-height:143px; min-height:50px;"></textarea>
+                    <small class="form-text text-muted">Fyll i övriga frågor angående din bokning</small>
+                </div>
+                <div class="form-group" id="input-2">
+                    <label>Kampanjkod</label>
+                    <input type="text" class="form-control" name="kampanjkod" maxlength="30">
+                    <small class="form-text text-muted">Fyll i eventuell kampanjkod</small>
+                </div>
+                <div class="slutfor-button-container">
+                    <input type="submit" class="btn btn-success btn-lg" id="slutfor-bokning" value="Skicka bokningsförfrågan">
+                </div>
             </div>
-
-
-            <div class="form-group">
-                <label for="exampleInputEmail1">E-postadress</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-
-            <div class="form-group">
-                <label for="exampleInputEmail1">Mobilnummer</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-
-
-            <div class="form-group">
-                <label for="exampleTextarea">Övriga frågor</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-                <small id="emailHelp" class="form-text text-muted">Fyll i övriga frågor till L-event</small>
-            </div>
-
-
         </div>
+
 
 
 

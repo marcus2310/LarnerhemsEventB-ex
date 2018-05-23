@@ -528,23 +528,47 @@ footer h6 {
 .table{
     display:inline-block;
 }
-
-.Name-input
+.Customer-input-container{
+    text-align:left;
+    margin-top:5%;
+}
+.two-input
 {
     display:inline-block; 
-    width:100%; 
+    width:100%;
+    
 }
 
-#firstname
+#input-1
 {
+    display:block;
     width:50%; 
+    float:left;
+    padding-left:23%;
 }
 
-#lastname
+#input-2
 {
+    display:block;
     width:50%;
+    float:left;
+    padding-left:3%;
 }
+#more-info{
+    padding-left:23%;
 
+}
+.slutfor-button-container{
+    width:100%;
+    display:block;
+    padding-left:56%;
+}
+#slutfor-bokning{
+    height: 60px;
+    width: 220px;
+    font-size:17px;
+    margin-top:5%;
+}
 @media only screen and (max-width: 580px) {
     .tablink {
         width: 100%;
@@ -632,7 +656,34 @@ footer h6 {
         height: 60px;
 
     }
+    #input-1 {
+        display: block;
+        width: 100%;
+        float: left;
+        padding-left: 0;
+    }
 
+    #input-2 {
+        display: block;
+        width: 100%;
+        float: left;
+        padding-left: 0;
+    }
+
+    #more-info {
+        padding-left: 0;
+    }
+    .slutfor-button-container {
+        width: 100%;
+        display: block;
+        padding-left: 0;
+    }
+
+    #slutfor-bokning {
+        height: 60px;
+        width: 200px;
+        font-size: 17px;
+    }
   
 
 }
