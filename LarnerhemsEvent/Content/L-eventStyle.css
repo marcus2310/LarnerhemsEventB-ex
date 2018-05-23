@@ -529,6 +529,22 @@ footer h6 {
     display:inline-block;
 }
 
+.Name-input
+{
+    display:inline-block; 
+    width:100%; 
+}
+
+#firstname
+{
+    width:50%; 
+}
+
+#lastname
+{
+    width:50%;
+}
+
 @media only screen and (max-width: 580px) {
     .tablink {
         width: 100%;
