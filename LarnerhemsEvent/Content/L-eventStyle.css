@@ -492,6 +492,15 @@ footer h6 {
 
 
 }
+#mässarrgangör{
+    width:100%;
+}
+#larnerhemseventlogoomoss {
+    height: 25%;
+    width: 30%;
+    float: right;
+    margin-top: -4%;
+}
 .table-slutfor-im {
     height: 100px;
     width: 150px;
@@ -568,6 +577,16 @@ footer h6 {
     width: 220px;
     font-size:17px;
     margin-top:5%;
+}
+#totalsumma{
+    font-size:30px;
+    color:red;
+}
+#tillbaka{
+    height:80px;
+}
+#fram{
+    height:80px;
 }
 @media only screen and (max-width: 580px) {
     .tablink {

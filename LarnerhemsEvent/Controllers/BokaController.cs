@@ -646,7 +646,7 @@ namespace LarnerhemsEvent.Controllers
                     cust.lastname = lastname;
                     cust.phonenumber = telenumber;
                     cust.email = email;
-                    dbc.CreateCustomer(cust);
+                    int customerID = dbc.CreateCustomer(cust);
 
 
 

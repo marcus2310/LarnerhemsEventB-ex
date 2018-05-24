@@ -31,7 +31,7 @@
         <div class="boka-shoppingcart-container">
             <img src="~/Content/bilder/shopping-cart.png" />
             <h5>Totalsumma</h5>
-            <h6 style="color:red;">@TempData["summa"] Kr</h6>
+            <h6 id="totalsumma" style="color:red;">@TempData["summa"] Kr</h6>
         </div>
         <div class="boka-products-container">
             <div class="boka-Products-slutfor-container">
@@ -40,9 +40,9 @@
                 </div>
 
                 @foreach (var item in Model)
+    {
+        if (item.VMPackages.fk_genre_id != 1)
         {
-            //if (item.VMPackages.fk_genre_id != 1)
-            //{
 
             <table class="table" style="width:100%;">
                 <thead id="package-slutfor-banner">
@@ -66,13 +66,48 @@
                 </tbody>
             </table>
 }
+else
+{
+            <table class="table" style="width:100%;">
+                <thead id="package-slutfor-banner">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Antal</th>
+                        <th scope="col">Namn</th>
+                        <th scope="col">Pris</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <tr class="table-light">
+                        <td id="table-package-im"><img class="table-slutfor-im" src="~/@Html.DisplayFor(Model => item.VMPackages.img)" /></td>
+                        <td id="table-package-amount">@Html.DisplayFor(Model => item.antal)</td>
+                        <td id="table-package-name">@Html.DisplayFor(Model => item.VMPackages.name)</td>
+                        <td id="table-package-price">@Html.DisplayFor(Model => item.VMPackages.price) Kr / st</td>
+                    </tr>
+                </tbody>
+            </table>
+
+}
+}
+                <table class="table" style="width:100%;">
+                    <thead id="package-slutfor-banner">
+
+                    </thead>
+
+                    <tbody>
+                        <tr class="table-light">
+                            <td id="table-package-im"><img class="table-slutfor-im" src="~/Content/bilder/wrench-24261_1280.png" /></td>
+                            <td id="table-package-amount"></td>
+                            <td id="table-package-name">FRI MONTERING OCH DEMONTERING</td>
+                            <td id="table-package-price">0 Kr / st</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </div>
-
         </div>
-
-
         
             <div class="slutfor-valda-produkter-bander">
                 <h2>2. Person- och leveransuppgifter</h2>
@@ -82,13 +117,13 @@
             <div class="two-input">
                 <div class="form-group" id="input-1">
                     <label>Förnamn</label>
-                    <input type="text" class="form-control" name="firstname" maxlength="15" pattern="[A-Za-z,åäö,ÅÄÖ]{1,}" title="Ett förnamn består endast av bokstäver!" required>
+                    <input type="text" class="form-control" name="firstname" maxlength="15" pattern="[A-Za-z,åäö,ÅÄÖ]{1,}" title="Endast bokstäver!" required>
                     <small class="form-text text-muted">Fyll i ditt förnamn</small>
                 </div>
 
                 <div class="form-group" id="input-2">
                     <label>Efternamn</label>
-                    <input type="text" class="form-control" name="lastname" maxlength="15" pattern="[A-Za-z,åäö,ÅÄÖ]{1,}" title="Ett efternamn består endast av bokstäver!" required>
+                    <input type="text" class="form-control" name="lastname" maxlength="15" pattern="[A-Za-z,åäö,ÅÄÖ]{1,}" title="Endast bokstäver!" required>
                     <small id="emailHelp" class="form-text text-muted">Fyll i ditt efternamn</small>
                 </div>
             </div>
@@ -102,7 +137,7 @@
 
                 <div class="form-group" id="input-2">
                     <label>Ort</label>
-                    <input type="text" class="form-control" name="town" maxlength="20" pattern="[A-Za-z,åäö,ÅÄÖ]{1,}" title="En ort består endast av bokstäver!" required>
+                    <input type="text" class="form-control" name="town" maxlength="20" pattern="[A-Za-z,åäö,ÅÄÖ]{1,}" title="Endast bokstäver!" required>
                     <small class="form-text text-muted">Fyll i din ort</small>
                 </div>
             </div>
@@ -110,7 +145,7 @@
             <div class="two-input">
                 <div class="form-group" id="input-1">
                     <label>Postnr</label>
-                    <input type="tel" class="form-control" name="zipcode" maxlength="10" pattern="\d*" title="Ett postnr består endast av bokstäver!" required>
+                    <input type="tel" class="form-control" name="zipcode" maxlength="10" pattern="\d*" title="Endast siffror!" required>
                     <small class="form-text text-muted">Fyll i ditt postnr</small>
                 </div>
 
@@ -130,7 +165,7 @@
 
                 <div class="form-group" id="input-2">
                     <label>Mobilnummer</label>
-                    <input type="tel" class="form-control" name="telenumber" maxlength="15" pattern="\d*" required>
+                    <input type="tel" class="form-control" name="telenumber" maxlength="15" pattern="\d*" title="Endast siffror!" required>
                     <small class="form-text text-muted">Fyll i ditt mobilnummer</small>
                 </div>
             </div>
@@ -151,15 +186,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-       
-
         <br />
         <br />
         <button id="tillbaka" value="true" name="tillbaka" class="btn btn-secondary btn-group-lg" style="float:left;">⇐ Tillbaka</button>
@@ -168,7 +194,6 @@
         <h6>Steg 6 av 6</h6>
 
     </div>
-
 
     }
     </div>
