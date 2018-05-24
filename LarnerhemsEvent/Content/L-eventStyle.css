@@ -588,6 +588,26 @@ footer h6 {
 #fram{
     height:80px;
 }
+
+
+#monteringsdiv 
+{
+    display: inline-block;
+    width: 100%;
+    border-top: 2px solid lightgrey;
+    margin-bottom: 5%;
+    padding-top: 5%;
+}
+
+
+ #monteringsdiv img 
+    {
+        height: 100px;
+        width: 150px;
+        float: left;
+    }
+
+
 @media only screen and (max-width: 580px) {
     .tablink {
         width: 100%;
