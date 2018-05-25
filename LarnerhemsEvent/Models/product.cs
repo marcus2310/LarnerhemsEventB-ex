@@ -23,6 +23,7 @@ namespace LarnerhemsEvent.Models
         public int productsID { get; set; }
         public string name { get; set; }
         public string info { get; set; }
+        public string img { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<prodpackdetail> prodpackdetails { get; set; }

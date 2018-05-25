@@ -98,7 +98,7 @@ namespace LarnerhemsEvent.DBOperations
 
 
         }
-
+ 
 
         #endregion
 
@@ -275,11 +275,72 @@ namespace LarnerhemsEvent.DBOperations
            
 
         }
+        public void DeleteSelectedPackageByID(int OrderID, int packageID)
+        {
+            packageorderdetail packOrd = new packageorderdetail();
 
+            var PackOrdList = db.packageorderdetails.Where(x => x.fk_order_id == OrderID && x.package.packageID == packageID).ToList();
+
+            try
+            {
+                foreach (var item in PackOrdList)
+                {
+                    db.Entry(item).State = EntityState.Deleted;
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception)
+            {
+
+            }
+
+
+        }
 
 
         #endregion
-       
+
+        #region Uppdatera DB
+
+        public void UpdateOrder(order order)
+        {
+            try
+            {
+                order ord = db.orders.Single(x => x.orderID == order.orderID);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        public void SentMailTrue(order order)
+        {
+            try
+            {
+                order ord = db.orders.Single(x => x.orderID == order.orderID);
+                ord.sent = "true";
+                db.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+
+            }
+
+
+        }
+        public void ApprovedOrder(order order)
+        {
+            order ord = db.orders.Single(x => x.orderID == order.orderID);
+            ord.approved = "true";
+            db.SaveChanges();
+
+        }
+
+        #endregion
 
 
     }

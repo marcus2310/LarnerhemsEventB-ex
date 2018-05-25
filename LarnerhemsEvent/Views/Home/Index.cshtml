@@ -79,7 +79,31 @@
         </div>
     </div>
 
-  
 
-    <script src="~/Scripts/jquery.min.js"></script>
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+  
+<div id="cookieConsent">
+    <div id="closeCookieConsent">x</div>
+    <div class="cookie-text-and-button">
+        <div class="cookie-text">
+            <p style="font-size:15px;"><b>Den här webbplatsen använder sig utav cookies när du använder vissa tjänster. Dessa cookies behövs för att dessa tjänster ska fungera.  </b></p>
+        </div>
+        <div class="cookie-button">
+            <button class="btn btn-success btn-group-lg" id="cookieConsentOK">Jag förstår</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $("#cookieConsent").fadeIn(200);
+        }, 2000);
+        $("#closeCookieConsent, #cookieConsentOK").click(function () {
+            $("#cookieConsent").fadeOut(200);
+        });
+    });
+</script>

@@ -223,6 +223,9 @@
     <Content Include="Content\bilder\Boka\Golv\Golv.jpg" />
     <Content Include="Content\bilder\Boka\Golv\Golv2.jpg" />
     <Content Include="Content\bilder\Boka\Golv\IngetGolv.jpg" />
+    <Content Include="Content\bilder\Boka\Klar\ballong.png" />
+    <Content Include="Content\bilder\Boka\Klar\rosett.png" />
+    <Content Include="Content\bilder\Boka\Klar\stars.png" />
     <Content Include="Content\bilder\Boka\Ljud\ljud1.png" />
     <Content Include="Content\bilder\Boka\Ljud\ljud2.png" />
     <Content Include="Content\bilder\Boka\Ljud\ljud3.png" />
@@ -234,6 +237,7 @@
     <Content Include="Content\bilder\Boka\Tillbehör\KLAFFSTOLAR.jpg" />
     <Content Include="Content\bilder\Boka\Tillbehör\Kyl.jpg" />
     <Content Include="Content\bilder\Boka\Tillbehör\ståbord.jpg" />
+    <Content Include="Content\bilder\Boka\Tillbehör\vitplaststol.jpg" />
     <Content Include="Content\bilder\Boka\Tillbehör\värmare.jpg" />
     <Content Include="Content\bilder\Boka\Tält\LITETPAKETTÄLT.jpg" />
     <Content Include="Content\bilder\Boka\Tält\MELLANPAKETTÄLT.jpg" />
@@ -251,8 +255,11 @@
     <Content Include="Content\bilder\leverans.png" />
     <Content Include="Content\bilder\logo1.jpg" />
     <Content Include="Content\bilder\logo2.png" />
+    <Content Include="Content\bilder\magicwand.png" />
     <Content Include="Content\bilder\montering.png" />
     <Content Include="Content\bilder\Om oss\2 remmare.png" />
+    <Content Include="Content\bilder\Om oss\alex.jpg" />
+    <Content Include="Content\bilder\Om oss\alex2.jpg" />
     <Content Include="Content\bilder\Om oss\Bildgalleri\1 galleri.jpg" />
     <Content Include="Content\bilder\Om oss\Bildgalleri\galleri 10.jpg" />
     <Content Include="Content\bilder\Om oss\Bildgalleri\galleri 2.jpg" />
@@ -282,6 +289,7 @@
     <Content Include="Content\bilder\Om oss\Svedala företagsmässa.jpg" />
     <Content Include="Content\bilder\Om oss\teknikteamet.jpg" />
     <Content Include="Content\bilder\phone.png" />
+    <Content Include="Content\bilder\Product\vitplaststol.jpg" />
     <Content Include="Content\bilder\shopping-cart.png" />
     <Content Include="Content\bilder\sloganLevent.png" />
     <Content Include="Content\bilder\socialmedia\facebooklogo.png" />
@@ -356,6 +364,7 @@
     <Content Include="Views\Boka\Tillbehor.cshtml" />
     <Content Include="Views\Boka\Slutfor.cshtml" />
     <Content Include="Views\ProduktInfo\Index.cshtml" />
+    <Content Include="Views\Boka\Klar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

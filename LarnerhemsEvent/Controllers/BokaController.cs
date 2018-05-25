@@ -614,6 +614,8 @@ namespace LarnerhemsEvent.Controllers
                 var moreinfo = form["moreinfo"];
                 var kampanjkod = form["kampanjkod"];
 
+                var taBortID = form["taBortPack"];
+
                 HttpCookie Newcookie = Request.Cookies["OrderIDCookie"];
                 Newcookie.Expires = DateTime.Now.AddHours(5);
 
@@ -622,9 +624,9 @@ namespace LarnerhemsEvent.Controllers
                 {
                     return RedirectToAction("Index", "Boka");
                 }
-                var tillbaka = form["tillbaka"];
                 int orderID = Convert.ToInt32(Newcookie.Value);
 
+                var tillbaka = form["tillbaka"];
                 if (tillbaka != null)
                 {
                     //här kan vi sedan ta bort paket som valts
@@ -635,6 +637,16 @@ namespace LarnerhemsEvent.Controllers
                     TempData["summa"] = totalPrice;
                     dbc.SetTotalpriceOrder(orderID, totalPrice);
                     return RedirectToAction("Tillbehor", "Boka");
+                }
+                else if(taBortID != null)
+                {
+                    dbc.DeleteSelectedPackageByID(orderID, Convert.ToInt32(taBortID));
+                    int totalPrice;
+                    totalPrice = dbc.GetTotalPrice(orderID);
+                    dbc.SetTotalpriceOrder(orderID, totalPrice);
+                    TempData["summa"] = totalPrice;
+                    TempData["auth"] = "steg6";
+                    return RedirectToAction("Slutfor", "Boka");
                 }
                 else
                 {
@@ -648,9 +660,24 @@ namespace LarnerhemsEvent.Controllers
                     cust.email = email;
                     int customerID = dbc.CreateCustomer(cust);
 
+                    var order = dbc.GetOrder(orderID);
+                    order.requests = moreinfo;
+                    order.deliveryadress = address;
+                    order.zipcode = zipcode;
+                    order.town = town;
+                    order.eventdate = Convert.ToDateTime(date);
+                    order.fk_customer_id = customerID;
 
+                    dbc.UpdateOrder(order);
 
+                    //Detta ska endast ske när mailet har skickats!!!!
+                    // If(mail == true)
+                    //då ska även en metod som sätter true i DB (sent i order)
 
+                                            //   return RedirectToAction("Klar", "Boka", new { @id = orderID });
+
+                    
+                   
                 }
 
             }
@@ -662,6 +689,22 @@ namespace LarnerhemsEvent.Controllers
 
             TempData["Auth"] = "steg6";
             return RedirectToAction("Tillbehor", "Boka");
+        }
+        public ActionResult Klar(int id)
+        {
+            try
+            {
+                order ord = new order();
+                ord = dbc.GetOrder(id);
+
+                return View(ord);
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Slutfor", "Boka");
+            }
+
         }
     }
 }

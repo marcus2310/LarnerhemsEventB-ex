@@ -55,10 +55,11 @@
                             <h6 class="product-ordprice">(Ord. @Html.DisplayFor(Model => item.originalprice) Kr)</h6>
 
                             <br />
-                            <h6>Antal:</h6>
+                            <h6 style="text-align:left">Antal:</h6>
                             <div class="boka-product-button-container">
-                                    <input class="form-control" maxlength="2" type="text"  id="@item.packageID"  name="@item.packageID" placeholder="0">
-                                
+                                <input class="form-control" maxlength="2" type="text" id="@item.packageID" name="@item.packageID" placeholder="0" pattern="\d*" title="Endast siffror.">
+                                <small style="text-align:left;" class="form-text text-muted">Fyll i antal produkter</small>
+
                             </div>
                         </div>
                     }

@@ -31,6 +31,7 @@ namespace LarnerhemsEvent.Models
         public string sent { get; set; }
         public string zipcode { get; set; }
         public string town { get; set; }
+        public string requests { get; set; }
     
         public virtual campaigncode campaigncode { get; set; }
         public virtual customer customer { get; set; }

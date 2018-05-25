@@ -594,7 +594,7 @@ footer h6 {
 {
     display: inline-block;
     width: 100%;
-    border-top: 2px solid lightgrey;
+    border-top: 5px solid lightgrey;
     margin-bottom: 5%;
     padding-top: 5%;
 }
@@ -608,7 +608,191 @@ footer h6 {
     }
 
 
+#cookieConsent {
+    background-color: rgba(20,20,20,0.8);
+    min-height: 80px;
+    font-size: 14px;
+    color: #ccc;
+    line-height: 26px;
+    padding: 8px 0 8px 30px;
+    font-family: Calibri;
+    position: fixed;
+    bottom: 0;
+    width:100%;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 9999;
+}
+
+#closeCookieConsent {
+    float: right;
+    display: inline-block;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    font-weight: bold;
+}
+
+    #closeCookieConsent:hover {
+        color: #FFF;
+    }
+
+.cookie-text-and-button
+{
+    display:inline-block;
+    width:100%;
+}
+.cookie-text {
+    width: 60%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    padding-top: 10px;
+    margin-left: 15%;
+}
+.cookie-button {
+    width: 8%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    margin-left:1%;
+}
+#cookieConsentOK {
+    
+    float: left;
+    margin-top:1%;
+    margin-right:5%;
+}
+.info-obligatorisk {
+    display:block;
+    width:100%; 
+    float:left; 
+    padding-left:23%;
+}
+.info-bokningsforfragan {
+    display: block;
+    width: 100%;
+    float: left;
+    padding-left: 23%;
+    padding-right: 19%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.gdpr-container{
+padding-top:3%;
+}
+.product-info-container {
+    padding-top: 2%;
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-align: center;
+}
+.product-info-title{
+    margin-bottom:5%;
+}
+.product-info-img-container{
+
+
+}
+.product-info-img-container img{
+    max-height:360px;
+    max-width:360px;
+    height:auto;
+    width:auto;
+}
+.product-info-name-container{
+
+
+}
+.product-info-information-container{
+
+
+}
+.klar-container {
+    padding-top: 2%;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.klar-title-container{
+    width:100%;
+}
+.klar-title{
+    width:80%;
+}
+.klar-image-container{
+    display:inline-block;
+    width:100%;
+    height:100%;
+}
+ .rosett-container{
+     width:20%;
+     float:right;
+ }
+    .rosett-container img {
+        max-height: 100px;
+        max-width: 350px;
+        height: auto;
+        width: auto;
+        float:right;
+        
+}
+.ballon-container {
+    width:50%;
+    float:left;
+
+}
+    .ballon-container img {
+        max-height: 150px;
+        max-width: 100px;
+        height: auto;
+        width: auto;
+        float:left;
+    }
+}
+    
+
+
 @media only screen and (max-width: 580px) {
+    .info-bokningsforfragan {
+        display: block;
+        width: 100%;
+        float: left;
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+    .info-obligatorisk {
+        width: 100%;
+        float: left;
+        padding-left: 0%;
+    }
+
+    .cookie-text-and-button {
+        display: grid;
+        width: 100%;
+    }
+    .cookie-text {
+        width: 80%;
+        height: 100%;
+        float:left;
+        padding-top: 10px;
+        margin-left:0;
+    }
+    .cookie-button {
+        width: 80%;
+        height: 100%;
+        text-align: center;
+        margin-left:30%;
+    }
+    #cookieConsentOK {
+        
+        margin-top: 1%;
+    }
+
     .tablink {
         width: 100%;
     }
