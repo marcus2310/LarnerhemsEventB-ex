@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using LarnerhemsEvent.Models.ViewModels;
 using System.Web.Security;
+using LarnerhemsEvent.E_mail;
+using System.Net.Mail;
 
 namespace LarnerhemsEvent.Controllers
 {
@@ -668,21 +670,67 @@ namespace LarnerhemsEvent.Controllers
                     order.eventdate = Convert.ToDateTime(date);
                     order.fk_customer_id = customerID;
 
+                    if(kampanjkod != null)
+                    {
+                        var campaigncode = dbc.GetCampaigncode(kampanjkod);
+
+                        if(campaigncode != null)
+                        {
+                            order.fk_campaigncode_id = campaigncode.campaigncodeID;
+                            int rabatt = Convert.ToInt32(campaigncode.amount);
+                            int totalPrice;
+                            totalPrice = dbc.GetTotalPrice(orderID);
+                            var sumAfterRabatt = totalPrice - rabatt;
+                            order.totalprice = sumAfterRabatt;
+
+                            TempData["summa"] = sumAfterRabatt;
+                            TempData["campaigncodeText"] = "";
+
+                            dbc.UpdateOrder(order);
+                        }
+                        else
+                        {
+                            int totalPrice;
+                            totalPrice = dbc.GetTotalPrice(orderID);
+                            TempData["summa"] = totalPrice;
+                            TempData["Auth"] = "steg5";
+                            TempData["campaigncodeText"] = "Du har angivit en ogiltig kampanjkod.";
+                            //return RedirectToAction("Slutfor", "Boka");
+                            return Redirect(Url.Action("Slutfor", "Boka") + "#slutfor-valda-prod");
+                        }
+                    }
                     dbc.UpdateOrder(order);
-
-                    //Detta ska endast ske när mailet har skickats!!!!
-                    // If(mail == true)
-                    //då ska även en metod som sätter true i DB (sent i order)
-
-                                            //   return RedirectToAction("Klar", "Boka", new { @id = orderID });
-
                     
+                        //Detta ska endast ske när mailet har skickats!!!!
+                         // If(mail == true)
+                        emailer mailer = new emailer();
+
+                        mailer.ToEmail = email;
+                        mailer.Subject = "Bokningsförfrågan mottagen Leventsyd";
+                        mailer.Body = "Tack för din bokningsförfrågan, ditt ordernummer är: " + order.orderID.ToString();
+
+
+                        mailer.IsHtml = true;
+                        mailer.Send();
+
+                        //order.sent = "true";
+                        //dbc.UpdateOrder(order);
+
+                        //Måste även här skicka ett mail till alex med info!!!!
+
+                    //måste sätta en auth.. så man inte kan komma åt i url sedan.....
+
+                        return RedirectToAction("Klar", "Boka", new { @id = orderID });
+                
                    
                 }
 
             }
-            catch (Exception)
+            catch (SmtpFailedRecipientException ex)
             {
+                SmtpStatusCode statusCode = ex.StatusCode;
+
+                return RedirectToAction("index", "Boka");
 
             }
 

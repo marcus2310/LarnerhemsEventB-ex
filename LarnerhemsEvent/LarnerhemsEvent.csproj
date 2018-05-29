@@ -157,6 +157,7 @@
     <Compile Include="Controllers\OmossController.cs" />
     <Compile Include="Controllers\ProduktInfoController.cs" />
     <Compile Include="DBOperations\DbOp.cs" />
+    <Compile Include="E-mail\emailer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

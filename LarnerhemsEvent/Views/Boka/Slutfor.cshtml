@@ -111,7 +111,7 @@
                 </div>
             </div>
 
-            <div class="slutfor-valda-produkter-bander">
+            <div id="slutfor-valda-prod" class="slutfor-valda-produkter-bander">
                 <h2>2. Person- och leveransuppgifter</h2>
             </div>
             <div class="gdpr-container">
@@ -187,6 +187,7 @@
                         <label>Kampanjkod</label>
                         <input type="text" class="form-control" name="kampanjkod" maxlength="30" id="kampanjkod">
                         <small class="form-text text-muted">Fyll i eventuell kampanjkod</small>
+                        <small id="campaignecodetext" style="color:red">@TempData["campaigncodeText"]</small>
                     </div>
                     <div class="slutfor-button-container">
                         <input type="submit" onclick="ReqTrue()" class="btn btn-success btn-lg" id="slutfor-bokning" value="Skicka bokningsförfrågan">

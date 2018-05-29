@@ -16,7 +16,7 @@
           <Key>
             <PropertyRef Name="campaigncodeID" />
           </Key>
-          <Property Name="campaigncodeID" Type="int" Nullable="false" />
+          <Property Name="campaigncodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="code" Type="varchar" MaxLength="55" />
           <Property Name="amount" Type="int" />
         </EntityType>
@@ -112,7 +112,7 @@
           <Property Name="fk_access_id" Type="int" />
           <Property Name="username" Type="varchar" MaxLength="20" />
         </EntityType>
-        <Association Name="FK__order__fk_campai__1AD3FDA4">
+        <Association Name="FK__order__fk_campai__208CD6FA">
           <End Role="campaigncode" Type="Self.campaigncode" Multiplicity="0..1" />
           <End Role="order" Type="Self.order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -220,7 +220,7 @@
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__order__fk_campai__1AD3FDA4" Association="Self.FK__order__fk_campai__1AD3FDA4">
+          <AssociationSet Name="FK__order__fk_campai__208CD6FA" Association="Self.FK__order__fk_campai__208CD6FA">
             <End Role="campaigncode" EntitySet="campaigncode" />
             <End Role="order" EntitySet="order" />
           </AssociationSet>

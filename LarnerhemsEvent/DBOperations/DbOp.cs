@@ -98,6 +98,17 @@ namespace LarnerhemsEvent.DBOperations
 
 
         }
+
+        public void CreateCampaignCode(string code, int amount)
+        {
+            campaigncode camp = new campaigncode();
+            camp.code = code;
+            camp.amount = amount;
+            camp.campaigncodeID = camp.campaigncodeID;
+            db.campaigncodes.Add(camp);
+            db.SaveChanges();
+
+        }
  
 
         #endregion
@@ -220,6 +231,26 @@ namespace LarnerhemsEvent.DBOperations
 
             return TheOrder;
 
+        }
+        public campaigncode GetCampaigncode(string code)
+        {
+            campaigncode camp = new campaigncode();
+            var campaign = db.campaigncodes.Where(x => x.code == code).ToList();
+
+            if (campaign.Count == 1)
+            {
+                foreach (var item in campaign)
+                {
+                    camp = item;
+
+                }
+                return camp;
+            }
+            else
+            {
+                return null;
+            }
+           
         }
         #endregion
 
