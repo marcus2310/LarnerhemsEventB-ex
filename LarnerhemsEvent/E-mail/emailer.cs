@@ -41,6 +41,7 @@ namespace LarnerhemsEvent.E_mail
 
             using (var message = new MailMessage(GmailUsername, ToEmail))
             {
+                message.CC.Add("jois1601@student.miun.se");
                 message.Subject = Subject;
                 message.Body = Body;
                 message.IsBodyHtml = IsHtml;

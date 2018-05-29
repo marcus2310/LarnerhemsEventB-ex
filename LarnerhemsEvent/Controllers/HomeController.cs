@@ -14,7 +14,8 @@ namespace LarnerhemsEvent.Controllers
         public ActionResult Index()
         {
             dbc.DeleteUnfinnishedOrder();
-            
+            TempData["klar"] = "";
+
             return View();
         }
 
@@ -36,6 +37,10 @@ namespace LarnerhemsEvent.Controllers
 
             return View();
         }
-
+        public ActionResult Error()
+        {
+            Response.StatusCode = 404;
+            return View();
+        }
     }
 }

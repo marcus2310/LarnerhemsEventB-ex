@@ -366,6 +366,7 @@
     <Content Include="Views\Boka\Slutfor.cshtml" />
     <Content Include="Views\ProduktInfo\Index.cshtml" />
     <Content Include="Views\Boka\Klar.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

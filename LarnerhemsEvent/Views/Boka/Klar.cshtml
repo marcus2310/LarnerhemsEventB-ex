@@ -7,22 +7,28 @@
 
 <div class="klar-container">
 
+    <div class="rosett-container">
+        <img src="~/Content/bilder/Boka/Klar/rosett.png" />
+    </div>
 
-    <div class="klar-title-container">
+    <div class="klar-text-container">
         <div class="klar-title">
             <h1>Tack för din bokningsförfrågan!</h1>
         </div>
-        <div class="rosett-container">
-            <img src="~/Content/bilder/Boka/Klar/rosett.png" />
+        <br/>
+        <div class="klar-order">
+            <h6>Ditt Ordernummer är: </h6><h2 style="color:red;">@Html.DisplayFor(Model => Model.orderID)</h2>
+        </div>
+        <br/>
+        <div class="klar-info">
+            <p>En bekräftelse av din bokningsförfrågan har skickats till dig via e-mail. Vi kommer att höra av oss angående din förfrågan inom 24 timmar.
+            Har du några övriga frågor är det bara att höra av dig till oss!</p>
         </div>
 
+
+
+
     </div>
 
-    <div>
-        <h6>Ditt Ordernummer är: </h6><p>@Html.DisplayFor(Model => Model.orderID)</p>
-    </div>
-    <div>
-        <p>All information skickas till dig via e-mail. Har du några övriga frågor är det bara att höra av dig!</p>
-    </div>
 
 </div>
