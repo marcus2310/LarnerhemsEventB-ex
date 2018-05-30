@@ -756,9 +756,45 @@ padding-top:3%;
         height: auto;
         width: auto;
 }
+.login-container{
+    width:100%;
+    padding-top:2%;
+    padding-left:40%;
+    text-align:center;
+    margin-bottom:10%;
+}
+.login-form-container{
+    display:block;
+}
+#username-container
+{
+    text-align:left;
+    width:100%;
+}
+#password-container{
 
+    text-align:left;
+    width:100%;
+}
+.slutfor-button-login{
+    width:100%;
+    text-align:left;
+}
+#login {
+    width: 100%;
+    margin-top: 2%;
+}
+.tabadmin{
+    display:table;
+    width:20%;
+    height:25%;
+}
 
 @media only screen and (max-width: 580px) {
+
+    .login-container{
+        padding-left:0;
+    }
     .info-bokningsforfragan {
         display: block;
         width: 100%;

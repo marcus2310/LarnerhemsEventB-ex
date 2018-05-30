@@ -232,6 +232,31 @@ namespace LarnerhemsEvent.DBOperations
             return TheOrder;
 
         }
+
+        public bool Login(string username, string password)
+        {
+            try
+            {
+                var user = db.users.Where(x => x.username == username && x.password == password).ToList();
+
+                if(user.Count == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            
+            
+        }
         public campaigncode GetCampaigncode(string code)
         {
             campaigncode camp = new campaigncode();
