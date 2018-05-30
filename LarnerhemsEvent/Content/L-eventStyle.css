@@ -736,14 +736,26 @@ padding-top:3%;
         float:right;
 }
 .klar-info {
-    width: 75%;
+    width: 80%;
     padding-left: 25%;
 }
 .error-container{
     padding-top:5%;
     text-align:center;
     width:100%;
-}    
+}  
+.product-info-img-instructions-container{
+    width:100%;
+    padding-left:10%;
+    padding-right:10%;
+    display:inline-block;
+}
+.product-info-img-instructions-container img {
+        max-height: 360px;
+        max-width: 360px;
+        height: auto;
+        width: auto;
+}
 
 
 @media only screen and (max-width: 580px) {

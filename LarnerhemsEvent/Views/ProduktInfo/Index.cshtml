@@ -10,17 +10,46 @@
     <div class="product-info-title">
         <h1>Produktspecifikation</h1>
     </div>
+    @if (Model.productsID != 3)
+    {
+        <div class="product-info-name-container">
+            <h4>@Html.DisplayFor(model => model.name)</h4>
+        </div>
+        <div class="product-info-img-container">
+            <img src="~/@Html.DisplayFor(Model => Model.img)" />
+        </div>
 
-    <div class="product-info-name-container">
-        <h4>@Html.DisplayFor(model => model.name)</h4>
-    </div>
-    <div class="product-info-img-container">
-        <img src="~/@Html.DisplayFor(Model => Model.img)" />
-    </div>
+        <div class="product-info-information-container">
+            <h4>Specifikationer</h4>
+            <p>@Html.DisplayFor(model => model.info)</p>
+        </div>
 
-    <div class="product-info-information-container">
-        <h4>Specifikationer</h4>
-        <p>@Html.DisplayFor(model => model.info)</p>
-    </div>
+    }
+    else
+    {
+        <div class="product-info-name-container">
+            <h4>@Html.DisplayFor(model => model.name)</h4>
+        </div>
+        <div class="product-info-img-container">
+            <img src="~/@Html.DisplayFor(Model => Model.img)" />
+        </div>
+        <br/>
+        <h4>Olika sätt att koppla ihop tälten</h4>
+        <div class="product-info-img-instructions-container">
+            <img src="~/Content/bilder/Product/storatältinfo1.jpg" />
+            <img src="~/Content/bilder/Product/storatältinfo2.jpg" />
+        </div>
+
+        <div class="product-info-information-container">
+            <h4>Specifikationer</h4>
+            <p>@Html.DisplayFor(model => model.info)</p>
+        </div>
+
+
+
+
+
+    }
+
 </div>
 

@@ -9,6 +9,7 @@ using LarnerhemsEvent.Models.ViewModels;
 using System.Web.Security;
 using LarnerhemsEvent.E_mail;
 using System.Net.Mail;
+using System.Net.Mime;
 
 namespace LarnerhemsEvent.Controllers
 {
@@ -707,14 +708,22 @@ namespace LarnerhemsEvent.Controllers
                     var productList = dbc.getOrderdetails(order.orderID);
                     emailer mailer = new emailer();
                     List<string> productName = new List<string>();
-
+                    string productString = "";
                     mailer.ToEmail = email;
-
+                    //AlternateView imageView = new AlternateView("~/content/bilder/logo1.jpg", MediaTypeNames.Image.Jpeg);
                     mailer.Subject = "Bokningsförfrågan mottagen Leventsyd";
+
+                    DateTime orderdate = Convert.ToDateTime(order.orderdate);
+                    DateTime eventdate = Convert.ToDateTime(order.eventdate);
+
+
+
                     foreach (var item in productList)
                     {
-                        productName.Add("<b>Produkt: </b>" +" "+ item.package.name.ToString() + " " + "<b>Antal: </b>" + item.amount.ToString() +" st");
+                        productString = productString + item.package.name.ToString() + "     " + "<b>Antal:</b> " + item.amount.ToString() +" st" + "<br/>";
                     }
+
+                    //här börjar mail-body..
 
                     mailer.Body = "<h1>Tack för din bokningsförfrågan " + "<b>" + cust.firstname + "</b>!</h1>" +
                     "<br/><br/>" +
@@ -723,45 +732,44 @@ namespace LarnerhemsEvent.Controllers
                     "<br/><br/>" +
                     "<h2>Valda Produkter</h2>" + "<br/>" +
 
+                    productString + "<br/><br/>" +
 
-
-                    //här måste vi kunna skriva ut alla valda produkter också!!!!!! + antal
-                    productName[0].ToString() + "<br/><br/>" +
-
-                    "Order skapad: " + order.orderdate.ToString() + "<br/>" +
+                    "Order skapad: " + orderdate.ToShortDateString() + "<br/>" +
                     "Använd kampanjkod: " + kampanjkod.ToString() + "<br/>" +
-                     "Totalsumma valda produkter: <font color=red>" + order.totalprice.ToString() + " Kr</font>" + 
-                     "<br/><br/>"+
+                     "<h3>Totalsumma valda produkter: <font color=red>" + order.totalprice.ToString() + " Kr</font></h3>" +
+                     "<br/><br/>" +
 
 
 
-                    "<h2>Person- och leveransuppgifter: </h2> " + 
+                    "<h2>Person- och leveransuppgifter: </h2> " +
                     "<br/>" +
-                    cust.firstname  + " " + cust.lastname + "<br/>" +
+                    cust.firstname + " " + cust.lastname + "<br/>" +
                     cust.email + "<br/>" +
                     cust.phonenumber + "<br/>" +
                     order.deliveryadress + "<br/>" +
                     order.zipcode + "<br/>" +
                     order.town + "<br/>" +
-                    order.eventdate.ToString() 
-                    
+                    eventdate.ToShortDateString()
+
                     + "<br/><br/>" +
-                    "Övriga frågor: " + order.requests +"<br/><br/><br/>" + 
+                    "Övriga frågor: " + order.requests + "<br/><br/><br/>" +
+
+                    "<img src="+ "https://larnerhemsevent.com/_files/200000003-829b4848e3/logo%20(2).JPG" + " style="+"height:200px; width:500px;" +""+ "alt="+"Logo"+" /><br />"
 
 
+                    ;
+                    //slut på mail-body..
 
-                    "<img src="+"~/Content/bilder/logo1.jpg"+"/>";
 
                        
 
 
-                        mailer.IsHtml = true;
-                        mailer.Send();
+                    mailer.IsHtml = true;
+                    mailer.Send();
 
-                    //order.sent = "true";
-                    //dbc.UpdateOrder(order);
+                    order.sent = "true";
+                    dbc.UpdateOrder(order);
 
-                    //Måste även här skicka ett mail till alex med info!!!!
 
                     //måste sätta en auth.. så man inte kan komma åt i url sedan.....
                     TempData["klar"] = "true";

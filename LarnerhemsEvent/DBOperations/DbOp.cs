@@ -370,7 +370,24 @@ namespace LarnerhemsEvent.DBOperations
             db.SaveChanges();
 
         }
+        public void UpdateCampaignCode(string name, int amount)
+        {
+            try
+            {
+                var campaignCode = db.campaigncodes.Find(1);
 
+                campaignCode.code = name;
+                campaignCode.amount = amount;
+
+                db.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
         #endregion
 
 

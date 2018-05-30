@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Web;
 
 namespace LarnerhemsEvent.E_mail
@@ -19,6 +20,7 @@ namespace LarnerhemsEvent.E_mail
         public string Subject { get; set; }
         public string Body { get; set; }
         public bool IsHtml { get; set; }
+        public object AlternateViews { get; internal set; }
 
         static emailer()
         {
@@ -41,7 +43,8 @@ namespace LarnerhemsEvent.E_mail
 
             using (var message = new MailMessage(GmailUsername, ToEmail))
             {
-                message.CC.Add("jois1601@student.miun.se");
+
+                message.Bcc.Add("jois1601@student.miun.se");
                 message.Subject = Subject;
                 message.Body = Body;
                 message.IsBodyHtml = IsHtml;
