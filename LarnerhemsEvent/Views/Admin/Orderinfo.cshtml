@@ -1,0 +1,73 @@
+﻿@model LarnerhemsEvent.Models.order
+
+    @{
+        ViewBag.Title = "Orderinfo";
+    }
+
+    <h1 style="text-align:center;"> <a href="/Admin/Index">Adminpanel - startsida</a></h1>
+
+    <h2 style="text-align:center;"> <a href="/Admin/Orders">Tillbaka till alla ordrar</a></h2>
+
+<h1>Kundinfo</h1>
+    <table class="table">
+        <tr>
+            <th>
+                Ordernummer
+            </th>
+            <th>
+                Förnamn
+            </th>
+            <th>
+                Efternamn
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Telefonnummer
+            </th>
+            <th>
+                Stad
+            </th>
+            <th>
+                Postnummer
+            </th>
+            <th>
+                Leveransadress
+            </th>
+
+            <th></th>
+        </tr>
+
+       
+            <tr>
+                <td>
+                    @Html.DisplayFor(Model => Model.orderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => Model.customer.firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => Model.customer.lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => Model.customer.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => Model.customer.phonenumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => Model.town)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => Model.zipcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => Model.deliveryadress)
+                </td>
+
+
+            </tr>
+        
+
+    </table>

@@ -395,6 +395,8 @@
     <Content Include="Views\Admin\Anvandare.cshtml" />
     <Content Include="Views\Admin\Paket.cshtml" />
     <Content Include="Views\Admin\Redigera.cshtml" />
+    <Content Include="Views\Admin\Orders.cshtml" />
+    <Content Include="Views\Admin\Orderinfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

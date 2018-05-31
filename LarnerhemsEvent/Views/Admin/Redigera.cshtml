@@ -7,9 +7,58 @@
 <h2 style="text-align:center;"> <a href="/Admin/Paket">Tillbaka till alla paket</a></h2>
 <div class="admin-container">
 
-    <h1>@Html.DisplayFor(Model => Model.packageID)</h1>
     <h1>@Html.DisplayFor(Model => Model.name)</h1>
+    @using (Html.BeginForm())
+    {
+    <div class="form-container-edit">
+        <div class="form-group">
+            <label>PaketID</label>
+            <input type="text" class="form-control" name="packageid" maxlength="55" value="@Html.DisplayFor(Model => Model.packageID)"  id="packageid" readonly>
+        </div>
 
-</div>
+        <div class="form-group">
+            <label>Namn</label>
+            <input type="text" class="form-control" name="name" maxlength="55" value="@Html.DisplayFor(Model => Model.name)" id="name">
+            <small class="form-text text-muted">Fyll i namn</small>
+        </div>
+
+        <div class="form-group">
+            <label>Pris</label>
+            <input type="text" class="form-control" name="price" maxlength="55" pattern="\d*" value="@Html.DisplayFor(Model => Model.price)" id="price">
+            <small class="form-text text-muted">Fyll i pris</small>
+        </div>
+
+        <div class="form-group">
+            <label>Ord. pris</label>
+            <input type="text" class="form-control" name="originalprice" maxlength="55" pattern="\d*" value="@Html.DisplayFor(Model => Model.originalprice)" id="originalprice">
+            <small class="form-text text-muted">Fyll i ordinarie pris</small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleTextarea">Info</label>
+            <textarea class="form-control" name="info" rows="5" maxlength="250" style="max-height:300px; min-height:60px;" id="info">@Html.DisplayFor(Model => Model.info)</textarea>
+            <small class="form-text text-muted">Fyll i info om paketet</small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleTextarea">Extra info</label>
+            <textarea class="form-control" name="moreinfo" rows="5" maxlength="250" style="max-height:300px; min-height:60px;" id="moreinfo">@Html.DisplayFor(Model => Model.moreinfo)</textarea>
+            <small class="form-text text-muted">Fyll i extra info om paketet</small>
+        </div>
+
+        <div class="form-group">
+            <label>Genre</label>
+            <input type="text" class="form-control" name="genre" maxlength="55" value="@Html.DisplayFor(Model => Model.genre.name)" id="originalprice" readonly>
+        </div>
+
+
+
+        <div class="edit-button-container">
+            <input type="submit" class="btn btn-success btn-lg" id="redigera-paket" value="Klar">
+        </div>
+    </div>
+    }
+
+    </div>
 
 

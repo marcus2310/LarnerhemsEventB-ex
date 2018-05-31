@@ -1,0 +1,372 @@
+﻿@model IEnumerable<LarnerhemsEvent.Models.order>
+
+@{
+    ViewBag.Title = "Orders";
+}
+<h1 style="text-align:center;"> <a href="/Admin/Index">Adminpanel - startsida</a></h1>
+<h1 style="text-align:center;">Ordrar</h1>
+
+<button class="tablink" onclick="openPage('Om-oss', this, 'white')" id="defaultOpen">Alla kommande ordrar</button>
+<button class="tablink" onclick="openPage('Bildgalleri', this, 'white')">Ej godkända förfrågningar</button>
+<button class="tablink" onclick="openPage('Kundcitat', this, 'white')">Godkända förfrågningar</button>
+<button class="tablink" onclick="openPage('Meriter', this, 'white')">Alla gamla ordrar</button>
+
+
+<div class="tabcontent-container">
+    @using (Html.BeginForm())
+    {
+        <div id="Om-oss" class="tabcontent">
+
+
+            <table style="width:100%;" class="table">
+                <tr style="width:100%;">
+                    <th>
+                        Ordernummer
+                    </th>
+                    <th>
+                        Order skapad
+                    </th>
+                    <th>
+                        Godkänd
+                    </th>
+                    <th>
+                        Eventdatum
+                    </th>
+
+                    <th>
+                        Totalsumma
+                    </th>
+
+                    <th>
+                        Övriga frågor
+                    </th>
+                    <th>
+                        Kampanjkod
+                    </th>
+                    <th>
+                        Kund
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.orderID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.orderdate)
+                        </td>
+                        <td>
+                            @if (item.approved == "false")
+                            {
+                                <span style="color:red;">@item.approved</span>
+                            }
+                            else
+                            {
+                                <span style="color:green;">@item.approved</span>
+                            }
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.eventdate)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.totalprice)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.requests)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.campaigncode.code)
+                        </td>
+                        <td>
+                            @Html.ActionLink(item.customer.firstname, "orderinfo", new { id = item.orderID })
+                        </td>
+
+
+
+
+                    </tr>
+                }
+
+            </table>
+
+
+        </div>
+
+        <div id="Bildgalleri" class="tabcontent">
+            <table style="width:100%;" class="table">
+                <tr style="width:100%;">
+                    <th>
+                        Ordernummer
+                    </th>
+                    <th>
+                        Order skapad
+                    </th>
+                    <th>
+                        Godkänd
+                    </th>
+                    <th>
+                        Eventdatum
+                    </th>
+
+                    <th>
+                        Totalsumma
+                    </th>
+
+                    <th>
+                        Övriga frågor
+                    </th>
+                    <th>
+                        Kampanjkod
+                    </th>
+                    <th>
+                        Kund
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.approved == "false" && item.eventdate >= DateTime.Today)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.orderID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.orderdate)
+                            </td>
+                            <td>
+                                @if (item.approved == "false")
+                                {
+                                    <span style="color:red;">@item.approved</span>
+                                }
+                                else
+                                {
+                                    <span style="color:green;">@item.approved</span>
+                                }
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.eventdate)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.totalprice)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.requests)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.campaigncode.code)
+                            </td>
+                            <td>
+                                @Html.ActionLink(item.customer.firstname, "orderinfo", new { id = item.orderID })
+                            </td>
+
+                            <td id="table-order-button"><button class="btn btn-success btn-group-lg" value="@item.orderID" name="approveorder">Godkänn order</button></td>
+                        </tr>
+                    }
+                }
+
+            </table>
+
+
+
+        </div>
+
+        <div id="Kundcitat" class="tabcontent">
+            <table style="width:100%;" class="table">
+                <tr style="width:100%;">
+                    <th>
+                        Ordernummer
+                    </th>
+                    <th>
+                        Order skapad
+                    </th>
+                    <th>
+                        Godkänd
+                    </th>
+                    <th>
+                        Eventdatum
+                    </th>
+
+                    <th>
+                        Totalsumma
+                    </th>
+
+                    <th>
+                        Övriga frågor
+                    </th>
+                    <th>
+                        Kampanjkod
+                    </th>
+                    <th>
+                        Kund
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.approved == "true")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.orderID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.orderdate)
+                            </td>
+                            <td>
+                                @if (item.approved == "false")
+                                {
+                                    <span style="color:red;">@item.approved</span>
+                                }
+                                else
+                                {
+                                    <span style="color:green;">@item.approved</span>
+                                }
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.eventdate)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.totalprice)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.requests)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.campaigncode.code)
+                            </td>
+                            <td>
+                                @Html.ActionLink(item.customer.firstname, "orderinfo", new { id = item.orderID })
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+            </table>
+
+
+        </div>
+
+        <div id="Meriter" class="tabcontent">
+                        <table style="width:100%;" class="table">
+                <tr style="width:100%;">
+                    <th>
+                        Ordernummer
+                    </th>
+                    <th>
+                        Order skapad
+                    </th>
+                    <th>
+                        Godkänd
+                    </th>
+                    <th>
+                        Eventdatum
+                    </th>
+
+                    <th>
+                        Totalsumma
+                    </th>
+
+                    <th>
+                        Övriga frågor
+                    </th>
+                    <th>
+                        Kampanjkod
+                    </th>
+                    <th>
+                        Kund
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.eventdate < DateTime.Today)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.orderID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.orderdate)
+                            </td>
+                            <td>
+                                @if (item.approved == "false")
+                                {
+                                    <span style="color:red;">@item.approved</span>
+                                }
+                                else
+                                {
+                                    <span style="color:green;">@item.approved</span>
+                                }
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.eventdate)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.totalprice)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.requests)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.campaigncode.code)
+                            </td>
+                            <td>
+                                @Html.ActionLink(item.customer.firstname, "orderinfo", new { id = item.orderID })
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+            </table>
+
+
+            
+        </div>
+    }
+    </div>
+
+
+
+<script>
+    function openPage(pageName, elmnt, color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+
+    }
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>

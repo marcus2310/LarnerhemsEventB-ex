@@ -15,6 +15,7 @@ namespace LarnerhemsEvent.Controllers
         {
             dbc.DeleteUnfinnishedOrder();
             TempData["klar"] = "";
+            TempData["admin"] = "false";
 
             return View();
         }

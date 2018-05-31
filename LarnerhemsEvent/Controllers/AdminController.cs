@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace LarnerhemsEvent.Controllers
 {
     public class AdminController : Controller
@@ -55,12 +56,19 @@ namespace LarnerhemsEvent.Controllers
         }
         public ActionResult Kampanjkod()
         {
-           
+            if(TempData["admin"] == "true")
+            {
+                TempData["admin"] = "true";
                 var camps = dbc.GetAllCampaignCodes();
 
                 return View(camps);
 
-          
+            }
+            else
+            {
+
+                return RedirectToAction("Login", "Admin");
+            }
 
         }
         [HttpPost]
@@ -78,16 +86,29 @@ namespace LarnerhemsEvent.Controllers
             {
                 dbc.CreateCampaignCode(campCode, Convert.ToInt32(rabatt));
             }
-        
 
+            TempData["admin"] = "true";
             return RedirectToAction("Kampanjkod", "Admin");
         }
         public ActionResult Anvandare()
         {
-
+            if(TempData["admin"] == "true")
+            {
+                TempData["admin"] = "true";
             var userList = dbc.GetAllusers();
 
             return View(userList);
+
+
+            }
+            else
+            {
+
+                return RedirectToAction("Login", "Admin");
+            }
+
+
+
         }
         [HttpPost]
         public ActionResult Anvandare(FormCollection form)
@@ -96,7 +117,7 @@ namespace LarnerhemsEvent.Controllers
             var username = form["usernameUser"];
             var password = form["passwordUser"];
 
-            if (userID != null)
+            if(userID != null)
             {
                 dbc.DeleteUser(Convert.ToInt32(userID));
 
@@ -107,29 +128,122 @@ namespace LarnerhemsEvent.Controllers
 
             }
 
-
+            TempData["admin"] = "true";
             return RedirectToAction("Anvandare", "Admin");
 
         }
         public ActionResult Paket()
         {
+            if(TempData["admin"] == "true")
+            {
+                TempData["admin"] = "true";
             var packList = dbc.GetAllPackages();
 
             return View(packList);
+
+
+            
+            }
+            else
+            {
+
+                return RedirectToAction("Login", "Admin");
+            }
+
+
         }
         public ActionResult Redigera(int id)
         {
+            if(TempData["admin"] == "true")
+            {
+                TempData["admin"] = "true";
+                try
+                {
+                    var package = dbc.GetAPackage(id);
+                    return View(package);
+
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Paket","Admin");
+                }
+               
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+  
+        }
+        [HttpPost]
+        public ActionResult Redigera(FormCollection form)
+        {
             try
             {
-                var package = dbc.GetAPackage(id);
-                return View(package);
+                var packageid = form["packageid"];
+                var name = form["name"];
+                var price = form["price"];
+                var originalprice = form["originalprice"];
+                var info = form["info"];
+                var moreinfo = form["moreinfo"];
+
+                dbc.UpdatePackage(Convert.ToInt32(packageid), name, Convert.ToInt32(price), Convert.ToInt32(originalprice), info, moreinfo);
+
+                TempData["admin"] = "true";
+                return RedirectToAction("Redigera", new { id = Convert.ToInt32(packageid)});
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Paket", "Admin");
+
+            }
+
+        }
+        public ActionResult Orders()
+        {
+            try
+            {
+                var OrderList = dbc.GetAllOrders();
+
+                return View(OrderList);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+        }
+        [HttpPost]
+        public ActionResult Orders(FormCollection form)
+        {
+            try
+            {
+                var orderID = form["approveorder"];
+                
+                var order = dbc.GetOrder(Convert.ToInt32(orderID));
+                order.approved = "true";
+                dbc.UpdateOrder(order);
+
+                return RedirectToAction("Orders", "Admin");
 
             }
             catch (Exception)
             {
-                return RedirectToAction("Paket","Admin");
+                return RedirectToAction("Orders", "Admin");
             }
-         
+        }
+        public ActionResult Orderinfo(int id)
+        {
+            try
+            {
+                var order = dbc.GetOrder(id);
+
+                return View(order);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Orders", "Admin");
+            }
+
         }
     }
 }

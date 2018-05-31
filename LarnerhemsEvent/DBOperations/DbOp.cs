@@ -318,6 +318,13 @@ namespace LarnerhemsEvent.DBOperations
             return UserList;
 
         }
+        public  List<order> GetAllOrders()
+        {
+            List<order> OrderList = db.orders.Where(x => x.sent == "true").ToList();
+            List<order> sortedList = OrderList.OrderByDescending(x => x.eventdate).ToList();
+
+            return sortedList;
+        }
         #endregion
 
         #region Tabort Från DB
@@ -472,6 +479,27 @@ namespace LarnerhemsEvent.DBOperations
 
                 campaignCode.code = name;
                 campaignCode.amount = amount;
+
+                db.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        public void UpdatePackage(int packID, string name, int price, int originalprice, string info, string moreinfo)
+        {
+            try
+            {
+                package pack = db.packages.Find(packID);
+
+                pack.name = name;
+                pack.price = price;
+                pack.originalprice = originalprice;
+                pack.info = info;
+                pack.moreinfo = moreinfo;
 
                 db.SaveChanges();
 

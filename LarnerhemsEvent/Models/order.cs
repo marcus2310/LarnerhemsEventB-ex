@@ -11,7 +11,8 @@ namespace LarnerhemsEvent.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +22,10 @@ namespace LarnerhemsEvent.Models
         }
     
         public int orderID { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> orderdate { get; set; }
         public string deliveryadress { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> eventdate { get; set; }
         public Nullable<int> fk_customer_id { get; set; }
         public Nullable<int> fk_campaigncode_id { get; set; }
