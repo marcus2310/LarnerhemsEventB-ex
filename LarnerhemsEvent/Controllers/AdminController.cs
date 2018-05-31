@@ -217,14 +217,24 @@ namespace LarnerhemsEvent.Controllers
         {
             try
             {
-                var orderID = form["approveorder"];
                 
-                var order = dbc.GetOrder(Convert.ToInt32(orderID));
-                order.approved = "true";
-                dbc.UpdateOrder(order);
+                var orderID = form["approveorder"];
+                var tabortorderID = form["tabortorder"];
+
+                if(orderID != null)
+                {
+                    var order = dbc.GetOrder(Convert.ToInt32(orderID));
+                    order.approved = "true";
+                    dbc.UpdateOrder(order);
+
+                }
+                if(tabortorderID != null)
+                {
+                    dbc.DeleteOrder(Convert.ToInt32(tabortorderID));
+
+                }
 
                 return RedirectToAction("Orders", "Admin");
-
             }
             catch (Exception)
             {

@@ -431,6 +431,26 @@ namespace LarnerhemsEvent.DBOperations
 
             }
         }
+        public void DeleteOrder(int orderID)
+        {
+            try
+            {
+                var packord = db.packageorderdetails.Where(x => x.fk_order_id == orderID).ToList();
+                foreach (var item in packord)
+                {
+                    db.Entry(item).State = EntityState.Deleted;
+                    db.SaveChanges();
+                }
+                var order = db.orders.Find(orderID);
+                db.Entry(order).State = EntityState.Deleted;
+                db.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
         #endregion
 
         #region Uppdatera DB
