@@ -101,15 +101,41 @@ namespace LarnerhemsEvent.DBOperations
 
         public void CreateCampaignCode(string code, int amount)
         {
+            try
+            {
             campaigncode camp = new campaigncode();
             camp.code = code;
             camp.amount = amount;
             camp.campaigncodeID = camp.campaigncodeID;
             db.campaigncodes.Add(camp);
             db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+            }
+
 
         }
- 
+        public void CreateUser(string username, string password, int access)
+        {
+            try
+            {
+            user Theuser = new user();
+            Theuser.username = username;
+            Theuser.password = password;
+            Theuser.fk_access_id = access;
+            Theuser.userID = Theuser.userID;
+            db.users.Add(Theuser);
+            db.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
 
         #endregion
 
@@ -277,6 +303,21 @@ namespace LarnerhemsEvent.DBOperations
             }
            
         }
+
+        public List<campaigncode> GetAllCampaignCodes()
+        {
+            List<campaigncode> CampList = db.campaigncodes.ToList();
+
+            return CampList;
+
+        }
+        public List<user> GetAllusers()
+        {
+            List<user> UserList = db.users.ToList();
+
+            return UserList;
+
+        }
         #endregion
 
         #region Tabort Från DB
@@ -354,7 +395,35 @@ namespace LarnerhemsEvent.DBOperations
 
         }
 
+        public void DeleteCampaign(int campID)
+        {
+            try
+            {
+                var camp = db.campaigncodes.Find(campID);
 
+                db.Entry(camp).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+        public void DeleteUser(int userID)
+        {
+            try
+            {
+                var user = db.users.Find(userID);
+
+                db.Entry(user).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
         #endregion
 
         #region Uppdatera DB

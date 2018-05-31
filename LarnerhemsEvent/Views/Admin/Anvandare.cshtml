@@ -1,0 +1,82 @@
+﻿@model IEnumerable<LarnerhemsEvent.Models.user>
+@{
+    ViewBag.Title = "Anvandare";
+}
+
+<h1 style="text-align:center;"> <a href="/Admin/Index">Adminpanel - startsida</a></h1>
+
+<div class="admin-container">
+    <h1>Aktiva Användare</h1>
+    @using (Html.BeginForm())
+    {
+        <div class="camp-container">
+
+            @foreach (var item in Model)
+            {
+                if(item.fk_access_id ==1)
+                {
+                <table class="table" style="width:100%;">
+                    <thead id="package-slutfor-banner">
+                        <tr>
+                            <th scope="col">Användarnamn</th>
+                            <th scope="col">Lösenord</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="table-light">
+                            <td style="color:red" id="table-package-amount">@Html.DisplayFor(Model => item.username)</td>
+                            <td style="color:red; visibility:hidden" id="table-package-name">@Html.DisplayFor(Model => item.password)</td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+                }
+                else
+                {
+                <table class="table" style="width:100%;">
+                    <thead id="package-slutfor-banner">
+                        <tr>
+                            <th scope="col">Användarnamn</th>
+                            <th scope="col">Lösenord</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="table-light">
+                            <td style="color:red" id="table-package-amount">@Html.DisplayFor(Model => item.username)</td>
+                            <td style="color:red; visibility:hidden;" id="table-package-name">@Html.DisplayFor(Model => item.password)</td>
+                            <td id="table-package-button"><button class="btn btn-danger btn-group-lg" value="@item.userID" name="taBortUser">Ta Bort</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                }
+
+
+            }
+
+
+        </div>
+        <div class="camp-form-container">
+            <h1>Skapa ny Användare</h1>
+
+            <div class="two-input">
+                <div class="form-group" id="input-1">
+                    <label>Användarnamn</label>
+                    <input type="text" class="form-control" name="usernameUser" maxlength="25" id="usernameUser">
+                    <small class="form-text text-muted">Fyll i användarnamn</small>
+                </div>
+
+                <div class="form-group" id="input-2">
+                    <label>Lösenord</label>
+                    <input type="password" class="form-control" name="passwordUser" maxlength="25"   id="passwordUser">
+                    <small id="emailHelp" class="form-text text-muted">Fyll i lösenord</small>
+                </div>
+            </div>
+            <div class="slutfor-button-container">
+                <input type="submit" class="btn btn-success btn-lg" id="skapa-user" value="Skapa användare">
+            </div>
+        </div>
+    }
+</div>

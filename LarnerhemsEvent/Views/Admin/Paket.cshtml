@@ -1,0 +1,74 @@
+﻿@model IEnumerable<LarnerhemsEvent.Models.package>
+
+@{
+    ViewBag.Title = "Paket";
+}
+
+<h1 style="text-align:center;"> <a href="/Admin/Index">Adminpanel - startsida</a></h1>
+<div class="admin-container">
+
+
+
+
+    <h2>Alla paket</h2>
+
+
+    <table class="table">
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                Namn
+            </th>
+            <th>
+                Pris
+            </th>
+            <th>
+                Ord. Pris
+            </th>
+            <th>
+                Info
+            </th>
+            <th>
+                Extra info
+            </th>
+            <th>
+                Genre
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img style="width:130px; height:100px;" src="~/@Html.DisplayFor(modelItem => item.img)" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.originalprice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.info)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.moreinfo)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.genre.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Redigera", "Redigera", new { id = item.packageID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

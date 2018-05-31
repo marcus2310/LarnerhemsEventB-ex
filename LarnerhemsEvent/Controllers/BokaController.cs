@@ -720,7 +720,7 @@ namespace LarnerhemsEvent.Controllers
 
                     foreach (var item in productList)
                     {
-                        productString = productString + item.package.name.ToString() + "     " + "<b>Antal:</b> " + item.amount.ToString() +" st" + "<br/>";
+                        productString = productString + item.package.name.ToString() + "          " + "<b>Antal:</b> " + item.amount.ToString() +" st" + "<br/>";
                     }
 
                     //här börjar mail-body..
@@ -735,8 +735,8 @@ namespace LarnerhemsEvent.Controllers
                     productString + "<br/><br/>" +
 
                     "Order skapad: " + orderdate.ToShortDateString() + "<br/>" +
-                    "Använd kampanjkod: " + kampanjkod.ToString() + "<br/>" +
-                     "<h3>Totalsumma valda produkter: <font color=red>" + order.totalprice.ToString() + " Kr</font></h3>" +
+                    "Använd kampanjkod: " + kampanjkod.ToString() + "<br/><br/>" +
+                     "<h2>Totalsumma valda produkter: <font color=red>" + order.totalprice.ToString() + " Kr</font></h2>" +
                      "<br/><br/>" +
 
 

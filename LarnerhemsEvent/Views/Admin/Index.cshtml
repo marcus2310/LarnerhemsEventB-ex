@@ -3,73 +3,36 @@
     ViewBag.Title = "Index";
 }
 
-<h1 style="text-align:center;">Startsida för admin</h1>
+<h1 style="text-align:center;"> <a href="/Admin/Index">Adminpanel - startsida</a></h1>
+
+
 
 <div class="admin-container">
+    <ul style="list-style:none;line-height:5px;">
+        <li class="admin-list-object">
+            <h2><a href="/Admin/paket">Redigera paket</a></h2>
+        </li>
+        <li>
+            <h2><a href="/admin/anvandare">Redigera användare</a></h2>
+        </li>
+
+        <li>
+            <h2><a href="#">Redigera nåt</a></h2>
+        </li>
+
+        <li>
+            <h2><a href="/Admin/kampanjkod">Redigera kampanjkod</a></h2>
+        </li>
 
 
 
 
-    <div class="tabcontent-container">
-        <button class="tabadmin" onclick="openPage('Om-oss', this, 'white')" id="defaultOpen">Om oss</button>
-        <button class="tabadmin" onclick="openPage('Bildgalleri', this, 'white')">Bildgalleri</button>
-        <button class="tabadmin" onclick="openPage('Kundcitat', this, 'white')">Kundcitat</button>
-        <button class="tabadmin" onclick="openPage('Meriter', this, 'white')">Mässarrangör</button>
 
 
-        <div id="Om-oss" class="tabcontent">
-            <h1>1</h1>
-
-
-        </div>
-
-        <div id="Bildgalleri" class="tabcontent">
-            <h1>2</h1>
-
-
-
-        </div>
-
-        <div id="Kundcitat" class="tabcontent">
-
-            <h1>3</h1>
-
-
-
-        </div>
-
-        <div id="Meriter" class="tabcontent">
-
-
-            <h1>4</h1>
-
-
-        </div>
-    </div>
-
-
-
-
-    <script>
-    function openPage(pageName, elmnt, color) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tabadmin");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].style.backgroundColor = "";
-        }
-        document.getElementById(pageName).style.display = "block";
-        elmnt.style.backgroundColor = color;
-
-    }
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
-    </script>
-
-
+    </ul>
+    
 
 
 </div>
+
+

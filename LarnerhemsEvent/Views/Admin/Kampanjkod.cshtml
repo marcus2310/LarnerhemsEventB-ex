@@ -1,0 +1,59 @@
+﻿@model IEnumerable<LarnerhemsEvent.Models.campaigncode>
+@{
+    ViewBag.Title = "Kampanjkod";
+}
+<h1 style="text-align:center;"> <a href="/Admin/Index">Adminpanel - startsida</a></h1>
+
+<div class="admin-container">
+    <h1>Aktiva kampanjkoder</h1>
+    @using (Html.BeginForm())
+    {
+        <div class="camp-container">
+
+            @foreach (var item in Model)
+            {
+                <table class="table" style="width:100%;">
+                    <thead id="package-slutfor-banner">
+                        <tr>
+                            <th scope="col">Kod</th>
+                            <th scope="col">Rabatt i kr</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="table-light">
+                            <td style="color:red" id="table-package-amount">@Html.DisplayFor(Model => item.code)</td>
+                            <td style="color:red" id="table-package-name">@Html.DisplayFor(Model => item.amount)</td>
+                            <td id="table-package-button"><button class="btn btn-danger btn-group-lg" value="@item.campaigncodeID" name="taBortCamp">Ta Bort</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            }
+
+
+        </div>
+        <div class="camp-form-container">
+            <h1>Skapa ny kampanjkod</h1>
+
+            <div class="two-input">
+                <div class="form-group" id="input-1">
+                    <label>Kod</label>
+                    <input type="text" class="form-control" name="campCode" maxlength="25" id="campCode">
+                    <small class="form-text text-muted">Fyll i kampanjkod</small>
+                </div>
+
+                <div class="form-group" id="input-2">
+                    <label>Rabatt</label>
+                    <input type="text" class="form-control" name="rabatt" maxlength="15" pattern="\d*" title="Endast siffror." id="rabatt">
+                    <small id="emailHelp" class="form-text text-muted">Fyll i rabatt i kr</small>
+                </div>
+            </div>
+            <div class="slutfor-button-container">
+                <input type="submit" class="btn btn-success btn-lg" id="skapa-campcode" value="Skapa kampanjkod">
+            </div>
+        </div>
+    }
+</div>
+
+

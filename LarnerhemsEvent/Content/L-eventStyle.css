@@ -784,11 +784,19 @@ padding-top:3%;
     width: 100%;
     margin-top: 2%;
 }
-.tabadmin{
-    display:table;
-    width:20%;
-    height:25%;
+.admin-container{
+    width:100%;
+    height:100%;
+    display:block;
+    padding:5%;
+    text-align:center;
 }
+.admin-list-object{
+
+
+
+}
+
 
 @media only screen and (max-width: 580px) {
 

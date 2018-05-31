@@ -391,6 +391,10 @@
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\Kampanjkod.cshtml" />
+    <Content Include="Views\Admin\Anvandare.cshtml" />
+    <Content Include="Views\Admin\Paket.cshtml" />
+    <Content Include="Views\Admin\Redigera.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -53,5 +53,83 @@ namespace LarnerhemsEvent.Controllers
             }
             
         }
+        public ActionResult Kampanjkod()
+        {
+           
+                var camps = dbc.GetAllCampaignCodes();
+
+                return View(camps);
+
+          
+
+        }
+        [HttpPost]
+        public ActionResult Kampanjkod(FormCollection form)
+        {
+            var campID = form["taBortCamp"];
+            var campCode = form["campCode"];
+            var rabatt = form["rabatt"];
+
+            if(campID != null)
+            {
+                dbc.DeleteCampaign(Convert.ToInt32(campID));
+            }
+            else if(campCode != "" && rabatt != "")
+            {
+                dbc.CreateCampaignCode(campCode, Convert.ToInt32(rabatt));
+            }
+        
+
+            return RedirectToAction("Kampanjkod", "Admin");
+        }
+        public ActionResult Anvandare()
+        {
+
+            var userList = dbc.GetAllusers();
+
+            return View(userList);
+        }
+        [HttpPost]
+        public ActionResult Anvandare(FormCollection form)
+        {
+            var userID = form["taBortUser"];
+            var username = form["usernameUser"];
+            var password = form["passwordUser"];
+
+            if (userID != null)
+            {
+                dbc.DeleteUser(Convert.ToInt32(userID));
+
+            }
+            else if (username != "" && password != "")
+            {
+                dbc.CreateUser(username, password, 2);
+
+            }
+
+
+            return RedirectToAction("Anvandare", "Admin");
+
+        }
+        public ActionResult Paket()
+        {
+            var packList = dbc.GetAllPackages();
+
+            return View(packList);
+        }
+        public ActionResult Redigera(int id)
+        {
+            try
+            {
+                var package = dbc.GetAPackage(id);
+                return View(package);
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Paket","Admin");
+            }
+         
+        }
     }
 }
