@@ -24,6 +24,12 @@ namespace LarnerhemsEvent.E_mail
 
         static emailer()
         {
+
+
+            //GmailUsername = "no-reply@leventsyd.se";
+            //GmailPassword = "vovven";
+            //GmailHost = "smtp.unoeuro.com";
+
             GmailUsername = "mali1623@student.miun.se";
             GmailPassword = "RYggmackan33";
             GmailHost = "smtp.gmail.com";
@@ -43,12 +49,19 @@ namespace LarnerhemsEvent.E_mail
 
             using (var message = new MailMessage(GmailUsername, ToEmail))
             {
-
+                try
+                {
                 message.Bcc.Add("jois1601@student.miun.se");
                 message.Subject = Subject;
                 message.Body = Body;
                 message.IsBodyHtml = IsHtml;
                 smtp.Send(message);
+                }
+                catch (Exception ex)
+                {
+                    var mess = ex.Message;
+                }
+
             }
         }
 

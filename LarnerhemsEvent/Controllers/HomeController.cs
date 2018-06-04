@@ -40,6 +40,10 @@ namespace LarnerhemsEvent.Controllers
         }
         public ActionResult Error()
         {
+            return View();
+        }
+        public ActionResult PageNotFound()
+        {
             Response.StatusCode = 404;
             return View();
         }

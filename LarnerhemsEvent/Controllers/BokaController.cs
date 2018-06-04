@@ -10,6 +10,9 @@ using System.Web.Security;
 using LarnerhemsEvent.E_mail;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Text;
+using System.Web.Configuration;
+using System.Net.Configuration;
 
 namespace LarnerhemsEvent.Controllers
 {
@@ -84,7 +87,7 @@ namespace LarnerhemsEvent.Controllers
                 return RedirectToAction("Error", "Home");
             }
           
-            TempData["Auth"] = "steg1";
+            TempData["Auth"] = "steg2";
 
             return RedirectToAction("Golv", "Boka");
         }
@@ -101,13 +104,13 @@ namespace LarnerhemsEvent.Controllers
                 }
                 else
                 {
-                    TempData["auth"] = null;
+                    TempData["auth"] = "";
                     return RedirectToAction("Index", "Boka");
                 }
             }
             catch (Exception)
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Boka");
 
             }
             
@@ -142,7 +145,7 @@ namespace LarnerhemsEvent.Controllers
                 {
                     //här kan vi sedan ta bort paket som valts
                     dbc.DeleteSelectedPackage(orderID, 1);
-                    TempData["auth"] = "steg2";
+                    TempData["auth"] = "steg1";
                     totalPrice = dbc.GetTotalPrice(orderID);
                     TempData["summa"] = totalPrice;
                     dbc.SetTotalpriceOrder(orderID, totalPrice);
@@ -181,7 +184,7 @@ namespace LarnerhemsEvent.Controllers
             }
 
 
-            TempData["Auth"] = "steg2";
+            TempData["Auth"] = "steg3";
             return RedirectToAction("Ljud", "Boka");
         }
 
@@ -204,7 +207,7 @@ namespace LarnerhemsEvent.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Boka");
 
             }
             
@@ -251,7 +254,7 @@ namespace LarnerhemsEvent.Controllers
                     totalPrice = dbc.GetTotalPrice(orderID);
                     TempData["summa"] = totalPrice;
                     dbc.SetTotalpriceOrder(orderID, totalPrice);
-                    TempData["Auth"] = "steg3";
+                    TempData["Auth"] = "steg4";
                     return RedirectToAction("Ljus", "Boka");
 
 
@@ -272,7 +275,7 @@ namespace LarnerhemsEvent.Controllers
             }
 
 
-            TempData["Auth"] = "steg3";
+            TempData["Auth"] = "steg4";
             return RedirectToAction("Ljus", "Boka");
         }
        
@@ -296,7 +299,7 @@ namespace LarnerhemsEvent.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Boka");
 
             }
            
@@ -342,7 +345,7 @@ namespace LarnerhemsEvent.Controllers
                     totalPrice = dbc.GetTotalPrice(orderID);
                     TempData["summa"] = totalPrice;
                     dbc.SetTotalpriceOrder(orderID, totalPrice);
-                    TempData["Auth"] = "steg4";
+                    TempData["Auth"] = "steg5";
                     return RedirectToAction("Tillbehor", "Boka");
 
 
@@ -363,7 +366,7 @@ namespace LarnerhemsEvent.Controllers
 
             }
 
-            TempData["Auth"] = "steg4";
+            TempData["Auth"] = "steg5";
             return RedirectToAction("Tillbehor", "Boka");
         }
 
@@ -385,7 +388,7 @@ namespace LarnerhemsEvent.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Boka");
             }
 
         }
@@ -535,7 +538,7 @@ namespace LarnerhemsEvent.Controllers
 
             }
 
-            TempData["Auth"] = "steg5";
+            TempData["Auth"] = "steg6";
             return RedirectToAction("Slutfor", "Boka");
         }
 
@@ -597,7 +600,7 @@ namespace LarnerhemsEvent.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Index", "Boka");
             }
 
         }
@@ -709,63 +712,76 @@ namespace LarnerhemsEvent.Controllers
                     emailer mailer = new emailer();
                     List<string> productName = new List<string>();
                     string productString = "";
-                    mailer.ToEmail = email;
-                    //AlternateView imageView = new AlternateView("~/content/bilder/logo1.jpg", MediaTypeNames.Image.Jpeg);
-                    mailer.Subject = "Bokningsförfrågan mottagen Leventsyd";
+
+
+                    // MAIL!
+                    System.Net.Mail.MailMessage mailMessage = new System.Net.Mail.MailMessage();
+                    SmtpSection cfg = NetSectionGroup.GetSectionGroup(WebConfigurationManager.OpenWebConfiguration("~/web.config")).MailSettings.Smtp;
+                    MailMessage objMessage = new MailMessage();
+                    objMessage.IsBodyHtml = true;
+                    objMessage.From = new MailAddress(cfg.From);
+                    objMessage.Subject = "Bokningsförfrågan mottagen Leventsyd";
 
                     DateTime orderdate = Convert.ToDateTime(order.orderdate);
                     DateTime eventdate = Convert.ToDateTime(order.eventdate);
 
-
-
                     foreach (var item in productList)
                     {
-                        productString = productString + item.package.name.ToString() + "          " + "<b>Antal:</b> " + item.amount.ToString() +" st" + "<br/>";
+                        productString = productString + item.package.name.ToString() + "          " + "<b>Antal:</b> " + item.amount.ToString() + " st" + "<br/>";
                     }
 
                     //här börjar mail-body..
 
-                    mailer.Body = "<h1>Tack för din bokningsförfrågan " + "<b>" + cust.firstname + "</b>!</h1>" +
+                    objMessage.Body = "<h1>Tack för din bokningsförfrågan "+ cust.firstname + "!</h1>" +
                     "<br/><br/>" +
 
                     "<h3>Ditt ordernummer är: <b>" + order.orderID.ToString() + "</b></h3>" +
                     "<br/><br/>" +
-                    "<h2>Valda Produkter</h2>" + "<br/>" +
+                    "<h2>Valda Produkter:</h2>" + "<br/>" +
 
                     productString + "<br/><br/>" +
 
                     "Order skapad: " + orderdate.ToShortDateString() + "<br/>" +
                     "Använd kampanjkod: " + kampanjkod.ToString() + "<br/><br/>" +
-                     "<h2>Totalsumma valda produkter: <font color=red>" + order.totalprice.ToString() + " Kr</font></h2>" +
+                     "<h2>Totalsumma valda produkter: <font color=red>" + order.totalprice.ToString() + " Kr</font></h2>" + "<br/>" +
+                     "<h4>Frakt tillkommer alltid utanför Malmö (35kr / mil)." +
                      "<br/><br/>" +
 
 
 
                     "<h2>Person- och leveransuppgifter: </h2> " +
                     "<br/>" +
-                    cust.firstname + " " + cust.lastname + "<br/>" +
-                    cust.email + "<br/>" +
-                    cust.phonenumber + "<br/>" +
-                    order.deliveryadress + "<br/>" +
-                    order.zipcode + "<br/>" +
-                    order.town + "<br/>" +
-                    eventdate.ToShortDateString()
+
+                    "Namn: " +  cust.firstname + " " + cust.lastname + "<br/>" +
+                    "Mail: " +  cust.email + "<br/>" +
+                    "Telefonnummer: " +  cust.phonenumber + "<br/>" +
+                    "Leveransadress: " +  order.deliveryadress + "<br/>" +
+                    "Postnummer: " +  order.zipcode + "<br/>" +
+                    "Stad: " + order.town + "<br/>" +
+                    "Eventdatum: " +  eventdate.ToShortDateString()
 
                     + "<br/><br/>" +
                     "Övriga frågor: " + order.requests + "<br/><br/><br/>" +
 
-                    "<img src="+ "https://larnerhemsevent.com/_files/200000003-829b4848e3/logo%20(2).JPG" + " style="+"height:200px; width:500px;" +""+ "alt="+"Logo"+" /><br />"
+                    "<img src=" + "https://xn--svedalafretagsmssa-ztb66a.se/_files/200000574-b249eb33fe/700/LEVENTGROUP%20AB-4.jpg" + " style=" + "height:200px; width:500px;" + "" + "alt=" + "Logo" + " /><br />"
 
 
                     ;
                     //slut på mail-body..
 
+                    objMessage.To.Add(new MailAddress(email));
+                    objMessage.Bcc.Add("larnerhem@hotmail.com");
+                    SmtpClient client = new SmtpClient(cfg.Network.Host);
+                    
+                    //SLUT TEST MAIL
 
-                       
+                    //mailer.ToEmail = email;
+                    //AlternateView imageView = new AlternateView("~/content/bilder/logo1.jpg", MediaTypeNames.Image.Jpeg);
+                    //mailer.Subject = "Bokningsförfrågan mottagen Leventsyd";
 
-
-                    mailer.IsHtml = true;
-                    mailer.Send();
+                    client.Send(objMessage);
+                    //mailer.IsHtml = true;
+                    //mailer.Send();
 
                     order.sent = "true";
                     dbc.UpdateOrder(order);
@@ -774,11 +790,9 @@ namespace LarnerhemsEvent.Controllers
                     //måste sätta en auth.. så man inte kan komma åt i url sedan.....
                     TempData["klar"] = "true";
 
-                        return RedirectToAction("Klar", "Boka", new { @id = orderID });
-                
+                    return RedirectToAction("Klar", "Boka", new { @id = orderID });
                    
                 }
-
             }
             catch (SmtpFailedRecipientException ex)
             {
@@ -789,8 +803,8 @@ namespace LarnerhemsEvent.Controllers
             }
 
 
-            TempData["Auth"] = "steg6";
-            return RedirectToAction("Tillbehor", "Boka");
+            //TempData["Auth"] = "steg6";
+            //return RedirectToAction("Tillbehor", "Boka");
         }
         public ActionResult Klar(int id)
         {

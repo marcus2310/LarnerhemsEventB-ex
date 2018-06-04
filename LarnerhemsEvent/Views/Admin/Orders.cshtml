@@ -27,7 +27,7 @@
                         Order skapad
                     </th>
                     <th>
-                        Godkänd
+                        Bekräftad
                     </th>
                     <th>
                         Eventdatum
@@ -112,7 +112,7 @@
                         Order skapad
                     </th>
                     <th>
-                        Godkänd
+                        Bekräftad
                     </th>
                     <th>
                         Eventdatum
@@ -175,7 +175,7 @@
                                 @Html.ActionLink(item.customer.firstname, "orderinfo", new { id = item.orderID })
                             </td>
 
-                            <td id="table-order-button"><button class="btn btn-success btn-group-lg" value="@item.orderID" name="approveorder">Godkänn order</button></td>
+                            <td id="table-order-button"><button class="btn btn-success btn-group-lg" value="@item.orderID" name="approveorder">Bekräfta order</button></td>
                         </tr>
                     }
                 }
@@ -196,7 +196,7 @@
                         Order skapad
                     </th>
                     <th>
-                        Godkänd
+                        Bekräftad
                     </th>
                     <th>
                         Eventdatum
@@ -278,7 +278,7 @@
                         Order skapad
                     </th>
                     <th>
-                        Godkänd
+                        Bekräftad
                     </th>
                     <th>
                         Eventdatum
@@ -342,7 +342,7 @@
                             </td>
 
                             
-                            <td id="table-order-button" style="padding-left:15%;"><button class="btn btn-danger btn-group-lg" value="@item.orderID" name="tabortorder">Ta bort</button></td>
+                            <td id="table-order-button" style="padding-left:15%; display:inline-block;"><button class="btn btn-danger btn-group-lg" value="@item.orderID" name="tabortorder">Ta bort</button></td>
                         </tr>
                     }
                 }
